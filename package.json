@@ -1,0 +1,17 @@
+{
+  "name": "@droneblocks/node-red-dexi",
+  "version": "0.0.1",
+  "node-red" : {
+    "nodes": {
+      "lower-case": "lower-case.js",
+      "takeoff": "takeoff.js",
+      "ros2-websocket-server": "ros2-websocket-server.js",
+      "ros2-subsribe": "ros2-subscribe.js",
+      "ros2-service-call": "ros2-service-call.js"
+    }
+  },
+  "keywords": [],
+  "author": "Dennis Baldwin",
+  "license": "MIT",
+  "description": "Node Red nodes for DEXI drone development"
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ros2-subscribe',{
+        category: 'DEXI',
+        color: '#fef5ff',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            topicname: {value: ""},
+            prefix: {value: "asdf"}
+        },
+        inputs:0,
+        outputs:1,
+        paletteLabel: 'ros2 subscribe',
+        icon: "icon.png",
+        label: function() {
+            return this.topicname||"ros2 subscribe";
+        },
+        oneditprepare: function() {
+
+            $.getJSON('/dexi/topics', function(topics) {
+                console.log(topics)
+            })
+
+            $('#node-input-prefix').val(this.prefix)
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ros2-subscribe">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-user"></i> ROS2 Websocket Server</label>
+        <input type="text" id="node-input-server">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-topicname"><i class="icon-tag"></i> Topic</label>
+        <input type="text" id="node-input-topicname" placeholder="/mytopic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-prefix"> Prefix</label>
+        <input type="text" id="node-input-prefix"></select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="ros2-subscribe">
+    <p>A node that subscribes to ROS2 bridge websocket server</p>
+</script>
