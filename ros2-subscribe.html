@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <script type="text/javascript">
     RED.nodes.registerType('ros2-subscribe',{
         category: 'DEXI',
@@ -7,7 +5,7 @@
         defaults: {
             server: {type: "ros2-websocket-server"},
             topicname: {value: ""},
-            prefix: {value: "asdf"}
+            topics: {value: ""}
         },
         inputs:0,
         outputs:1,
@@ -18,13 +16,34 @@
         },
         oneditprepare: function() {
 
-            $.getJSON('/dexi/topics', function(topics) {
-                console.log(topics)
+            let node = this
+
+            $.getJSON('/dexi/topics', function(topicsResponse) {
+                let mergedTopicsData = ""
+                topicsResponse.topics.map((topic, i) => {
+                    //mergedTopicsData.push({topic: topic, type: topicsResponse.types[i]})
+                    mergedTopicsData += `<option value="${topic}">${topic}</option>`
+                })
+                $('#node-input-topics').html(mergedTopicsData)
             })
 
-            $('#node-input-prefix').val(this.prefix)
+            $('#node-input-topics').change((e) => {
+                let val = $(e.target).val()
+                node.topicname = val
+
+                $('#node-input-topicname').val(val)
+
+            })
         }
     });
+
+    // $.getJSON('/dexi/topics', function(topicsResponse) {
+    //     let mergedTopicsData = [];
+    //     topicsResponse.topics.map((topic, i) => {
+    //         mergedTopicsData.push({topic: topic, type: topicsResponse.types[i]})
+    //     })
+    //     console.log(mergedTopicsData)
+    // })
 </script>
 
 <script type="text/html" data-template-name="ros2-subscribe">
@@ -37,9 +56,10 @@
         <label for="node-input-topicname"><i class="icon-tag"></i> Topic</label>
         <input type="text" id="node-input-topicname" placeholder="/mytopic">
     </div>
+
     <div class="form-row">
-        <label for="node-input-prefix"> Prefix</label>
-        <input type="text" id="node-input-prefix"></select>
+        <label for="node-input-topics"><i class="icon-tag"></i> Topic</label>
+        <select id="node-input-topics"></select>
     </div>
 </script>
 
