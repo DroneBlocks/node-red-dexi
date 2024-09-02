@@ -5,7 +5,7 @@
         defaults: {
             server: {type: "ros2-websocket-server"},
             topicname: {value: ""},
-            topics: {value: ""}
+            messagetype: {value: ""}
         },
         inputs:0,
         outputs:1,
@@ -17,33 +17,49 @@
         oneditprepare: function() {
 
             let node = this
+            let topicsAndTypes = []
 
-            $.getJSON('/dexi/topics', function(topicsResponse) {
-                let mergedTopicsData = ""
+            $.getJSON('/dexi/topics', (topicsResponse) => {
+
+                let merged = [];
+
                 topicsResponse.topics.map((topic, i) => {
-                    //mergedTopicsData.push({topic: topic, type: topicsResponse.types[i]})
-                    mergedTopicsData += `<option value="${topic}">${topic}</option>`
+                    merged.push({topic: topic, type: topicsResponse.types[i]})
                 })
-                $('#node-input-topics').html(mergedTopicsData)
+
+                Object.assign(topicsAndTypes, merged)
+
+                let mergedTopicsData = ""
+
+                topicsAndTypes.map((object) => {
+
+                    // Set the selected topic and message type
+                    if (node.topicname === object.topic) {
+                        mergedTopicsData += `<option value="${object.topic}" selected>${object.topic}</option>`
+                        node.messagetype = object.type
+                        $('#node-input-messagetype').text(object.type)
+                    } else {
+                        mergedTopicsData += `<option value="${object.topic}">${object.topic}</option>`
+                    }
+                })
+
+                $('#node-input-topicname').html(mergedTopicsData)
             })
 
-            $('#node-input-topics').change((e) => {
+            $('#node-input-topicname').change((e) => {
+
                 let val = $(e.target).val()
+                
+                // Changes triggers on load
+                if (val == null) return
+
                 node.topicname = val
 
-                $('#node-input-topicname').val(val)
+                $('#node-input-messagetype').text(topicsAndTypes[e.target.selectedIndex].type)
 
             })
         }
     });
-
-    // $.getJSON('/dexi/topics', function(topicsResponse) {
-    //     let mergedTopicsData = [];
-    //     topicsResponse.topics.map((topic, i) => {
-    //         mergedTopicsData.push({topic: topic, type: topicsResponse.types[i]})
-    //     })
-    //     console.log(mergedTopicsData)
-    // })
 </script>
 
 <script type="text/html" data-template-name="ros2-subscribe">
@@ -54,12 +70,12 @@
 
     <div class="form-row">
         <label for="node-input-topicname"><i class="icon-tag"></i> Topic</label>
-        <input type="text" id="node-input-topicname" placeholder="/mytopic">
+        <select id="node-input-topicname"></select>
     </div>
 
     <div class="form-row">
-        <label for="node-input-topics"><i class="icon-tag"></i> Topic</label>
-        <select id="node-input-topics"></select>
+        <label><i class="icon-tag"></i> Message type</label>
+        <span id="node-input-messagetype"></span>
     </div>
 </script>
 
