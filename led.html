@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('led', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            color: {value: "white"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
+        label: function() {
+            return this.name || "led"
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="led">
+    <div class="form-row">
+        <label for="node-input-color"><i class="icon-tag"></i> LED Color</label>
+        <select id="node-input-color">
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="orange">Orange</option>
+            <option value="green">Green</option>
+            <option value="teal">Teal</option>
+            <option value="cyan">Cyan</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="magenta">Magenta</option>
+            <option value="gold">Gold</option>
+            <option value="pink">Pink</option>
+            <option value="aqua">Aqua</option>
+            <option value="jade">Jade</option>
+            <option value="amber">Amber</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="led">
+    <p>Set drone's LED color</p>
+</script>

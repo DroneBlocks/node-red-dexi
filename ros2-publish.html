@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ros2-publish',{
+        category: 'DEXI',
+        color: '#fef5ff',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            topicname: {
+                value: "",
+                required: true
+            },
+            messagetype: {value: ""},
+            stampheader: {
+                value: false
+            }
+        },
+        inputs:1,
+        outputs:1,
+        align: 'right',
+        paletteLabel: 'ros pub',
+        icon: "icon.png",
+        label: function() {
+            return this.topicname||"ros2 publish";
+        },
+        oneditprepare: function() {
+
+            let node = this
+            let topicsAndTypes = []
+
+            $.getJSON('/dexi/topics', (topicsResponse) => {
+
+                console.log(topicsResponse)
+
+                let merged = [];
+
+                topicsResponse.topics.map((topic, i) => {
+                    merged.push({topic: topic, type: topicsResponse.types[i]})
+                })
+
+                Object.assign(topicsAndTypes, merged)
+
+                let mergedTopicsData = ""
+
+                topicsAndTypes.map((object) => {
+
+                    // Set the selected topic and message type
+                    if (node.topicname === object.topic) {
+                        mergedTopicsData += `<option value="${object.topic}" selected>${object.topic}</option>`
+                        node.messagetype = object.type
+                        $('#node-input-messagetype').text(object.type)
+                    } else {
+                        mergedTopicsData += `<option value="${object.topic}">${object.topic}</option>`
+                    }
+                })
+
+                $('#node-input-topicname').html(mergedTopicsData)
+            })
+
+            $('#node-input-topicname').change((e) => {
+
+                let val = $(e.target).val()
+
+                // Changes triggers on load
+                if (val == null) return
+
+                node.topicname = val
+
+                $('#node-input-messagetype').text(topicsAndTypes[e.target.selectedIndex].type)
+
+            })
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="ros2-publish">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-user"></i> ROS Server</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topicname">
+            <i class="icon-tag"></i> ROS Topic</label>
+            <select id="node-input-topicname"></select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-messagetype">Message type</label>
+        <span id="node-input-messagetype"></select>
+    </div>
+
+    <div>
+        <span style="width: 350px; float: left; margin-left: 5px;"><input type="checkbox" id="node-input-stampheader" placeholder="stampheader" > Insert timestamp in header</span>
+        <br/><br/>
+    </div>
+
+    <h4>Input is expected in the format:</h4>
+    <pre id="msg_format">
+    </pre>
+</script>
+
+<script type="text/html" data-help-name="ros-publish">
+    <p>A node that publishes to ROS bridge websocket server</p>
+</script>
