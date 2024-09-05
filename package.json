@@ -10,7 +10,8 @@
       "ros2-websocket-server": "ros2-websocket-server.js",
       "ros2-subsribe": "ros2-subscribe.js",
       "ros2-publish": "ros2-publish.js",
-      "ros2-service-call": "ros2-service-call.js"
+      "ros2-service-call": "ros2-service-call.js",
+      "write-gpio": "write-gpio.js"
     }
   }
 }

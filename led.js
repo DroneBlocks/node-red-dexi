@@ -6,7 +6,9 @@ module.exports = function(RED) {
             msg.payload = {
                 "serviceName": "/dexi/led_service/set_led_ring_color",
                 "serviceType": "dexi_interfaces/srv/LEDRingColor",
-                "color": config.color
+                "serviceRequest": {
+                    "color": config.color
+                }
             }
             node.send(msg)
         })

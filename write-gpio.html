@@ -1,0 +1,46 @@
+<script type="text/javascript">
+    RED.nodes.registerType('write-gpio', {
+        category: 'DEXI',
+        color: '#fef5ff',
+        defaults: {
+            pinnumber: {value: 21, required: true},
+            pinstate: {value: false, required: true},
+            stampheader: {
+                value: false
+            }
+        },
+        inputs:1,
+        outputs:1,
+        align: 'right',
+        paletteLabel: 'write gpio',
+        icon: "icon.png",
+        label: function() {
+            return this.topicname || "write gpio";
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="write-gpio">
+    <div class="form-row">
+        <label for="node-input-pinnumber">Pin Number</label>
+        <select id="node-input-pinnumber">
+            <option value="21">21</option>
+            <option value="21">22</option>
+            <option value="21">23</option>
+            <option value="21">24</option>
+            <option value="21">25</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-pinstate">Pin State</label>
+        <select id="node-input-pinstate">
+            <option value="true">High</option>
+            <option value="false">Low</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="write-gpio">
+    <p>Write gpio data</p>
+</script>

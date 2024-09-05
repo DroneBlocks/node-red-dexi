@@ -49,14 +49,12 @@ module.exports = function(RED) {
           serviceType : msg.payload.serviceType
         })
 
-        let request = {
-          color: msg.payload.color
-        }
-
-        serviceClient.callService(request, (response) => {
+        serviceClient.callService(msg.payload.serviceRequest, (response) => {
           // In the future we'll do something with the service response
+          var o = JSON.parse(JSON.stringify(response))
+          node.send({payload: o});
         })
-      })
+    })
   
       node.server.on('ros connected', () => {
         node.status({fill:"green",shape:"dot",text:"connected"});
