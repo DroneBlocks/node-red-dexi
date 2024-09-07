@@ -1,6 +1,6 @@
 {
-  "name": "test-node",
-  "version": "1.0.0",
+  "name": "@droneblocks/node-red-dexi",
+  "version": "0.0.1",
   "node-red" : {
     "nodes": {
       "arm": "arm.js",
@@ -13,5 +13,6 @@
       "ros2-service-call": "ros2-service-call.js",
       "write-gpio": "write-gpio.js"
     }
-  }
+  },
+  "keywords": ["node-red", "ros2", "droneblocks", "drone", "dexi", "px4"]
 }

@@ -1,0 +1,1 @@
+docker run -it -p 1880:1880 -v ${PWD}/flows:/data -v ${PWD}/test-node:/test-node --name dexi-node-red nodered/node-red:latest-minimal
