@@ -1,0 +1,1797 @@
+[
+    {
+        "id": "a691db1a9e113a84",
+        "type": "tab",
+        "label": "Arm and Takeoff",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6fe657fb81fc95dd",
+        "type": "tab",
+        "label": "AVR Mission 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c0ec1ac3b0c99c6",
+        "type": "tab",
+        "label": "Laser",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2131ca674bcfee95",
+        "type": "tab",
+        "label": "Video iframe",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5788a4cce510d440",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2ee38794734c2d27",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "4166ed8cf4b1e7d4",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "2ee38794734c2d27",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.5.57:9090"
+    },
+    {
+        "id": "8925e2a4ea9f1164",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "abe39b768890b435",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "e6eba801bf9dd9d2",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 5,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc5720a331dc0c",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ee9a745fa0a0d671",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "76c130a2b7ab488e",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "0acdc4fa5cc98536",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "270b6da83bfd6649",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc3655525f2ec9",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "dfe4e6e5d1cb542b",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 12,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ae776f6d1da02661",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Altitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e45a0d6010d6d2ca",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "ae776f6d1da02661"
+            ]
+        ]
+    },
+    {
+        "id": "124ecd64576594fd",
+        "type": "ros2-subscribe",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_global_position",
+        "messagetype": "",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "8eeeac07046c07bc"
+            ]
+        ]
+    },
+    {
+        "id": "8eeeac07046c07bc",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "round altitude",
+        "func": "msg.payload = Math.round((msg.payload.alt) * 100) / 100\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "ae776f6d1da02661",
+                "dbb0a6a6836672cb",
+                "dbbf851b16148a77"
+            ]
+        ]
+    },
+    {
+        "id": "d1f2397de2fb0ba0",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "arm",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\": 400, \"param1\": 1, \"param2\": 0}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 560,
+        "wires": [
+            [
+                "c7d3209e681a9345"
+            ]
+        ]
+    },
+    {
+        "id": "de14779d483d567a",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "takeoff",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\": 22, \"param1\": -1, \"param2\": 0, \"param3\": 0, \"param4\": 0, \"param5\": 47.397742679365244, \"param6\": 8.545594667714894, \"param7\": 492}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "c7d3209e681a9345"
+            ]
+        ]
+    },
+    {
+        "id": "c7d3209e681a9345",
+        "type": "ros2-publish",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "",
+        "stampheader": false,
+        "x": 350,
+        "y": 640,
+        "wires": [
+            [
+                "745bb97aaa3b9e8b"
+            ]
+        ]
+    },
+    {
+        "id": "1226bac62c10ead0",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "land",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\": 21}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 680,
+        "wires": [
+            [
+                "c7d3209e681a9345"
+            ]
+        ]
+    },
+    {
+        "id": "745bb97aaa3b9e8b",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "b5febb2b61388cbe",
+        "type": "arm",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 250,
+        "y": 900,
+        "wires": [
+            [
+                "ec40e0a8698cca13"
+            ]
+        ]
+    },
+    {
+        "id": "1ffc10ae36cab917",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "launch",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 880,
+        "wires": [
+            [
+                "b5febb2b61388cbe"
+            ]
+        ]
+    },
+    {
+        "id": "ec40e0a8698cca13",
+        "type": "ros2-publish",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "px4_msgs/msg/VehicleCommand",
+        "stampheader": false,
+        "x": 530,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da9b2aec36533ecc",
+        "type": "disarm",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 230,
+        "y": 1000,
+        "wires": [
+            [
+                "ec40e0a8698cca13"
+            ]
+        ]
+    },
+    {
+        "id": "a9f24c3cfa93c577",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "launch",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 980,
+        "wires": [
+            [
+                "da9b2aec36533ecc"
+            ]
+        ]
+    },
+    {
+        "id": "dbb0a6a6836672cb",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_altitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0d1ab40f997abaac",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "print drone altitude",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 630,
+        "y": 1080,
+        "wires": [
+            [
+                "f7ad3c2d07f3f2e8"
+            ]
+        ]
+    },
+    {
+        "id": "b4cc028f4c4d33dc",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "f7ad3c2d07f3f2e8",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "get drone altitude",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "drone_altitude",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 1100,
+        "wires": [
+            [
+                "b4cc028f4c4d33dc"
+            ]
+        ]
+    },
+    {
+        "id": "03b896b331ae0a60",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "set altitude",
+        "func": "msg.payload = flow.get(\"drone_altitude\") + 5\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 1180,
+        "wires": [
+            [
+                "dae4f349c0b3fe37"
+            ]
+        ]
+    },
+    {
+        "id": "bb125056e044b680",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1200,
+        "wires": [
+            [
+                "03b896b331ae0a60"
+            ]
+        ]
+    },
+    {
+        "id": "dae4f349c0b3fe37",
+        "type": "takeoff",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 430,
+        "y": 1200,
+        "wires": [
+            [
+                "86049deb15395654",
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "86049deb15395654",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "ba286d4657da79aa",
+        "type": "ros2-publish",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "px4_msgs/msg/VehicleCommand",
+        "stampheader": false,
+        "x": 630,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c78cdce0411038a3",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "print altitude",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "dbbf851b16148a77",
+        "type": "delay",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "c78cdce0411038a3"
+            ]
+        ]
+    },
+    {
+        "id": "b2a8e3f87a509c26",
+        "type": "ros2-service-call",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "x": 1180,
+        "y": 580,
+        "wires": [
+            [
+                "bf3503ed327d1e7d",
+                "108712d3a6681a1b"
+            ]
+        ]
+    },
+    {
+        "id": "658feb1ef2a39742",
+        "type": "ros2-subscribe",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "topicname": "/dexi/gpio_input_22",
+        "messagetype": "std_msgs/msg/Bool",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "bbcc1ed99243f626"
+            ]
+        ]
+    },
+    {
+        "id": "af9624919a1b3582",
+        "type": "change",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "eb6dda84f6eda544",
+                "4581b25ed72a3f10"
+            ]
+        ]
+    },
+    {
+        "id": "eb6dda84f6eda544",
+        "type": "ui_led",
+        "z": "6fe657fb81fc95dd",
+        "order": 3,
+        "group": "4166ed8cf4b1e7d4",
+        "width": 6,
+        "height": 5,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 470,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0543bde3e74d88a0",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "White LED",
+        "color": "white",
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "4581b25ed72a3f10",
+        "type": "switch",
+        "z": "6fe657fb81fc95dd",
+        "name": "toggle white",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "0543bde3e74d88a0",
+                "0ff4f35e8cb0bbea"
+            ]
+        ]
+    },
+    {
+        "id": "c6b9086dbb472900",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Black LED (off)",
+        "color": "black",
+        "x": 1020,
+        "y": 280,
+        "wires": [
+            [
+                "d1a33d93bc76c389"
+            ]
+        ]
+    },
+    {
+        "id": "9d2d8060d837691b",
+        "type": "ros2-subscribe",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "topicname": "/detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 120,
+        "y": 800,
+        "wires": [
+            [
+                "2414f9d3f6e4223b"
+            ]
+        ]
+    },
+    {
+        "id": "2bf0733819afc97a",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "get april tag id",
+        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].id\n    flow.set(\"april_tag_detected\", true)\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "263c22771723c3b4",
+                "a94951e69f6804d8"
+            ]
+        ]
+    },
+    {
+        "id": "263c22771723c3b4",
+        "type": "switch",
+        "z": "6fe657fb81fc95dd",
+        "name": "set led color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 550,
+        "y": 880,
+        "wires": [
+            [
+                "be2c892197ca3898"
+            ],
+            [
+                "f819e55ec4b66bac"
+            ],
+            [
+                "94c5301511da52db"
+            ]
+        ]
+    },
+    {
+        "id": "7d43fd5f8bd9c45c",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "black",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 280,
+        "wires": [
+            [
+                "c6b9086dbb472900"
+            ]
+        ]
+    },
+    {
+        "id": "4943df094ae6b8c7",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "white",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "0543bde3e74d88a0"
+            ]
+        ]
+    },
+    {
+        "id": "be2c892197ca3898",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Red LED",
+        "color": "red",
+        "x": 880,
+        "y": 840,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "f819e55ec4b66bac",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Blue LED",
+        "color": "blue",
+        "x": 880,
+        "y": 900,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "94c5301511da52db",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Yellow LED",
+        "color": "yellow",
+        "x": 890,
+        "y": 960,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "2414f9d3f6e4223b",
+        "type": "delay",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 150,
+        "y": 920,
+        "wires": [
+            [
+                "790290dee15b5052"
+            ]
+        ]
+    },
+    {
+        "id": "a94951e69f6804d8",
+        "type": "ui_text",
+        "z": "6fe657fb81fc95dd",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "April Tag ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "6681b507c333bbd7",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "April Tag detection logic",
+        "info": "",
+        "x": 160,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "0d0de2296a5bcb2a",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "Infrared Beam detection logic",
+        "info": "",
+        "x": 160,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0ff4f35e8cb0bbea",
+        "type": "change",
+        "z": "6fe657fb81fc95dd",
+        "name": "beam detected true",
+        "rules": [
+            {
+                "t": "set",
+                "p": "beam_detected",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92b68e1b6ee8c07d",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "IR beam must be detected first",
+        "info": "",
+        "x": 190,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e2647594e160d017",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "Set global variable and go into april tag detection mode for 5 seconds",
+        "info": "",
+        "x": 630,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b4960165480cec74",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "initialize global vars",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "108712d3a6681a1b",
+        "type": "delay",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1380,
+        "y": 580,
+        "wires": [
+            [
+                "f029b596f71c92c6",
+                "c6b9086dbb472900"
+            ]
+        ]
+    },
+    {
+        "id": "dba3d2e7d18df143",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 680,
+        "y": 1040,
+        "wires": [
+            [
+                "94c5301511da52db"
+            ]
+        ]
+    },
+    {
+        "id": "bbcc1ed99243f626",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "check beam and april tag variables",
+        "func": "if (flow.get(\"beam_detected\") == false && flow.get(\"april_tag_detected\") == false) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "af9624919a1b3582"
+            ]
+        ]
+    },
+    {
+        "id": "bf3503ed327d1e7d",
+        "type": "debug",
+        "z": "6fe657fb81fc95dd",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "f029b596f71c92c6",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "reset flow vars",
+        "func": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25fe1833b6c28945",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "IR beam must be detected first",
+        "info": "",
+        "x": 190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "790290dee15b5052",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "beam is detected so proceed",
+        "func": "if (flow.get(\"beam_detected\")) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1040,
+        "wires": [
+            [
+                "2bf0733819afc97a"
+            ]
+        ]
+    },
+    {
+        "id": "437f1ee8eb899041",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1140,
+        "wires": [
+            [
+                "f61fb237ec372e64"
+            ]
+        ]
+    },
+    {
+        "id": "f61fb237ec372e64",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "print flow vars",
+        "func": "flow.keys().forEach((key) => {\n    console.log(`${key} - ${flow.get(key)}`)\n})",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de5180721d017b10",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "turn led off",
+        "info": "",
+        "x": 840,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d1a33d93bc76c389",
+        "type": "ros2-service-call",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "x": 1240,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76e775c3a1751abd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "e7825f628b2f869e",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "e02e5ed7d4735d41",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 900,
+        "y": 300,
+        "wires": [
+            [
+                "4e9a60214fc4557f",
+                "1d02d7bb6a41d093"
+            ]
+        ]
+    },
+    {
+        "id": "4a2a5d0b92fe99c6",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "58e910af587094bd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "4e9a60214fc4557f",
+        "type": "delay",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "2c6b2904b3fc7d64",
+        "type": "switch",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "property": "status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "af28ada7cb068285"
+            ],
+            [
+                "bc546e1bc590790a"
+            ]
+        ]
+    },
+    {
+        "id": "7773f62dd1fa9b02",
+        "type": "function",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "function 1",
+        "func": "flow.set(\"status\", !flow.get(\"status\"))\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"status\", true)",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "2c6b2904b3fc7d64"
+            ]
+        ]
+    },
+    {
+        "id": "4922594b111975ee",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "pulse laser",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "af28ada7cb068285",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "bc546e1bc590790a",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 640,
+        "y": 440,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "1d02d7bb6a41d093",
+        "type": "debug",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6d1ac3d7be3eb4e8",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 800,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf652689701c088b",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser on",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "7cde8f60efc5eb65",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "214b515b3ff88dc5",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "pulse laser",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "287bd7caa49c16bf",
+        "type": "ui_iframe",
+        "z": "2131ca674bcfee95",
+        "group": "4166ed8cf4b1e7d4",
+        "name": "",
+        "order": 1,
+        "width": "12",
+        "height": "11",
+        "url": "http://192.168.5.57:8080/stream_viewer?topic=/image_rect",
+        "origin": "*",
+        "scale": 100,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    }
+]
