@@ -1,17 +1,28 @@
 {
-  "name": "test-node",
-  "version": "1.0.0",
-  "node-red" : {
+  "name": "@droneblocks/node-red-dexi",
+  "version": "0.0.3",
+  "node-red": {
     "nodes": {
-      "arm": "arm.js",
-      "disarm": "disarm.js",
-      "takeoff": "takeoff.js",
-      "led": "led.js",
-      "ros2-websocket-server": "ros2-websocket-server.js",
-      "ros2-subsribe": "ros2-subscribe.js",
-      "ros2-publish": "ros2-publish.js",
-      "ros2-service-call": "ros2-service-call.js",
-      "write-gpio": "write-gpio.js"
+      "arm": "src/arm.js",
+      "disarm": "src/disarm.js",
+      "takeoff": "src/takeoff.js",
+      "led": "src/led.js",
+      "ros2-websocket-server": "src/ros2-websocket-server.js",
+      "ros2-subsribe": "src/ros2-subscribe.js",
+      "ros2-publish": "src/ros2-publish.js",
+      "ros2-service-call": "src/ros2-service-call.js",
+      "write-gpio": "src/write-gpio.js"
     }
+  },
+  "keywords": [
+    "node-red",
+    "ros2",
+    "droneblocks",
+    "drone",
+    "dexi",
+    "px4"
+  ],
+  "dependencies": {
+    "roslib": "^1.4.1"
   }
 }
