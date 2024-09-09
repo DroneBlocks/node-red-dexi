@@ -1,6 +1,6 @@
 {
   "name": "@droneblocks/node-red-dexi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "node-red": {
     "nodes": {
       "arm": "src/arm.js",
