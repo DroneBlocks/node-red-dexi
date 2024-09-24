@@ -6,6 +6,7 @@
       "arm": "src/arm.js",
       "disarm": "src/disarm.js",
       "takeoff": "src/takeoff.js",
+      "land": "src/land.js",
       "led": "src/led.js",
       "ros2-websocket-server": "src/ros2-websocket-server.js",
       "ros2-subsribe": "src/ros2-subscribe.js",

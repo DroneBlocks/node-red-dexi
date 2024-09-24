@@ -1,5 +1,11 @@
-msg = VehicleCommand()
-msg.command = VehicleCommand.VEHICLE_CMD_NAV_LAND
-
-{"command": 21}
-
+module.exports = function(RED) {
+    function LandNode(config) {
+        RED.nodes.createNode(this, config);
+        var node = this;
+        node.on('input', function(msg) {
+            msg.payload = {"command": 21}
+            node.send(msg)
+        })
+    }
+    RED.nodes.registerType("land", LandNode);
+}
