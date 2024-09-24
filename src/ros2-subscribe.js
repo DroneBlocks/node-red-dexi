@@ -1,8 +1,6 @@
 module.exports = function (RED){
     var ROSLIB = require('roslib')
 
-    let dexiTopics = []
-
     function ROS2SubscribeNode(config) {
       RED.nodes.createNode(this, config);
       var node = this;
@@ -33,12 +31,7 @@ module.exports = function (RED){
           ros : node.server.ros,
           name : config.topicname
         });
-
-        // Get list of topics to send to the editor
-        node.server.ros.getTopics((topicsResponse) => {
-          dexiTopics = topicsResponse
-        })
-        
+      
         topicQuery(node.topic);
         node.status({fill:"green", shape:"dot", text:"connected"});
       });
@@ -53,11 +46,6 @@ module.exports = function (RED){
         }
       });
     }
-
-    // Expose "API" to the editor for displaying topics
-    RED.httpAdmin.get('/dexi/topics', (req, res) => {
-      res.json(dexiTopics)
-    })
   
     RED.nodes.registerType("ros2-subscribe", ROS2SubscribeNode);
   };

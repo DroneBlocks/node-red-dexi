@@ -1,5 +1,7 @@
 module.exports = function (RED){
     var ROSLIB = require('roslib');
+
+    let dexiTopics = []
   
     function ROS2WebsocketServerNode(config) {
       RED.nodes.createNode(this, config);
@@ -28,6 +30,12 @@ module.exports = function (RED){
         ros.on('connection', function() {
           node.emit('ros connected');
           node.log('connected');
+
+          // Get list of topics to send to the editor for ros2 pub/sub nodes
+          node.ros.getTopics((topicsResponse) => {
+            dexiTopics = topicsResponse
+          })
+
         });
   
         ros.on('error', function(error) {
@@ -51,6 +59,11 @@ module.exports = function (RED){
       startconn();
       node.closing = false;
     }
+
+    // Expose "API" to the editor for displaying topics
+    RED.httpAdmin.get('/dexi/topics', (req, res) => {
+      res.json(dexiTopics)
+    })
   
     RED.nodes.registerType("ros2-websocket-server", ROS2WebsocketServerNode);
   };

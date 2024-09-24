@@ -2,8 +2,6 @@ module.exports = function(RED) {
     var ROSLIB = require('roslib'); 
     const Time = require('./Time.js');
 
-    let dexiTopics = []
-  
     function Ros2PublishNode(config) {
       RED.nodes.createNode(this,config);
       var node = this;
@@ -13,8 +11,9 @@ module.exports = function(RED) {
       if (!node.server || !node.server.ros){
         return;
       }
-  
+
       var msgtype = config.messagetype
+
       var topic = new ROSLIB.Topic({
         name : config.topicname,
         messageType : msgtype
@@ -22,7 +21,6 @@ module.exports = function(RED) {
   
       node.on('input', (msg) => {
         topic.ros = node.server.ros;
-        node.log('publishing msg ' + msg.payload);
         // var pubslishMsg = new ROSLIB.Message({data: msg.payload});
         var new_payload = msg.payload;
         // Insert timestamp in header
@@ -47,7 +45,7 @@ module.exports = function(RED) {
       }
   
       node.server.on('ros connected', () => {
-        node.status({fill:"green",shape:"dot",text:"connected"});
+        node.status({fill:"green", shape:"dot", text:"connected"});
       });
   
       node.server.on('ros error', () => {
@@ -55,11 +53,6 @@ module.exports = function(RED) {
       });
   
     }
-
-    // Expose "API" to the editor for displaying topics
-    RED.httpAdmin.get('/dexi/topics', (req, res) => {
-      res.json(dexiTopics)
-    })
     
     RED.nodes.registerType("ros2-publish", Ros2PublishNode);
   };
