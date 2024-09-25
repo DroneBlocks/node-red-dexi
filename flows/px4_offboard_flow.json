@@ -1,0 +1,826 @@
+[
+    {
+        "id": "e768c19cc0da9678",
+        "type": "tab",
+        "label": "PX4 Offboard Demo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29e53340ef49ce77",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/in/offboard_control_mode",
+        "messagetype": "",
+        "stampheader": false,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "1c5fbcfced8f9252",
+                "33be41c40531877e"
+            ]
+        ]
+    },
+    {
+        "id": "1c5fbcfced8f9252",
+        "type": "delay",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "e8aa4e2ceaea1f22",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "offboard heartbeat",
+        "func": "let offboardControlMode = {\n    \"position\": true,\n}\nmsg.payload = offboardControlMode\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 240,
+        "wires": [
+            [
+                "29e53340ef49ce77"
+            ]
+        ]
+    },
+    {
+        "id": "addc86be313e554e",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "start offboard heartbeat",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 560,
+        "y": 80,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "33be41c40531877e",
+        "type": "debug",
+        "z": "e768c19cc0da9678",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "86ea8d29eb6e3e9c",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "",
+        "stampheader": false,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51573c7cbe23531b",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "offboard",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":6}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "57279d179595d56c",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current Flight Mode",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 760,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "ee7ae77292d53306",
+        "type": "ros2-subscribe",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/out/vehicle_status",
+        "messagetype": "",
+        "x": 240,
+        "y": 1220,
+        "wires": [
+            [
+                "2c5a4d6ea290b29b"
+            ]
+        ]
+    },
+    {
+        "id": "2c5a4d6ea290b29b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "get flight mode",
+        "func": "let flight_mode = msg.payload.nav_state\nmsg.payload = flight_mode\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1220,
+        "wires": [
+            [
+                "57279d179595d56c"
+            ]
+        ]
+    },
+    {
+        "id": "7ba707f2050653d7",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "hold",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":4,\"param3\":3}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 560,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "3d6920e4d5733888",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "stabilized",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":7}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "41cf150f64cc4078",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/commander/Commander.cpp#L388",
+        "info": "",
+        "x": 420,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a0626b654553fea8",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "https://discuss.px4.io/t/switching-modes-in-px4-using-ros2-and-uxrce-dds/37137/2",
+        "info": "",
+        "x": 370,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d980469cec022242",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"position\":[0,0,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 880,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "e0d61e44670c2ae8",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "arm",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":400,\"param1\":1,\"param2\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 620,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "27cf97d74ed93ddd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "disarm",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":400,\"param1\":0,\"param2\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 680,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "9df0b4fd5a678392",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/in/trajectory_setpoint",
+        "messagetype": "px4_msgs/msg/TrajectorySetpoint",
+        "stampheader": false,
+        "x": 580,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4cc61a877975e57b",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "right",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"position\":[0,1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 940,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "4a02d7e5afd462ee",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "land",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":21}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 740,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "6c6e4bbea65ac252",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "left",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"position\":[0,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 1000,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "f1a46de304671a37",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "forward",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"position\":[1,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 1060,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "3d4b3aedea759a60",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "back",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"position\":[-1,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 1120,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "b5a7ac2a4b0caa1e",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Start sending the offboard heartbeat message so we can arm in offboard mode",
+        "info": "",
+        "x": 360,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d3a675a7fdec0864",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Arm drone",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"command\":400,\"param1\":1,\"param2\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 770,
+        "y": 500,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "9a839d6e86263a82",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start offboard heartbeat",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "f3a9816e169032ce",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Set offboard mode",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":6}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "d252f5ee9ed94533",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Takeoff",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"position\":[0,0,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 800,
+        "y": 880,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "5a6e6380a6f93b6b",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Right",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"position\":[0,1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 790,
+        "y": 940,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "ef4f6da0fbce08e9",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Left",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"position\":[0,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 790,
+        "y": 1000,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "4974f98994d98032",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Forward",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"position\":[1,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 800,
+        "y": 1060,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "563942be51127ae5",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Back",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"position\":[-1,-1,-2.5],\"yaw\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 790,
+        "y": 1120,
+        "wires": [
+            [
+                "9df0b4fd5a678392"
+            ]
+        ]
+    },
+    {
+        "id": "ea35d0e5ae1a6a18",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Land",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"command\":21}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 750,
+        "y": 620,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "3b3be37211189c03",
+        "type": "ros2-websocket-server",
+        "url": "ws://172.17.0.2:9090"
+    },
+    {
+        "id": "5e97842196ee06b6",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "02a0349dc0753d7c",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "02a0349dc0753d7c",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "Tab 1",
+        "disabled": false,
+        "hidden": false
+    }
+]
