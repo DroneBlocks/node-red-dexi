@@ -13,13 +13,14 @@
         "z": "e768c19cc0da9678",
         "server": "3b3be37211189c03",
         "topicname": "/fmu/in/offboard_control_mode",
-        "messagetype": "",
+        "messagetype": "px4_msgs/msg/OffboardControlMode",
         "stampheader": false,
-        "x": 230,
-        "y": 240,
+        "x": 790,
+        "y": 320,
         "wires": [
             [
-                "1c5fbcfced8f9252"
+                "1c5fbcfced8f9252",
+                "04b22aa18610eeb5"
             ]
         ]
     },
@@ -40,8 +41,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 530,
-        "y": 240,
+        "x": 510,
+        "y": 400,
         "wires": [
             [
                 "e8aa4e2ceaea1f22"
@@ -60,40 +61,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 240,
+        "x": 450,
+        "y": 320,
         "wires": [
             [
                 "29e53340ef49ce77"
-            ]
-        ]
-    },
-    {
-        "id": "addc86be313e554e",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "start offboard heartbeat",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 560,
-        "y": 100,
-        "wires": [
-            [
-                "e8aa4e2ceaea1f22"
             ]
         ]
     },
@@ -105,8 +77,8 @@
         "topicname": "/fmu/in/vehicle_command",
         "messagetype": "px4_msgs/msg/VehicleCommand",
         "stampheader": false,
-        "x": 610,
-        "y": 1260,
+        "x": 590,
+        "y": 680,
         "wires": [
             []
         ]
@@ -132,68 +104,10 @@
         "topic": "",
         "payload": "{\"command\":176,\"param1\":1,\"param2\":6}",
         "payloadType": "json",
-        "x": 200,
-        "y": 1180,
+        "x": 180,
+        "y": 600,
         "wires": [
-            [
-                "86ea8d29eb6e3e9c"
-            ]
-        ]
-    },
-    {
-        "id": "57279d179595d56c",
-        "type": "ui_text",
-        "z": "e768c19cc0da9678",
-        "group": "5e97842196ee06b6",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Current Flight Mode",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 720,
-        "y": 1520,
-        "wires": []
-    },
-    {
-        "id": "ee7ae77292d53306",
-        "type": "ros2-subscribe",
-        "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
-        "topicname": "/fmu/out/vehicle_status",
-        "messagetype": "",
-        "x": 200,
-        "y": 1520,
-        "wires": [
-            [
-                "2c5a4d6ea290b29b"
-            ]
-        ]
-    },
-    {
-        "id": "2c5a4d6ea290b29b",
-        "type": "function",
-        "z": "e768c19cc0da9678",
-        "name": "get flight mode",
-        "func": "let flight_mode = msg.payload.nav_state\nmsg.payload = flight_mode\nreturn msg",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 1520,
-        "wires": [
-            [
-                "57279d179595d56c"
-            ]
+            []
         ]
     },
     {
@@ -217,8 +131,8 @@
         "topic": "",
         "payload": "{\"command\":176,\"param1\":1,\"param2\":4,\"param3\":3}",
         "payloadType": "json",
-        "x": 210,
-        "y": 1220,
+        "x": 190,
+        "y": 640,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -246,8 +160,8 @@
         "topic": "",
         "payload": "{\"command\":176,\"param1\":1,\"param2\":7}",
         "payloadType": "json",
-        "x": 200,
-        "y": 1140,
+        "x": 180,
+        "y": 560,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -260,8 +174,8 @@
         "z": "e768c19cc0da9678",
         "name": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/commander/Commander.cpp#L388",
         "info": "",
-        "x": 420,
-        "y": 1040,
+        "x": 400,
+        "y": 460,
         "wires": []
     },
     {
@@ -270,8 +184,8 @@
         "z": "e768c19cc0da9678",
         "name": "https://discuss.px4.io/t/switching-modes-in-px4-using-ros2-and-uxrce-dds/37137/2",
         "info": "",
-        "x": 370,
-        "y": 1080,
+        "x": 350,
+        "y": 500,
         "wires": []
     },
     {
@@ -295,8 +209,8 @@
         "topic": "",
         "payload": "{\"command\":400,\"param1\":1,\"param2\":0}",
         "payloadType": "json",
-        "x": 210,
-        "y": 1260,
+        "x": 190,
+        "y": 680,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -324,8 +238,8 @@
         "topic": "",
         "payload": "{\"command\":400,\"param1\":0,\"param2\":0}",
         "payloadType": "json",
-        "x": 210,
-        "y": 1300,
+        "x": 190,
+        "y": 720,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -353,8 +267,8 @@
         "topic": "",
         "payload": "{\"command\":21}",
         "payloadType": "json",
-        "x": 210,
-        "y": 1420,
+        "x": 190,
+        "y": 840,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -367,8 +281,8 @@
         "z": "e768c19cc0da9678",
         "name": "Start sending the offboard heartbeat message so we can arm in offboard mode",
         "info": "",
-        "x": 360,
-        "y": 40,
+        "x": 340,
+        "y": 260,
         "wires": []
     },
     {
@@ -377,7 +291,7 @@
         "z": "e768c19cc0da9678",
         "name": "",
         "group": "5e97842196ee06b6",
-        "order": 10,
+        "order": 11,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -391,40 +305,11 @@
         "payloadType": "date",
         "topic": "topic",
         "topicType": "msg",
-        "x": 730,
-        "y": 1160,
+        "x": 370,
+        "y": 580,
         "wires": [
             [
                 "f1b214c36a44691b"
-            ]
-        ]
-    },
-    {
-        "id": "9a839d6e86263a82",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Start offboard heartbeat",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 270,
-        "y": 160,
-        "wires": [
-            [
-                "e8aa4e2ceaea1f22",
-                "cacfbbf3845b4c4b"
             ]
         ]
     },
@@ -434,11 +319,11 @@
         "z": "e768c19cc0da9678",
         "name": "",
         "group": "5e97842196ee06b6",
-        "order": 9,
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Set offboard mode",
+        "label": "Offboard flight mode",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -448,11 +333,11 @@
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
-        "x": 510,
-        "y": 1140,
+        "x": 400,
+        "y": 540,
         "wires": [
             [
-                "86ea8d29eb6e3e9c"
+                "9c7da5306de96025"
             ]
         ]
     },
@@ -462,7 +347,7 @@
         "z": "e768c19cc0da9678",
         "name": "",
         "group": "5e97842196ee06b6",
-        "order": 18,
+        "order": 19,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -476,8 +361,8 @@
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
-        "x": 210,
-        "y": 1460,
+        "x": 190,
+        "y": 880,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -491,8 +376,8 @@
         "server": "3b3be37211189c03",
         "topicname": "/fmu/out/vehicle_local_position",
         "messagetype": "px4_msgs/msg/VehicleLocalPosition",
-        "x": 210,
-        "y": 1660,
+        "x": 910,
+        "y": 140,
         "wires": [
             [
                 "fb76f6ef6ab1088d",
@@ -514,8 +399,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 1760,
+        "x": 1190,
+        "y": 240,
         "wires": [
             [
                 "ac34a5fb077829c6"
@@ -534,8 +419,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1580,
+        "x": 1170,
+        "y": 60,
         "wires": [
             [
                 "f10eb3165dda1bf0"
@@ -554,8 +439,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1640,
+        "x": 1170,
+        "y": 120,
         "wires": [
             [
                 "ab94c08e491c6c7d"
@@ -574,8 +459,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1700,
+        "x": 1170,
+        "y": 180,
         "wires": [
             [
                 "34a22118c0caf87f"
@@ -599,8 +484,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 670,
-        "y": 1580,
+        "x": 1370,
+        "y": 60,
         "wires": []
     },
     {
@@ -608,7 +493,7 @@
         "type": "ui_text",
         "z": "e768c19cc0da9678",
         "group": "5e97842196ee06b6",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "name": "",
@@ -620,8 +505,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 670,
-        "y": 1640,
+        "x": 1370,
+        "y": 120,
         "wires": []
     },
     {
@@ -629,7 +514,7 @@
         "type": "ui_text",
         "z": "e768c19cc0da9678",
         "group": "5e97842196ee06b6",
-        "order": 4,
+        "order": 6,
         "width": 0,
         "height": 0,
         "name": "",
@@ -641,8 +526,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 670,
-        "y": 1700,
+        "x": 1370,
+        "y": 180,
         "wires": []
     },
     {
@@ -650,7 +535,7 @@
         "type": "ui_text",
         "z": "e768c19cc0da9678",
         "group": "5e97842196ee06b6",
-        "order": 5,
+        "order": 8,
         "width": 0,
         "height": 0,
         "name": "",
@@ -662,8 +547,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 680,
-        "y": 1760,
+        "x": 1380,
+        "y": 240,
         "wires": []
     },
     {
@@ -687,8 +572,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 210,
-        "y": 1340,
+        "x": 190,
+        "y": 760,
         "wires": [
             [
                 "be2b770ac31d638c"
@@ -707,8 +592,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 1400,
+        "x": 440,
+        "y": 820,
         "wires": [
             [
                 "86ea8d29eb6e3e9c"
@@ -727,11 +612,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 600,
+        "x": 450,
+        "y": 1860,
         "wires": [
             [
-                "b4f471e7e1954462"
+                "b4f471e7e1954462",
+                "631cf924412c0a25"
             ]
         ]
     },
@@ -740,17 +626,19 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "forward",
-        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\")) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\")) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\")) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\")) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 480,
+        "x": 160,
+        "y": 1740,
         "wires": [
-            []
+            [
+                "cacfbbf3845b4c4b"
+            ]
         ]
     },
     {
@@ -758,17 +646,19 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "backward",
-        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 560,
+        "x": 160,
+        "y": 1820,
         "wires": [
-            []
+            [
+                "cacfbbf3845b4c4b"
+            ]
         ]
     },
     {
@@ -776,17 +666,19 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "left",
-        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 640,
+        "x": 150,
+        "y": 1900,
         "wires": [
-            []
+            [
+                "cacfbbf3845b4c4b"
+            ]
         ]
     },
     {
@@ -794,17 +686,19 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "right",
-        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 720,
+        "x": 150,
+        "y": 1980,
         "wires": [
-            []
+            [
+                "cacfbbf3845b4c4b"
+            ]
         ]
     },
     {
@@ -815,16 +709,925 @@
         "topicname": "/fmu/in/trajectory_setpoint",
         "messagetype": "px4_msgs/msg/TrajectorySetpoint",
         "stampheader": false,
-        "x": 940,
-        "y": 600,
+        "x": 760,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2be381e5f550a017",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "up",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance * -1)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 2060,
         "wires": [
             [
-                "2c21ffd4001f6acd"
+                "cacfbbf3845b4c4b"
             ]
         ]
     },
     {
-        "id": "2c21ffd4001f6acd",
+        "id": "e7f8c4395b1d66b5",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "down",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 2140,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "dd4f2eee2d25fae9",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "func": "let distance = 2\n\nflow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\") - distance)\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 1680,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "f1b214c36a44691b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "arm",
+        "func": "msg.payload = {\n    \"command\": 400,\n    \"param1\": 1,\n    \"param2\": 0\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 580,
+        "wires": [
+            [
+                "9c7da5306de96025"
+            ]
+        ]
+    },
+    {
+        "id": "57279d179595d56c",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current Flight Mode",
+        "format": "{{msg.payload.flight_mode}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 700,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ee7ae77292d53306",
+        "type": "ros2-subscribe",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/out/vehicle_status",
+        "messagetype": "",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "2c5a4d6ea290b29b"
+            ]
+        ]
+    },
+    {
+        "id": "2c5a4d6ea290b29b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "get flight mode",
+        "func": "let flight_mode = msg.payload.nav_state\nflow.set(\"current_flight_mode\", flight_mode)\nmsg.payload.flight_mode = flight_mode\n// msg.payload.setpoint_x = flow.get(\"setpoint_x\").toFixed(2)\n// msg.payload.setpoint_y = flow.get(\"setpoint_y\").toFixed(2)\n// msg.payload.setpoint_z = flow.get(\"setpoint_z\").toFixed(2)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "57279d179595d56c",
+                "97ed472061216e5d",
+                "1890850bb897be32",
+                "66e9411049484047"
+            ]
+        ]
+    },
+    {
+        "id": "e5222c4dad4ea4ec",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Monitor current flight mode and begin offboard heartbeat if offboard enabled",
+        "info": "",
+        "x": 350,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "04b22aa18610eeb5",
+        "type": "debug",
+        "z": "e768c19cc0da9678",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "631cf924412c0a25",
+        "type": "debug",
+        "z": "e768c19cc0da9678",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "97ed472061216e5d",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint X",
+        "format": "{{msg.payload.setpoint_x}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "69d3d20809a89c5f",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start offboard heartbeat",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "24a03e61200a6f8d",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "Start offboard heartbeat",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "1890850bb897be32",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint Y",
+        "format": "{{msg.payload.setpoint_y}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "66e9411049484047",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint Z",
+        "format": "{{msg.payload.setpoint_z}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9c7da5306de96025",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "initialize setpoints",
+        "func": "flow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\"))\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 540,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "4ee3b6561e7b3b57",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "setpoint manager",
+        "func": "let position = {\n    \"position\": [\n        flow.get(\"setpoint_x\"),\n        flow.get(\"setpoint_y\"),\n        flow.get(\"setpoint_z\")\n    ],\n    \"yaw\": flow.get(\"setpoint_heading\")\n}\nmsg.payload = position\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1240,
+        "wires": [
+            [
+                "a9121fb60aa7d30d"
+            ]
+        ]
+    },
+    {
+        "id": "d268e25e6cafab5a",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "forward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\")) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\")) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68c84c8092535827",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "backward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21bd06a3d3d57302",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "left",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff519fcd4338d292",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "right",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9121fb60aa7d30d",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "3b3be37211189c03",
+        "topicname": "/fmu/in/trajectory_setpoint",
+        "messagetype": "px4_msgs/msg/TrajectorySetpoint",
+        "stampheader": false,
+        "x": 960,
+        "y": 1240,
+        "wires": [
+            [
+                "e33a503624bdc29f"
+            ]
+        ]
+    },
+    {
+        "id": "36a57848fc40a563",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1140,
+        "wires": [
+            [
+                "d268e25e6cafab5a"
+            ]
+        ]
+    },
+    {
+        "id": "49af507655b18c6b",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1220,
+        "wires": [
+            [
+                "68c84c8092535827"
+            ]
+        ]
+    },
+    {
+        "id": "3b2f5f476c3e85cd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1300,
+        "wires": [
+            [
+                "21bd06a3d3d57302"
+            ]
+        ]
+    },
+    {
+        "id": "803233882115069a",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1380,
+        "wires": [
+            [
+                "ff519fcd4338d292"
+            ]
+        ]
+    },
+    {
+        "id": "90a64faec87d3acd",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "up",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance * -1)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f1641bdb39850dd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1460,
+        "wires": [
+            [
+                "90a64faec87d3acd"
+            ]
+        ]
+    },
+    {
+        "id": "4f844fa7986fa111",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "down",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "212d9351d62ea3bd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1540,
+        "wires": [
+            [
+                "4f844fa7986fa111"
+            ]
+        ]
+    },
+    {
+        "id": "9e8a9c7bb90367ce",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "func": "let distance = 2\n\nflow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\") - distance)\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a1a48532a01091e",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1060,
+        "wires": [
+            [
+                "9e8a9c7bb90367ce"
+            ]
+        ]
+    },
+    {
+        "id": "fed75f478dce5661",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Takeoff",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 1020,
+        "wires": [
+            [
+                "9e8a9c7bb90367ce"
+            ]
+        ]
+    },
+    {
+        "id": "cde857ffff654e62",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Right",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1340,
+        "wires": [
+            [
+                "ff519fcd4338d292"
+            ]
+        ]
+    },
+    {
+        "id": "55888718c62b5b32",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Forward",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 1100,
+        "wires": [
+            [
+                "d268e25e6cafab5a"
+            ]
+        ]
+    },
+    {
+        "id": "ca5a3bbce0e0be0b",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Back",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1180,
+        "wires": [
+            [
+                "68c84c8092535827"
+            ]
+        ]
+    },
+    {
+        "id": "0e1dbf4e7af42d83",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Left",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1260,
+        "wires": [
+            [
+                "21bd06a3d3d57302"
+            ]
+        ]
+    },
+    {
+        "id": "bf1d420bf352b5d0",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Up",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1420,
+        "wires": [
+            [
+                "90a64faec87d3acd"
+            ]
+        ]
+    },
+    {
+        "id": "d246496f9070d60a",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 18,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Down",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1500,
+        "wires": [
+            [
+                "4f844fa7986fa111"
+            ]
+        ]
+    },
+    {
+        "id": "2f5163c8cd3127a5",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "Start offboard control loop",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 610,
+        "y": 1140,
+        "wires": [
+            [
+                "4ee3b6561e7b3b57"
+            ]
+        ]
+    },
+    {
+        "id": "e33a503624bdc29f",
         "type": "delay",
         "z": "e768c19cc0da9678",
         "name": "",
@@ -840,509 +1643,33 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 770,
-        "y": 760,
+        "x": 830,
+        "y": 1320,
         "wires": [
             [
-                "cacfbbf3845b4c4b"
+                "4ee3b6561e7b3b57"
             ]
         ]
     },
     {
-        "id": "6bb0508e0fa64294",
-        "type": "inject",
+        "id": "1ff249ba4a85b00b",
+        "type": "comment",
         "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 500,
-        "wires": [
-            [
-                "4f06bc67a9354850"
-            ]
-        ]
+        "name": "Send offboard setpoints continously at 10Hz",
+        "info": "",
+        "x": 230,
+        "y": 960,
+        "wires": []
     },
     {
-        "id": "a267cec0a6ade8c0",
-        "type": "inject",
+        "id": "5cccfbcca625d925",
+        "type": "comment",
         "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 580,
-        "wires": [
-            [
-                "ad0fc481928caf4f"
-            ]
-        ]
-    },
-    {
-        "id": "f7871d9ba323f1c3",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 660,
-        "wires": [
-            [
-                "05de19cc14adc2b6"
-            ]
-        ]
-    },
-    {
-        "id": "7e6b36df38d67a92",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 740,
-        "wires": [
-            [
-                "11026dfc1cd09029"
-            ]
-        ]
-    },
-    {
-        "id": "2be381e5f550a017",
-        "type": "function",
-        "z": "e768c19cc0da9678",
-        "name": "up",
-        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance * -1)",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 800,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "53870621badcc2a9",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 820,
-        "wires": [
-            [
-                "2be381e5f550a017"
-            ]
-        ]
-    },
-    {
-        "id": "e7f8c4395b1d66b5",
-        "type": "function",
-        "z": "e768c19cc0da9678",
-        "name": "down",
-        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance)",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7dd6a37ec0992962",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 900,
-        "wires": [
-            [
-                "e7f8c4395b1d66b5"
-            ]
-        ]
-    },
-    {
-        "id": "dd4f2eee2d25fae9",
-        "type": "function",
-        "z": "e768c19cc0da9678",
-        "name": "takeoff",
-        "func": "let distance = 2\n\nflow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\") - distance)\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7eac090e93946e38",
-        "type": "inject",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 420,
-        "wires": [
-            [
-                "dd4f2eee2d25fae9"
-            ]
-        ]
-    },
-    {
-        "id": "f1b214c36a44691b",
-        "type": "function",
-        "z": "e768c19cc0da9678",
-        "name": "initialize setpoints and arm",
-        "func": "flow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\"))\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nmsg.payload = {\n    \"command\": 400,\n    \"param1\": 1,\n    \"param2\": 0\n}\n\nreturn msg",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 960,
-        "y": 1160,
-        "wires": [
-            [
-                "86ea8d29eb6e3e9c"
-            ]
-        ]
-    },
-    {
-        "id": "d252f5ee9ed94533",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 11,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Takeoff",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 160,
-        "y": 380,
-        "wires": [
-            [
-                "dd4f2eee2d25fae9"
-            ]
-        ]
-    },
-    {
-        "id": "5a6e6380a6f93b6b",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 12,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Right",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 700,
-        "wires": [
-            [
-                "11026dfc1cd09029"
-            ]
-        ]
-    },
-    {
-        "id": "4974f98994d98032",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 14,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Forward",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 160,
-        "y": 460,
-        "wires": [
-            [
-                "4f06bc67a9354850"
-            ]
-        ]
-    },
-    {
-        "id": "e9dac2a8b9518fed",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 15,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Back",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 540,
-        "wires": [
-            [
-                "ad0fc481928caf4f"
-            ]
-        ]
-    },
-    {
-        "id": "4c6751a7f8867cbd",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 13,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Left",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 620,
-        "wires": [
-            [
-                "05de19cc14adc2b6"
-            ]
-        ]
-    },
-    {
-        "id": "690f4150636627f4",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 16,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Up",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 780,
-        "wires": [
-            [
-                "2be381e5f550a017"
-            ]
-        ]
-    },
-    {
-        "id": "67c7449acfabd950",
-        "type": "ui_button",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "group": "5e97842196ee06b6",
-        "order": 17,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Down",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 860,
-        "wires": [
-            [
-                "e7f8c4395b1d66b5"
-            ]
-        ]
-    },
-    {
-        "id": "dbe110d406c668e6",
-        "type": "switch",
-        "z": "e768c19cc0da9678",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 380,
-        "wires": [
-            []
-        ]
+        "name": "Send offboard setpoints one time (docs say we can do one time....need to verify)",
+        "info": "",
+        "x": 360,
+        "y": 1620,
+        "wires": []
     },
     {
         "id": "3b3be37211189c03",
