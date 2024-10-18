@@ -8,6 +8,7 @@
       "takeoff": "src/takeoff.js",
       "land": "src/land.js",
       "led": "src/led.js",
+      "led-pixel": "src/led-pixel.js",
       "ros2-websocket-server": "src/ros2-websocket-server.js",
       "ros2-subsribe": "src/ros2-subscribe.js",
       "ros2-publish": "src/ros2-publish.js",
