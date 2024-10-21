@@ -1,0 +1,143 @@
+[
+    {
+        "id": "fd6516fec0640c2a",
+        "type": "tab",
+        "label": "IR Beam Detector",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aaf9fb84b67cb6fa",
+        "type": "ros2-subscribe",
+        "z": "fd6516fec0640c2a",
+        "server": "27129f80a96ce509",
+        "topicname": "/dexi/gpio_input_22",
+        "messagetype": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "73cefe89b5bcde39"
+            ]
+        ]
+    },
+    {
+        "id": "d0dd544b2d1f5a39",
+        "type": "debug",
+        "z": "fd6516fec0640c2a",
+        "name": "Print payload value",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "73cefe89b5bcde39",
+        "type": "change",
+        "z": "fd6516fec0640c2a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "d0dd544b2d1f5a39",
+                "53ba3f2c68d37870"
+            ]
+        ]
+    },
+    {
+        "id": "53ba3f2c68d37870",
+        "type": "switch",
+        "z": "fd6516fec0640c2a",
+        "name": "Toggle LED",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "b379b0eeaac7a704"
+            ],
+            [
+                "36145a1770a07842"
+            ]
+        ]
+    },
+    {
+        "id": "b379b0eeaac7a704",
+        "type": "led",
+        "z": "fd6516fec0640c2a",
+        "name": "White LED",
+        "color": "white",
+        "x": 790,
+        "y": 120,
+        "wires": [
+            [
+                "cf73f9c50175499c"
+            ]
+        ]
+    },
+    {
+        "id": "36145a1770a07842",
+        "type": "led",
+        "z": "fd6516fec0640c2a",
+        "name": "LED off",
+        "color": "black",
+        "x": 780,
+        "y": 180,
+        "wires": [
+            [
+                "cf73f9c50175499c"
+            ]
+        ]
+    },
+    {
+        "id": "cf73f9c50175499c",
+        "type": "ros2-service-call",
+        "z": "fd6516fec0640c2a",
+        "server": "27129f80a96ce509",
+        "x": 1000,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.4.1:9090"
+    }
+]
