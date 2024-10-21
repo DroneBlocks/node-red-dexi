@@ -1,0 +1,163 @@
+[
+    {
+        "id": "74c581da26fc6718",
+        "type": "tab",
+        "label": "LED Rainbow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "675128322ff4eaff",
+        "type": "led",
+        "z": "74c581da26fc6718",
+        "name": "Black",
+        "color": "black",
+        "x": 630,
+        "y": 240,
+        "wires": [
+            [
+                "8ad483bb979248b3"
+            ]
+        ]
+    },
+    {
+        "id": "8ad483bb979248b3",
+        "type": "ros2-service-call",
+        "z": "74c581da26fc6718",
+        "server": "27129f80a96ce509",
+        "x": 840,
+        "y": 260,
+        "wires": [
+            [
+                "0809a76f90b63919"
+            ]
+        ]
+    },
+    {
+        "id": "7d0e9e5c3ff1afdc",
+        "type": "led-pixel",
+        "z": "74c581da26fc6718",
+        "ledindex": "0",
+        "red": "",
+        "green": "",
+        "blue": "",
+        "x": 640,
+        "y": 300,
+        "wires": [
+            [
+                "8ad483bb979248b3"
+            ]
+        ]
+    },
+    {
+        "id": "6870dd1e4a7f49aa",
+        "type": "function",
+        "z": "74c581da26fc6718",
+        "name": "rainbow",
+        "func": "let current_index = flow.get(\"current_index\") || 0;\n\n// Define RGB values for ROYGBIV colors\nconst colors = [\n    {red: 255, green: 0, blue: 0},      // Red\n    {red: 255, green: 127, blue: 0},    // Orange\n    {red: 255, green: 255, blue: 0},    // Yellow\n    {red: 0, green: 255, blue: 0},      // Green\n    {red: 0, green: 0, blue: 255},      // Blue\n    {red: 75, green: 0, blue: 130},     // Indigo\n    {red: 148, green: 0, blue: 211}     // Violet\n];\n\nconst shuffledColors = colors.sort((a, b) => 0.5 - Math.random());\n\n// Map the current index to a color from the ROYGBIV array\nlet color_index = current_index % colors.length\n\nlet pixel_color = shuffledColors[color_index];\n\n// Set the pixel object with the corresponding color\nlet pixel = {\n    index: current_index,\n    red: pixel_color.red,\n    green: pixel_color.green,\n    blue: pixel_color.blue\n};\n\nmsg.payload = pixel;\n\n// Increment the pixel counter\nif (current_index < 43) {\n    current_index = current_index + 1;\n} else {\n    current_index = 0;  // Loop back to the beginning after reaching the last pixel\n}\n\n// Store the current index for the next iteration\nflow.set(\"current_index\", current_index);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "8511d7e87a7aecf4"
+            ]
+        ]
+    },
+    {
+        "id": "583bfc15594b10af",
+        "type": "inject",
+        "z": "74c581da26fc6718",
+        "name": "start animation",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "6870dd1e4a7f49aa"
+            ]
+        ]
+    },
+    {
+        "id": "0809a76f90b63919",
+        "type": "delay",
+        "z": "74c581da26fc6718",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "50",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "6870dd1e4a7f49aa"
+            ]
+        ]
+    },
+    {
+        "id": "8511d7e87a7aecf4",
+        "type": "switch",
+        "z": "74c581da26fc6718",
+        "name": "",
+        "property": "current_index",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "43",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 260,
+        "wires": [
+            [
+                "675128322ff4eaff"
+            ],
+            [
+                "7d0e9e5c3ff1afdc"
+            ]
+        ]
+    },
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.4.1:9090"
+    }
+]
