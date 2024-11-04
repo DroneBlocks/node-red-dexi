@@ -1,0 +1,831 @@
+[
+    {
+        "id": "4c568c64e9d37fed",
+        "type": "tab",
+        "label": "AVR Mission 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a3020c2636920596",
+        "type": "ros2-service-call",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "x": 1100,
+        "y": 1260,
+        "wires": [
+            [
+                "1cc49c4b5ae714cb"
+            ]
+        ]
+    },
+    {
+        "id": "5bda0e958c872ba2",
+        "type": "ros2-subscribe",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "topicname": "/dexi/gpio_input_22",
+        "messagetype": "std_msgs/msg/Bool",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "97e1dd2dd0301932"
+            ]
+        ]
+    },
+    {
+        "id": "34e769387606888b",
+        "type": "change",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "9bd6f592af795a35",
+                "96d92f7cf8af7e24"
+            ]
+        ]
+    },
+    {
+        "id": "9bd6f592af795a35",
+        "type": "ui_led",
+        "z": "4c568c64e9d37fed",
+        "order": 3,
+        "group": "4166ed8cf4b1e7d4",
+        "width": 6,
+        "height": 5,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 470,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "96d92f7cf8af7e24",
+        "type": "switch",
+        "z": "4c568c64e9d37fed",
+        "name": "toggle white",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "2cc41d226c370b38",
+                "73cb66eac602b00f"
+            ]
+        ]
+    },
+    {
+        "id": "8ef10e582c2fea7c",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Black LED (off)",
+        "color": "black",
+        "x": 1380,
+        "y": 1160,
+        "wires": [
+            [
+                "92021b223aeb0c74"
+            ]
+        ]
+    },
+    {
+        "id": "60a9d4c3eed0419f",
+        "type": "ros2-subscribe",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "topicname": "/throttled/detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 150,
+        "y": 1320,
+        "wires": [
+            [
+                "5af0e2b1239ab08c"
+            ]
+        ]
+    },
+    {
+        "id": "604006950c9bd2da",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "get april tag id",
+        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].id\n    flow.set(\"april_tag_detected\", true)\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1200,
+        "wires": [
+            [
+                "54a9d559e99715c8",
+                "d2e3fceae86cf21a"
+            ]
+        ]
+    },
+    {
+        "id": "9326969e4ee3e2e8",
+        "type": "inject",
+        "z": "4c568c64e9d37fed",
+        "name": "black",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1150,
+        "y": 1160,
+        "wires": [
+            [
+                "8ef10e582c2fea7c"
+            ]
+        ]
+    },
+    {
+        "id": "54a9d559e99715c8",
+        "type": "ui_text",
+        "z": "4c568c64e9d37fed",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "April Tag ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 590,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "3da62ac7141ddff1",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "April Tag detection logic - go into april tag detection mode for 10 seconds",
+        "info": "",
+        "x": 300,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "71c8149c76554809",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "Infrared Beam detection logic",
+        "info": "",
+        "x": 160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2cc41d226c370b38",
+        "type": "change",
+        "z": "4c568c64e9d37fed",
+        "name": "beam detected true",
+        "rules": [
+            {
+                "t": "set",
+                "p": "beam_detected",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "807d6efa0ea009e4",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "IR beam must be detected first",
+        "info": "",
+        "x": 170,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "93059b76169dcdf7",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "Set flow variables and print flow variables to debug window",
+        "info": "",
+        "x": 260,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "838b5f4102ac30f3",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "initialize flow vars",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cc49c4b5ae714cb",
+        "type": "delay",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1300,
+        "y": 1300,
+        "wires": [
+            [
+                "1d0078e25e25c427",
+                "8ef10e582c2fea7c"
+            ]
+        ]
+    },
+    {
+        "id": "97e1dd2dd0301932",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "check beam and april tag variables",
+        "func": "if (flow.get(\"beam_detected\") == false && flow.get(\"april_tag_detected\") == false) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "34e769387606888b"
+            ]
+        ]
+    },
+    {
+        "id": "1d0078e25e25c427",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "reset flow vars",
+        "func": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5af0e2b1239ab08c",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "beam is detected so proceed",
+        "func": "if (flow.get(\"beam_detected\")) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1440,
+        "wires": [
+            [
+                "604006950c9bd2da"
+            ]
+        ]
+    },
+    {
+        "id": "255dba949294e995",
+        "type": "inject",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 180,
+        "wires": [
+            [
+                "17751f81c7a427ed"
+            ]
+        ]
+    },
+    {
+        "id": "17751f81c7a427ed",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "print flow vars",
+        "func": "flow.keys().forEach((key) => {\n    node.warn(`${key} - ${flow.get(key)}`)\n})",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36f0a6d9f8b61f02",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "turn led off",
+        "info": "",
+        "x": 1140,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "92021b223aeb0c74",
+        "type": "ros2-service-call",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "x": 1600,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d2e3fceae86cf21a",
+        "type": "switch",
+        "z": "4c568c64e9d37fed",
+        "name": "set led color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 570,
+        "y": 1280,
+        "wires": [
+            [
+                "b8a8e952c75fc022"
+            ],
+            [
+                "b8c3945bef8c8195"
+            ],
+            [
+                "3573fae5604eb53b"
+            ],
+            [
+                "1365f2e8d4b071f6"
+            ],
+            [
+                "0be83ac72f157fd5"
+            ],
+            [
+                "3ae07787933fa1a8"
+            ]
+        ]
+    },
+    {
+        "id": "b8a8e952c75fc022",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Red",
+        "color": "red",
+        "x": 810,
+        "y": 1180,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "b8c3945bef8c8195",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Blue",
+        "color": "blue",
+        "x": 810,
+        "y": 1220,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "3573fae5604eb53b",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Yellow",
+        "color": "yellow",
+        "x": 810,
+        "y": 1260,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "1365f2e8d4b071f6",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Red",
+        "color": "red",
+        "x": 810,
+        "y": 1300,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "0be83ac72f157fd5",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Blue",
+        "color": "blue",
+        "x": 810,
+        "y": 1340,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "3ae07787933fa1a8",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Yellow",
+        "color": "yellow",
+        "x": 810,
+        "y": 1380,
+        "wires": [
+            [
+                "a3020c2636920596"
+            ]
+        ]
+    },
+    {
+        "id": "8e8a20949853b11b",
+        "type": "inject",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 660,
+        "y": 1120,
+        "wires": [
+            [
+                "b8a8e952c75fc022"
+            ]
+        ]
+    },
+    {
+        "id": "6b463becd1fbdeeb",
+        "type": "link in",
+        "z": "4c568c64e9d37fed",
+        "name": "Flash LED White 3 Times",
+        "links": [
+            "73cb66eac602b00f"
+        ],
+        "x": 75,
+        "y": 860,
+        "wires": [
+            [
+                "bf3399a1ab66a61c"
+            ]
+        ]
+    },
+    {
+        "id": "c03a53fac5c13333",
+        "type": "delay",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 920,
+        "wires": [
+            [
+                "bf3399a1ab66a61c"
+            ]
+        ]
+    },
+    {
+        "id": "bf3399a1ab66a61c",
+        "type": "function",
+        "z": "4c568c64e9d37fed",
+        "name": "flash led",
+        "func": "if (flow.get(\"beam_detected\")) {\n\n    let loop_count = context.get(\"loop_count\") || 0\n    loop_count += 1\n    context.set(\"loop_count\", loop_count)\n    msg.payload = loop_count\n\n    if (loop_count <= 3) {\n        return msg\n    } else {\n        context.set(\"loop_count\", 0)\n    }\n\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 800,
+        "wires": [
+            [
+                "f012e5824a90452a"
+            ]
+        ]
+    },
+    {
+        "id": "a7ecd1bb3d4de35b",
+        "type": "inject",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 800,
+        "wires": [
+            [
+                "bf3399a1ab66a61c"
+            ]
+        ]
+    },
+    {
+        "id": "f012e5824a90452a",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "White",
+        "color": "white",
+        "x": 490,
+        "y": 800,
+        "wires": [
+            [
+                "2d935e79af8e8455"
+            ]
+        ]
+    },
+    {
+        "id": "2d935e79af8e8455",
+        "type": "ros2-service-call",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "x": 660,
+        "y": 800,
+        "wires": [
+            [
+                "828054dd12c17e87"
+            ]
+        ]
+    },
+    {
+        "id": "828054dd12c17e87",
+        "type": "delay",
+        "z": "4c568c64e9d37fed",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 850,
+        "y": 800,
+        "wires": [
+            [
+                "0f8c6f64174bf10b"
+            ]
+        ]
+    },
+    {
+        "id": "0f8c6f64174bf10b",
+        "type": "led",
+        "z": "4c568c64e9d37fed",
+        "name": "Black",
+        "color": "black",
+        "x": 990,
+        "y": 800,
+        "wires": [
+            [
+                "bc94c7ac7f4f8d20"
+            ]
+        ]
+    },
+    {
+        "id": "bc94c7ac7f4f8d20",
+        "type": "ros2-service-call",
+        "z": "4c568c64e9d37fed",
+        "server": "3b3be37211189c03",
+        "x": 1160,
+        "y": 800,
+        "wires": [
+            [
+                "c03a53fac5c13333"
+            ]
+        ]
+    },
+    {
+        "id": "73cb66eac602b00f",
+        "type": "link out",
+        "z": "4c568c64e9d37fed",
+        "name": "Call LED Flash",
+        "mode": "link",
+        "links": [
+            "6b463becd1fbdeeb"
+        ],
+        "x": 725,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "be48d182e762b817",
+        "type": "comment",
+        "z": "4c568c64e9d37fed",
+        "name": "Loop and blink LED 3 times",
+        "info": "",
+        "x": 160,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "3b3be37211189c03",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.4.1:9090"
+    }
+]
