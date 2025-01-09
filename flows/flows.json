@@ -3,7 +3,7 @@
         "id": "a691db1a9e113a84",
         "type": "tab",
         "label": "PX4 Arm, Takeoff, and Land",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -28,6 +28,14 @@
         "type": "tab",
         "label": "Video iframe",
         "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "72e4b093f73c1b05",
+        "type": "tab",
+        "label": "Raspanion Tilt Servo",
+        "disabled": false,
         "info": "",
         "env": []
     },
@@ -250,6 +258,22 @@
         "order": 12,
         "width": 3,
         "height": 1
+    },
+    {
+        "id": "789e730a27e5a4d2",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.4.1:9090"
+    },
+    {
+        "id": "958884245d5862f8",
+        "type": "ui_group",
+        "name": "Raspanion",
+        "tab": "2ee38794734c2d27",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "ae776f6d1da02661",
@@ -1689,6 +1713,85 @@
         "scale": 100,
         "x": 510,
         "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cf022e1eda8816bd",
+        "type": "ros2-publish",
+        "z": "72e4b093f73c1b05",
+        "server": "789e730a27e5a4d2",
+        "topicname": "/servo_pwm",
+        "messagetype": "std_msgs/msg/Int32",
+        "stampheader": false,
+        "x": 590,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da1ddce98f71157c",
+        "type": "ui_slider",
+        "z": "72e4b093f73c1b05",
+        "name": "",
+        "label": "camera tilt",
+        "tooltip": "",
+        "group": "958884245d5862f8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "1000",
+        "max": "2000",
+        "step": "25",
+        "className": "",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "c13db945d72bba6c"
+            ]
+        ]
+    },
+    {
+        "id": "c13db945d72bba6c",
+        "type": "function",
+        "z": "72e4b093f73c1b05",
+        "name": "function 2",
+        "func": "let json = {\n    \"data\": msg.payload,\n}\nmsg.payload = json\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "cf022e1eda8816bd"
+            ]
+        ]
+    },
+    {
+        "id": "e93ebf1f4aa4a3d3",
+        "type": "ui_iframe",
+        "z": "72e4b093f73c1b05",
+        "group": "958884245d5862f8",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "url": "http://192.168.4.1:8080/stream?topic=/cam0",
+        "origin": "*",
+        "scale": 100,
+        "x": 190,
+        "y": 200,
         "wires": [
             []
         ]
