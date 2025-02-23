@@ -11,7 +11,7 @@
         "id": "29e53340ef49ce77",
         "type": "ros2-publish",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/in/offboard_control_mode",
         "messagetype": "px4_msgs/msg/OffboardControlMode",
         "stampheader": false,
@@ -54,14 +54,14 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "offboard heartbeat",
-        "func": "let offboardControlMode = {\n    \"position\": true,\n}\nmsg.payload = offboardControlMode\nreturn msg",
+        "func": "let offboardControlMode = {\n    \"position\": true,\n}\n\n// Only send the heartbeat if flight mode is set to offboard\n// if (flow.get(\"current_flight_mode\") == 14) {\n    msg.payload = offboardControlMode\n    return msg\n// }",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
+        "x": 490,
         "y": 320,
         "wires": [
             [
@@ -73,7 +73,7 @@
         "id": "86ea8d29eb6e3e9c",
         "type": "ros2-publish",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/in/vehicle_command",
         "messagetype": "px4_msgs/msg/VehicleCommand",
         "stampheader": false,
@@ -373,7 +373,7 @@
         "id": "43d0af16e9fd4786",
         "type": "ros2-subscribe",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/out/vehicle_local_position",
         "messagetype": "px4_msgs/msg/VehicleLocalPosition",
         "x": 910,
@@ -633,7 +633,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
+        "x": 240,
         "y": 1740,
         "wires": [
             [
@@ -653,8 +653,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 1820,
+        "x": 240,
+        "y": 1800,
         "wires": [
             [
                 "cacfbbf3845b4c4b"
@@ -673,8 +673,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 1900,
+        "x": 250,
+        "y": 1860,
         "wires": [
             [
                 "cacfbbf3845b4c4b"
@@ -693,8 +693,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 1980,
+        "x": 250,
+        "y": 1920,
         "wires": [
             [
                 "cacfbbf3845b4c4b"
@@ -705,7 +705,7 @@
         "id": "b4f471e7e1954462",
         "type": "ros2-publish",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/in/trajectory_setpoint",
         "messagetype": "px4_msgs/msg/TrajectorySetpoint",
         "stampheader": false,
@@ -727,8 +727,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 2060,
+        "x": 250,
+        "y": 1980,
         "wires": [
             [
                 "cacfbbf3845b4c4b"
@@ -747,8 +747,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 2140,
+        "x": 250,
+        "y": 2040,
         "wires": [
             [
                 "cacfbbf3845b4c4b"
@@ -767,7 +767,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
+        "x": 250,
         "y": 1680,
         "wires": [
             [
@@ -820,7 +820,7 @@
         "id": "ee7ae77292d53306",
         "type": "ros2-subscribe",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/out/vehicle_status",
         "messagetype": "",
         "x": 180,
@@ -937,8 +937,8 @@
         "payloadType": "date",
         "topic": "topic",
         "topicType": "msg",
-        "x": 190,
-        "y": 400,
+        "x": 170,
+        "y": 360,
         "wires": [
             [
                 "e8aa4e2ceaea1f22"
@@ -967,7 +967,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 180,
-        "y": 320,
+        "y": 300,
         "wires": [
             [
                 "e8aa4e2ceaea1f22"
@@ -1041,7 +1041,7 @@
         "type": "function",
         "z": "e768c19cc0da9678",
         "name": "setpoint manager",
-        "func": "let position = {\n    \"position\": [\n        flow.get(\"setpoint_x\"),\n        flow.get(\"setpoint_y\"),\n        flow.get(\"setpoint_z\")\n    ],\n    \"yaw\": flow.get(\"setpoint_heading\")\n}\nmsg.payload = position\nreturn msg",
+        "func": "// Only send setpoints if we're in offboard mode\nif (flow.get(\"current_flight_mode\") == 14) {\n    let position = {\n        \"position\": [\n            flow.get(\"setpoint_x\"),\n            flow.get(\"setpoint_y\"),\n            flow.get(\"setpoint_z\")\n        ],\n        \"yaw\": flow.get(\"setpoint_heading\")\n    }\n    msg.payload = position\n    return msg\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1132,7 +1132,7 @@
         "id": "a9121fb60aa7d30d",
         "type": "ros2-publish",
         "z": "e768c19cc0da9678",
-        "server": "3b3be37211189c03",
+        "server": "27129f80a96ce509",
         "topicname": "/fmu/in/trajectory_setpoint",
         "messagetype": "px4_msgs/msg/TrajectorySetpoint",
         "stampheader": false,
@@ -1618,8 +1618,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 610,
-        "y": 1140,
+        "x": 650,
+        "y": 1040,
         "wires": [
             [
                 "4ee3b6561e7b3b57"
@@ -1672,9 +1672,212 @@
         "wires": []
     },
     {
-        "id": "3b3be37211189c03",
+        "id": "9c0ac909dd06707e",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1680,
+        "wires": [
+            [
+                "dd4f2eee2d25fae9"
+            ]
+        ]
+    },
+    {
+        "id": "caf98a4707675515",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1740,
+        "wires": [
+            [
+                "4f06bc67a9354850"
+            ]
+        ]
+    },
+    {
+        "id": "cd5bfa83b6059c59",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1800,
+        "wires": [
+            [
+                "ad0fc481928caf4f"
+            ]
+        ]
+    },
+    {
+        "id": "319e6e6d7e7f690c",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1860,
+        "wires": [
+            [
+                "05de19cc14adc2b6"
+            ]
+        ]
+    },
+    {
+        "id": "ee4799da24ad9b25",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1920,
+        "wires": [
+            [
+                "11026dfc1cd09029"
+            ]
+        ]
+    },
+    {
+        "id": "28ad59c9d9acf177",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1980,
+        "wires": [
+            [
+                "2be381e5f550a017"
+            ]
+        ]
+    },
+    {
+        "id": "cff2ecd4ef265a01",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2040,
+        "wires": [
+            [
+                "e7f8c4395b1d66b5"
+            ]
+        ]
+    },
+    {
+        "id": "27129f80a96ce509",
         "type": "ros2-websocket-server",
-        "url": "ws://192.168.4.1:9090"
+        "url": "ws://172.17.0.2:9090"
     },
     {
         "id": "5e97842196ee06b6",
