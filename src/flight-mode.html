@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('flight-mode', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            mode: { value: "Hold" } // Default mode
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
+        label: function () {
+            return "Flight Mode: " + this.mode;
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="flight-mode">
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-plane"></i>Flight Mode</label>
+        <select id="node-input-mode">
+            <option value="Hold">Hold</option>
+            <option value="Position">Position</option>
+            <option value="Offboard">Offboard</option>
+            <option value="Stabilized">Stabilized</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="flight-mode">
+    <p>Select a flight mode from the dropdown.</p>
+</script>
