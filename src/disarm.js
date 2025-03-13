@@ -3,7 +3,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config)
         var node = this
         node.on('input', function(msg) {
-            msg.payload = {"command": 400, "param1": 0, "param2": 0}
+            msg.payload = {"command": "disarm"}
             node.send(msg)
         })
     }

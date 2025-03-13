@@ -2,10 +2,19 @@ module.exports = function(RED) {
     function TakeoffNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
+
+        let altitude = parseFloat(config.altitude) || 1.5; // Default to 1.5 if undefined
+
         node.on('input', function(msg) {
-            let altitude = msg.payload
-            console.log(altitude)
-            msg.payload = {"command": 22, "param1": -1, "param2": 0, "param3": 0, "param4": 0, "param5": eval(NaN), "param6": 8.545594667714894, "param7": altitude}
+            let takeoffAltitude = altitude;
+
+            console.log(takeoffAltitude)
+
+            // Adheres to offboardnavcommand message format from dexi_interfaces
+            msg.payload = {
+                "command": "takeoff",
+                "distance_or_degrees": takeoffAltitude
+            }
             node.send(msg)
         })
     }

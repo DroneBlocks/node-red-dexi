@@ -3,21 +3,22 @@
         category: 'DEXI',
         color: '#a6bbcf',
         defaults: {
-            name: {value: ""}
+            name: {value: ""},
+            altitude: {value: 1.5}
         },
         inputs: 1,
         outputs: 1,
         icon: "file.svg",
         label: function() {
-            return this.name || "takeoff";
+            return (this.name ? this.name + " - " : "") + "takeoff: " + this.altitude + "m";
         }
     });
 </script>
 
 <script type="text/html" data-template-name="takeoff">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Altitude</label>
-        <input type="text" id="node-input-name" placeholder="Altitude">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Altitude (m)</label>
+        <input type="text" id="node-input-altitude" placeholder="1.5">
     </div>
 </script>
 
