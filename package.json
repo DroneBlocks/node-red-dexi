@@ -14,7 +14,8 @@
       "ros2-publish": "src/ros2-publish.js",
       "ros2-service-call": "src/ros2-service-call.js",
       "write-gpio": "src/write-gpio.js",
-      "image-preview": "src/image-preview.js"
+      "image-preview": "src/image-preview.js",
+      "coco-ssd": "src/coco-ssd.js"
     }
   },
   "keywords": [
