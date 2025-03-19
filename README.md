@@ -17,7 +17,7 @@ cd node-red-dexi
 2. Launch the container from the base node-red image:
 
 ```
-docker run -it -p 1880:1880 -v ${PWD}/flows:/data -v ${PWD}:/node-red-dexi --name dexi-node-red nodered/node-red:latest-minimal
+docker run -it -p 1880:1880 -v ${PWD}/flows:/data -v ${PWD}:/node-red-dexi --name dexi-node-red nodered/node-red:latest-debian
 ```
 
 3. Connect to the container
@@ -34,7 +34,7 @@ npm install /node-red-dexi
 
 ```
 npm install node-red-contrib-ui-led
-npm i node-red-node-ui-iframe
+npm install node-red-node-ui-iframe
 ```
 
 6. Stop and start container to pick up changes.
