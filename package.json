@@ -15,7 +15,8 @@
       "ros2-service-call": "src/ros2-service-call.js",
       "write-gpio": "src/write-gpio.js",
       "image-preview": "src/image-preview.js",
-      "coco-ssd": "src/coco-ssd.js"
+      "coco-ssd": "src/coco-ssd.js",
+      "hand-pose": "src/hand-pose.js"
     }
   },
   "keywords": [

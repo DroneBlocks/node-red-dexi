@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    RED.nodes.registerType('hand-pose', {
+        category: 'DEXI',
+        color: '#FFCC00',
+        defaults: {
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-hand-paper-o",
+        label: function () {
+            return this.name || "Hand Pose Detection";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="hand-pose">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Hand Pose Detection">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="hand-pose">
+    <p>A Node-RED node for detecting hand poses using TensorFlow.js and MediaPipe Hands.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload.data <span class="property-type">string</span></dt>
+        <dd>A base64-encoded image (JPEG/PNG) to analyze.</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>detections <span class="property-type">array</span></dt>
+        <dd>An array of detected hands, each containing keypoints.</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>This node processes an input image and outputs an array of detected hand keypoints. 
+    Each detection includes wrist, fingertips, and joint positions.</p>
+</script>
