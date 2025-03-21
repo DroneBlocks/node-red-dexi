@@ -9,6 +9,7 @@
         inputs: 1,
         outputs: 1,
         icon: "font-awesome/fa-arrows",
+        paletteLabel: "fly backward",
         label: function() {
             return (this.name ? this.name + " - " : "") + "backward: " + this.distance + "m";
         }
@@ -18,7 +19,7 @@
 <script type="text/html" data-template-name="backward">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Backward (m)</label>
-        <input type="text" id="node-input-distance" placeholder="1.5">
+        <input type="text" id="node-input-distance" placeholder="1.0">
     </div>
 </script>
 

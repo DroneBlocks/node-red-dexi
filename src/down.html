@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('left',{
+    RED.nodes.registerType('down',{
         category: 'DEXI',
         color: '#a6bbcf',
         defaults: {
@@ -9,20 +9,20 @@
         inputs: 1,
         outputs: 1,
         icon: "font-awesome/fa-arrows",
-        paletteLabel: "fly left",
+        paletteLabel: "fly down",
         label: function() {
-            return (this.name ? this.name + " - " : "") + "left: " + this.distance + "m";
+            return (this.name ? this.name + " - " : "") + "down: " + this.distance + "m";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="left">
+<script type="text/html" data-template-name="down">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Left (m)</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> Down (m)</label>
         <input type="text" id="node-input-distance" placeholder="1.0">
     </div>
 </script>
 
-<script type="text/html" data-help-name="left">
-    <p>Fly Left</p>
+<script type="text/html" data-help-name="down">
+    <p>Fly Down</p>
 </script>
