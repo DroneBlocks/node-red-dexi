@@ -6,14 +6,10 @@ module.exports = function(RED) {
         let altitude = parseFloat(config.altitude) || 1.5; // Default to 1.5 if undefined
 
         node.on('input', function(msg) {
-            let takeoffAltitude = altitude;
-
-            console.log(takeoffAltitude)
-
             // Adheres to offboardnavcommand message format from dexi_interfaces
             msg.payload = {
                 "command": "takeoff",
-                "distance_or_degrees": takeoffAltitude
+                "distance_or_degrees": altitude
             }
             node.send(msg)
         })

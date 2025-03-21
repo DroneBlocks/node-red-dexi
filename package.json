@@ -3,10 +3,15 @@
   "version": "0.0.8",
   "node-red": {
     "nodes": {
+      "offboard": "src/offboard.js",
       "arm": "src/arm.js",
-      "disarm": "src/disarm.js",
       "takeoff": "src/takeoff.js",
+      "forward": "src/forward.js",
+      "backward": "src/backward.js",
+      "right": "src/right.js",
+      "left": "src/left.js",
       "land": "src/land.js",
+      "disarm": "src/disarm.js",
       "led": "src/led.js",
       "led-pixel": "src/led-pixel.js",
       "ros2-websocket-server": "src/ros2-websocket-server.js",

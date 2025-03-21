@@ -17,3 +17,7 @@ module.exports = function (RED) {
 
     RED.nodes.registerType("flight-mode", FlightModeNode);
 };
+
+// offboard {"command":176,"param1":1,"param2":6}
+// hold {"command":176,"param1":1,"param2":4,"param3":3}
+// stabilized {"command":176,"param1":1,"param2":7}

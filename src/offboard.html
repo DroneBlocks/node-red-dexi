@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('offboard', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            action: { value: "start", required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.png",
+        label: function () {
+            return this.action === "stop" ? "stop offboard heartbeat" : "start offboard heartbeat";
+        },
+        oneditprepare: function () {
+            $("#node-input-action").val(this.action);
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="offboard">
+    <div class="form-row">
+        <label for="node-input-action"><i class="fa fa-cog"></i> Action</label>
+        <select id="node-input-action">
+            <option value="start">Start Heartbeat</option>
+            <option value="stop">Stop Heartbeat</option>
+        </select>
+    </div>
+</script>

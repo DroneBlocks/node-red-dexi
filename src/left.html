@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    RED.nodes.registerType('left',{
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            distance: {value: 1.0}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-arrows",
+        label: function() {
+            return (this.name ? this.name + " - " : "") + "left: " + this.distance + "m";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="left">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Left (m)</label>
+        <input type="text" id="node-input-distance" placeholder="1.5">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="left">
+    <p>Fly Left</p>
+</script>
