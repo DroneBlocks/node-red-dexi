@@ -11,7 +11,7 @@
         "id": "a691db1a9e113a84",
         "type": "tab",
         "label": "PX4 Arm, Takeoff, and Land",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
@@ -66,12 +66,7 @@
     {
         "id": "27129f80a96ce509",
         "type": "ros2-websocket-server",
-        "url": "ws://172.17.0.3:9090"
-    },
-    {
-        "id": "5364bb25d410a154",
-        "type": "ros2-websocket-server",
-        "url": "ws://192.168.6.178:9090"
+        "url": "ws://192.168.4.1:9090"
     },
     {
         "id": "5788a4cce510d440",
@@ -4553,11 +4548,10 @@
         "server": "27129f80a96ce509",
         "topicname": "/image_raw/compressed",
         "messagetype": "",
-        "x": 210,
-        "y": 300,
+        "x": 170,
+        "y": 100,
         "wires": [
             [
-                "614d6203ef7f21e0",
                 "fd01ca32f8fa2de8"
             ]
         ]
@@ -4574,8 +4568,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 380,
+        "x": 420,
+        "y": 100,
         "wires": [
             [
                 "4aed6d85d4947f0a"
@@ -4594,73 +4588,8 @@
         "active": true,
         "pass": false,
         "outputs": 0,
-        "x": 640,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "a4ecddda5f0368a1",
-        "type": "debug",
-        "z": "ad6fab15d3c693a6",
-        "name": "detections",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "detections",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "614d6203ef7f21e0",
-        "type": "delay",
-        "z": "ad6fab15d3c693a6",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 430,
-        "y": 200,
-        "wires": [
-            [
-                "c2ace65ca917a3ab"
-            ]
-        ]
-    },
-    {
-        "id": "6591238d249c3dfd",
-        "type": "comment",
-        "z": "ad6fab15d3c693a6",
-        "name": "YOU MUST THROTTLE THE IMAGE FRAMES AS TO NOT OVERLOAD THE CPU",
-        "info": "",
-        "x": 460,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "c2ace65ca917a3ab",
-        "type": "coco-ssd",
-        "z": "ad6fab15d3c693a6",
-        "name": "",
         "x": 660,
-        "y": 220,
-        "wires": [
-            [
-                "a4ecddda5f0368a1"
-            ]
-        ]
+        "y": 100,
+        "wires": []
     }
 ]
