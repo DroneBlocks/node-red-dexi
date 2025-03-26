@@ -1,14 +1,4 @@
-FROM nodered/node-red:latest-debian
-
-# Install TensorFlow.js with native acceleration
-RUN npm install --unsafe-perm \
-    @tensorflow/tfjs-node \
-    @tensorflow-models/coco-ssd \
-    @tensorflow-models/handpose \
-    jpeg-js
-
-# Was necessary to overcome a binding error
-RUN npm rebuild @tensorflow/tfjs-node --build-from-source
+FROM nodered/node-red:latest-minimal
 
 RUN npm i @droneblocks/node-red-dexi
 

@@ -1,0 +1,4600 @@
+[
+    {
+        "id": "d94edfc7200152be",
+        "type": "tab",
+        "label": "PX4 Telemetry",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a691db1a9e113a84",
+        "type": "tab",
+        "label": "PX4 Arm, Takeoff, and Land",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3f767aee767c6d1c",
+        "type": "tab",
+        "label": "DEXI Offboard Manager",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e768c19cc0da9678",
+        "type": "tab",
+        "label": "PX4 Raw Offboard Demo",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6fe657fb81fc95dd",
+        "type": "tab",
+        "label": "AVR Mission 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c0ec1ac3b0c99c6",
+        "type": "tab",
+        "label": "Laser",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2131ca674bcfee95",
+        "type": "tab",
+        "label": "Video iframe",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ad6fab15d3c693a6",
+        "type": "tab",
+        "label": "Pi Camera Subscriber",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.4.1:9090"
+    },
+    {
+        "id": "5364bb25d410a154",
+        "type": "ros2-websocket-server",
+        "url": "ws://192.168.6.178:9090"
+    },
+    {
+        "id": "5788a4cce510d440",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2ee38794734c2d27",
+        "type": "ui_tab",
+        "name": "AVR Mission 1",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4166ed8cf4b1e7d4",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "2ee38794734c2d27",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8925e2a4ea9f1164",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "abe39b768890b435",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "e6eba801bf9dd9d2",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 5,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc5720a331dc0c",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ee9a745fa0a0d671",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "76c130a2b7ab488e",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "0acdc4fa5cc98536",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "270b6da83bfd6649",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc3655525f2ec9",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "dfe4e6e5d1cb542b",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 12,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "02a0349dc0753d7c",
+        "type": "ui_tab",
+        "name": "PX4 Raw Offboard",
+        "icon": "Tab 1",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5e97842196ee06b6",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "02a0349dc0753d7c",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7d60b4a56db9b8f8",
+        "type": "ui_tab",
+        "name": "PX4 Telemetry",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c38375f8835ceadf",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "7d60b4a56db9b8f8",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "20e24e9a9250368a",
+        "type": "ros2-subscribe",
+        "z": "d94edfc7200152be",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_odometry",
+        "messagetype": "",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "48d2fb203d115b77"
+            ]
+        ]
+    },
+    {
+        "id": "6c40e4ee73b6af52",
+        "type": "ui_text",
+        "z": "d94edfc7200152be",
+        "group": "c38375f8835ceadf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "x position:",
+        "format": "{{msg.payload.position[0]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 750,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e0ce675c6e15fafb",
+        "type": "debug",
+        "z": "d94edfc7200152be",
+        "name": "print odometry",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "988563c0b019fbe9",
+        "type": "ros2-subscribe",
+        "z": "d94edfc7200152be",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/sensor_combined",
+        "messagetype": "",
+        "x": 250,
+        "y": 700,
+        "wires": [
+            [
+                "df4954c0e0477871"
+            ]
+        ]
+    },
+    {
+        "id": "2a4377c1ab9d4cb0",
+        "type": "debug",
+        "z": "d94edfc7200152be",
+        "name": "print sensor into",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "48d2fb203d115b77",
+        "type": "delay",
+        "z": "d94edfc7200152be",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "e0ce675c6e15fafb",
+                "6c40e4ee73b6af52",
+                "3c4e0ba0bc7de073",
+                "7b7ab675c9581bdb"
+            ]
+        ]
+    },
+    {
+        "id": "3c4e0ba0bc7de073",
+        "type": "ui_text",
+        "z": "d94edfc7200152be",
+        "group": "c38375f8835ceadf",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "y position:",
+        "format": "{{msg.payload.position[1]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 750,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7b7ab675c9581bdb",
+        "type": "ui_text",
+        "z": "d94edfc7200152be",
+        "group": "c38375f8835ceadf",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "z position:",
+        "format": "{{msg.payload.position[2]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "df4954c0e0477871",
+        "type": "delay",
+        "z": "d94edfc7200152be",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 700,
+        "wires": [
+            [
+                "2a4377c1ab9d4cb0"
+            ]
+        ]
+    },
+    {
+        "id": "06c9341c5853c3b0",
+        "type": "ros2-subscribe",
+        "z": "d94edfc7200152be",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/battery_status",
+        "messagetype": "",
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "96cb415e914805b7"
+            ]
+        ]
+    },
+    {
+        "id": "9df450188c95d188",
+        "type": "debug",
+        "z": "d94edfc7200152be",
+        "name": "print battery into",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "96cb415e914805b7",
+        "type": "delay",
+        "z": "d94edfc7200152be",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "9df450188c95d188",
+                "1f97085f5b3ab281"
+            ]
+        ]
+    },
+    {
+        "id": "1f97085f5b3ab281",
+        "type": "ui_text",
+        "z": "d94edfc7200152be",
+        "group": "c38375f8835ceadf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "battery remaining:",
+        "format": "{{msg.payload.remaining}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 770,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c34cfda6f5e986c8",
+        "type": "ros2-subscribe",
+        "z": "d94edfc7200152be",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_status",
+        "messagetype": "",
+        "x": 240,
+        "y": 520,
+        "wires": [
+            [
+                "54b642d806f41e64"
+            ]
+        ]
+    },
+    {
+        "id": "10e7e3d62246b870",
+        "type": "debug",
+        "z": "d94edfc7200152be",
+        "name": "print vehicle status",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "54b642d806f41e64",
+        "type": "delay",
+        "z": "d94edfc7200152be",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 520,
+        "wires": [
+            [
+                "10e7e3d62246b870",
+                "a07e291714f0d141"
+            ]
+        ]
+    },
+    {
+        "id": "a07e291714f0d141",
+        "type": "ui_text",
+        "z": "d94edfc7200152be",
+        "group": "c38375f8835ceadf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "flight mode:",
+        "format": "{{msg.payload.nav_state}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 750,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ae776f6d1da02661",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Altitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "124ecd64576594fd",
+        "type": "ros2-subscribe",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_global_position",
+        "messagetype": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "dbbf851b16148a77"
+            ]
+        ]
+    },
+    {
+        "id": "8eeeac07046c07bc",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "round altitude",
+        "func": "msg.payload = Math.round((msg.payload.alt) * 100) / 100\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 80,
+        "wires": [
+            [
+                "ae776f6d1da02661",
+                "dbb0a6a6836672cb"
+            ]
+        ]
+    },
+    {
+        "id": "dbb0a6a6836672cb",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_altitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86049deb15395654",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ba286d4657da79aa",
+        "type": "ros2-publish",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "px4_msgs/msg/VehicleCommand",
+        "stampheader": false,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbbf851b16148a77",
+        "type": "delay",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "8eeeac07046c07bc",
+                "a1e737cb92abf1f5",
+                "c395d188ef1c9d18",
+                "6bd891e55027cd3a"
+            ]
+        ]
+    },
+    {
+        "id": "386e0bdcda50bed8",
+        "type": "arm",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "4464420002130254",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "386e0bdcda50bed8"
+            ]
+        ]
+    },
+    {
+        "id": "a1e737cb92abf1f5",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "latitude",
+        "func": "msg.payload = msg.payload.lat\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "4b71f66bf533618a",
+                "ba80fdd4b8731061"
+            ]
+        ]
+    },
+    {
+        "id": "6bd891e55027cd3a",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "print drone location",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c395d188ef1c9d18",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "longitude",
+        "func": "msg.payload = msg.payload.lon\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "f6c1daa76322acba",
+                "ecb1849d8cdb5fba"
+            ]
+        ]
+    },
+    {
+        "id": "4b71f66bf533618a",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Latitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f6c1daa76322acba",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Longitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ba80fdd4b8731061",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "flow.drone_latitude",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_latitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ecb1849d8cdb5fba",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "flow.drone_latitude",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_longitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e0c8785a15f6a18",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "9a5933e0dbdaedcc"
+            ]
+        ]
+    },
+    {
+        "id": "9a5933e0dbdaedcc",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "takeoff",
+        "func": "let json = {\n    \"command\": 22, \n    \"param1\": -1, \n    \"param2\": 0, \n    \"param3\": 0, \n    \"param4\": 0, \n    \"param5\": flow.get(\"drone_latitude\"), \n    \"param6\": flow.get(\"drone_longitude\"), \n    \"param7\": flow.get(\"drone_altitude\") + 3\n}\nmsg.payload = json\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "86049deb15395654",
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "a3c175e5e85914c8",
+        "type": "land",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "c2eeada9357d6016",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "a3c175e5e85914c8"
+            ]
+        ]
+    },
+    {
+        "id": "1c1de41bb485044a",
+        "type": "ros2-publish",
+        "z": "3f767aee767c6d1c",
+        "server": "27129f80a96ce509",
+        "topicname": "/dexi/offboard_manager",
+        "messagetype": "",
+        "stampheader": false,
+        "x": 850,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc4e893b18c42a9a",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "28d8858874b2ed8c"
+            ]
+        ]
+    },
+    {
+        "id": "82d80e96b9655371",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "87a2f2cf05c31f87"
+            ]
+        ]
+    },
+    {
+        "id": "87a2f2cf05c31f87",
+        "type": "arm",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "30912c788cfaadb3",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "ffa7c5b61d8bd568"
+            ]
+        ]
+    },
+    {
+        "id": "ffa7c5b61d8bd568",
+        "type": "land",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "28d8858874b2ed8c",
+        "type": "takeoff",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "altitude": "2",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "882cab4293f9e0c0",
+        "type": "forward",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": "1",
+        "x": 1290,
+        "y": 60,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "866d2678c8d00a8d",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 60,
+        "wires": [
+            [
+                "882cab4293f9e0c0"
+            ]
+        ]
+    },
+    {
+        "id": "3cdaa5bb28be592a",
+        "type": "offboard",
+        "z": "3f767aee767c6d1c",
+        "action": "stop",
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "5053bb6941fd0593",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [
+                "3cdaa5bb28be592a"
+            ]
+        ]
+    },
+    {
+        "id": "cf1c03f44806b4bc",
+        "type": "offboard",
+        "z": "3f767aee767c6d1c",
+        "action": "start",
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "335e4963eba951b4",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "cf1c03f44806b4bc"
+            ]
+        ]
+    },
+    {
+        "id": "85e5a558b3c3d3b3",
+        "type": "backward",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": 1,
+        "x": 1300,
+        "y": 120,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "c0bb30e20f02a00f",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 120,
+        "wires": [
+            [
+                "85e5a558b3c3d3b3"
+            ]
+        ]
+    },
+    {
+        "id": "071b471fc96293c3",
+        "type": "right",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": 1,
+        "x": 1280,
+        "y": 180,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "112a8f0e486c38e3",
+        "type": "left",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": 1,
+        "x": 1280,
+        "y": 240,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "062188e9ec7c2b4f",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 180,
+        "wires": [
+            [
+                "071b471fc96293c3"
+            ]
+        ]
+    },
+    {
+        "id": "4dbdb3dd00a3fe2d",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 240,
+        "wires": [
+            [
+                "112a8f0e486c38e3"
+            ]
+        ]
+    },
+    {
+        "id": "193c8e27fb0ff0f1",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 300,
+        "wires": [
+            [
+                "a00e840f868007b4"
+            ]
+        ]
+    },
+    {
+        "id": "4cb076ca91be6dde",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 360,
+        "wires": [
+            [
+                "436149194175c0e1"
+            ]
+        ]
+    },
+    {
+        "id": "a00e840f868007b4",
+        "type": "up",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": 1,
+        "x": 1280,
+        "y": 300,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "436149194175c0e1",
+        "type": "down",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "distance": 1,
+        "x": 1280,
+        "y": 360,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "2dd0241a95457a3b",
+        "type": "yaw_right",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "degrees": 90,
+        "x": 1280,
+        "y": 420,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "0ca95155b5909df5",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 420,
+        "wires": [
+            [
+                "2dd0241a95457a3b"
+            ]
+        ]
+    },
+    {
+        "id": "93d521f9dbdd5393",
+        "type": "yaw_left",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "degrees": 90,
+        "x": 1280,
+        "y": 480,
+        "wires": [
+            [
+                "1c1de41bb485044a"
+            ]
+        ]
+    },
+    {
+        "id": "414abc3c5802df7d",
+        "type": "inject",
+        "z": "3f767aee767c6d1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1100,
+        "y": 480,
+        "wires": [
+            [
+                "93d521f9dbdd5393"
+            ]
+        ]
+    },
+    {
+        "id": "29e53340ef49ce77",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/offboard_control_mode",
+        "messagetype": "px4_msgs/msg/OffboardControlMode",
+        "stampheader": false,
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "1c5fbcfced8f9252",
+                "04b22aa18610eeb5"
+            ]
+        ]
+    },
+    {
+        "id": "1c5fbcfced8f9252",
+        "type": "delay",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 400,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "e8aa4e2ceaea1f22",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "offboard heartbeat",
+        "func": "let offboardControlMode = {\n    \"position\": true,\n}\n\n// Only send the heartbeat if flight mode is set to offboard\n// if (flow.get(\"current_flight_mode\") == 14) {\n    msg.payload = offboardControlMode\n    return msg\n// }",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "29e53340ef49ce77"
+            ]
+        ]
+    },
+    {
+        "id": "86ea8d29eb6e3e9c",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "px4_msgs/msg/VehicleCommand",
+        "stampheader": false,
+        "x": 590,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51573c7cbe23531b",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "offboard",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":6}",
+        "payloadType": "json",
+        "x": 180,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ba707f2050653d7",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "hold",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":4,\"param3\":3}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 640,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "3d6920e4d5733888",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "stabilized",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":7}",
+        "payloadType": "json",
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "41cf150f64cc4078",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/commander/Commander.cpp#L388",
+        "info": "",
+        "x": 400,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a0626b654553fea8",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "https://discuss.px4.io/t/switching-modes-in-px4-using-ros2-and-uxrce-dds/37137/2",
+        "info": "",
+        "x": 350,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e0d61e44670c2ae8",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "arm",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":400,\"param1\":1,\"param2\":0}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 680,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "27cf97d74ed93ddd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "disarm",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":400,\"param1\":0,\"param2\":0}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 720,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "4a02d7e5afd462ee",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "land",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"command\":21}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 840,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "b5a7ac2a4b0caa1e",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Start sending the offboard heartbeat message so we can arm in offboard mode",
+        "info": "",
+        "x": 340,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d3a675a7fdec0864",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Arm drone",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [
+                "f1b214c36a44691b"
+            ]
+        ]
+    },
+    {
+        "id": "f3a9816e169032ce",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Offboard flight mode",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"command\":176,\"param1\":1,\"param2\":6}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "9c7da5306de96025"
+            ]
+        ]
+    },
+    {
+        "id": "ea35d0e5ae1a6a18",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 19,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Land",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"command\":21}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 880,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "43d0af16e9fd4786",
+        "type": "ros2-subscribe",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_local_position",
+        "messagetype": "px4_msgs/msg/VehicleLocalPosition",
+        "x": 910,
+        "y": 140,
+        "wires": [
+            [
+                "fb76f6ef6ab1088d",
+                "d781f7b43060a939",
+                "15b1e08659d29c42",
+                "32d31555c56c9a05"
+            ]
+        ]
+    },
+    {
+        "id": "fb76f6ef6ab1088d",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "set current heading",
+        "func": "let current_heading = msg.payload.heading\nmsg.payload = Math.round(current_heading * 100) / 100\nflow.set(\"current_heading\", current_heading)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 240,
+        "wires": [
+            [
+                "ac34a5fb077829c6"
+            ]
+        ]
+    },
+    {
+        "id": "d781f7b43060a939",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "set current x",
+        "func": "let x = msg.payload.x\nmsg.payload = Math.round(x * 100) / 100\nflow.set(\"current_x\", x)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 60,
+        "wires": [
+            [
+                "f10eb3165dda1bf0"
+            ]
+        ]
+    },
+    {
+        "id": "15b1e08659d29c42",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "set current y",
+        "func": "let y = msg.payload.y\nmsg.payload = Math.round(y * 100) / 100\nflow.set(\"current_y\", y)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 120,
+        "wires": [
+            [
+                "ab94c08e491c6c7d"
+            ]
+        ]
+    },
+    {
+        "id": "32d31555c56c9a05",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "set current z",
+        "func": "let z = msg.payload.z\nmsg.payload = Math.round(z * 100) / 100\nflow.set(\"current_z\", z)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 180,
+        "wires": [
+            [
+                "34a22118c0caf87f"
+            ]
+        ]
+    },
+    {
+        "id": "f10eb3165dda1bf0",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "X",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1370,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ab94c08e491c6c7d",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Y",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1370,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "34a22118c0caf87f",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Z",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1370,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ac34a5fb077829c6",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Heading",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1380,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e3dfb1cc46c3ae5f",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "be2b770ac31d638c"
+            ]
+        ]
+    },
+    {
+        "id": "be2b770ac31d638c",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "function 1",
+        "func": "let takeoff = {\n    \"command\": 22,\n    \"param1\": -1,\n    \"param7\": flow.get(\"current_z\") + 5\n}\n\nmsg.payload = takeoff\nreturn msg\n\n\n// msg.command = VehicleCommand.VEHICLE_CMD_NAV_TAKEOFF\n//         msg.param1 = float(-1)\n//         msg.param2 = float(0)\n//         msg.param3 = float(0)\n//         msg.param4 = float('nan')\n//         msg.param5 = float('nan')\n//         msg.param6 = float('nan')\n//         msg.param7 = float(alt + self.alt) \n// return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 820,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "cacfbbf3845b4c4b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "setpoint manager",
+        "func": "let position = {\n    \"position\": [\n        flow.get(\"setpoint_x\"),\n        flow.get(\"setpoint_y\"),\n        flow.get(\"setpoint_z\")\n    ],\n    \"yaw\": flow.get(\"setpoint_heading\")\n}\nmsg.payload = position\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1860,
+        "wires": [
+            [
+                "b4f471e7e1954462",
+                "631cf924412c0a25"
+            ]
+        ]
+    },
+    {
+        "id": "4f06bc67a9354850",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "forward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\")) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\")) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1740,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "ad0fc481928caf4f",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "backward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1800,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "05de19cc14adc2b6",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "left",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1860,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "11026dfc1cd09029",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "right",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1920,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "b4f471e7e1954462",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/trajectory_setpoint",
+        "messagetype": "px4_msgs/msg/TrajectorySetpoint",
+        "stampheader": false,
+        "x": 760,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2be381e5f550a017",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "up",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance * -1)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1980,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "e7f8c4395b1d66b5",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "down",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 2040,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "dd4f2eee2d25fae9",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "func": "let distance = 2\n\nflow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\") - distance)\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1680,
+        "wires": [
+            [
+                "cacfbbf3845b4c4b"
+            ]
+        ]
+    },
+    {
+        "id": "f1b214c36a44691b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "arm",
+        "func": "msg.payload = {\n    \"command\": 400,\n    \"param1\": 1,\n    \"param2\": 0\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 580,
+        "wires": [
+            [
+                "9c7da5306de96025"
+            ]
+        ]
+    },
+    {
+        "id": "57279d179595d56c",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current Flight Mode",
+        "format": "{{msg.payload.flight_mode}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 700,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ee7ae77292d53306",
+        "type": "ros2-subscribe",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_status",
+        "messagetype": "",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "2c5a4d6ea290b29b"
+            ]
+        ]
+    },
+    {
+        "id": "2c5a4d6ea290b29b",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "get flight mode",
+        "func": "let flight_mode = msg.payload.nav_state\nflow.set(\"current_flight_mode\", flight_mode)\nmsg.payload.flight_mode = flight_mode\n// msg.payload.setpoint_x = flow.get(\"setpoint_x\").toFixed(2)\n// msg.payload.setpoint_y = flow.get(\"setpoint_y\").toFixed(2)\n// msg.payload.setpoint_z = flow.get(\"setpoint_z\").toFixed(2)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "57279d179595d56c",
+                "97ed472061216e5d",
+                "1890850bb897be32",
+                "66e9411049484047"
+            ]
+        ]
+    },
+    {
+        "id": "e5222c4dad4ea4ec",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Monitor current flight mode and begin offboard heartbeat if offboard enabled",
+        "info": "",
+        "x": 350,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "04b22aa18610eeb5",
+        "type": "debug",
+        "z": "e768c19cc0da9678",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "631cf924412c0a25",
+        "type": "debug",
+        "z": "e768c19cc0da9678",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "97ed472061216e5d",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint X",
+        "format": "{{msg.payload.setpoint_x}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "69d3d20809a89c5f",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start offboard heartbeat",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "24a03e61200a6f8d",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "Start offboard heartbeat",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "e8aa4e2ceaea1f22"
+            ]
+        ]
+    },
+    {
+        "id": "1890850bb897be32",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint Y",
+        "format": "{{msg.payload.setpoint_y}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "66e9411049484047",
+        "type": "ui_text",
+        "z": "e768c19cc0da9678",
+        "group": "5e97842196ee06b6",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Setpoint Z",
+        "format": "{{msg.payload.setpoint_z}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9c7da5306de96025",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "initialize setpoints",
+        "func": "flow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\"))\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 540,
+        "wires": [
+            [
+                "86ea8d29eb6e3e9c"
+            ]
+        ]
+    },
+    {
+        "id": "4ee3b6561e7b3b57",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "setpoint manager",
+        "func": "// Only send setpoints if we're in offboard mode\nif (flow.get(\"current_flight_mode\") == 14) {\n    let position = {\n        \"position\": [\n            flow.get(\"setpoint_x\"),\n            flow.get(\"setpoint_y\"),\n            flow.get(\"setpoint_z\")\n        ],\n        \"yaw\": flow.get(\"setpoint_heading\")\n    }\n    msg.payload = position\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1240,
+        "wires": [
+            [
+                "a9121fb60aa7d30d"
+            ]
+        ]
+    },
+    {
+        "id": "d268e25e6cafab5a",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "forward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\")) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\")) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68c84c8092535827",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "backward",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + Math.PI) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21bd06a3d3d57302",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "left",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + -1 * (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff519fcd4338d292",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "right",
+        "func": "let distance = 1\nlet new_x = distance * Math.cos(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_x\")\nlet new_y = distance * Math.sin(flow.get(\"current_heading\") + (Math.PI / 2)) + flow.get(\"current_y\")\n\nflow.set(\"setpoint_x\", new_x)\nflow.set(\"setpoint_y\", new_y)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9121fb60aa7d30d",
+        "type": "ros2-publish",
+        "z": "e768c19cc0da9678",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/trajectory_setpoint",
+        "messagetype": "px4_msgs/msg/TrajectorySetpoint",
+        "stampheader": false,
+        "x": 960,
+        "y": 1240,
+        "wires": [
+            [
+                "e33a503624bdc29f"
+            ]
+        ]
+    },
+    {
+        "id": "36a57848fc40a563",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1140,
+        "wires": [
+            [
+                "d268e25e6cafab5a"
+            ]
+        ]
+    },
+    {
+        "id": "49af507655b18c6b",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1220,
+        "wires": [
+            [
+                "68c84c8092535827"
+            ]
+        ]
+    },
+    {
+        "id": "3b2f5f476c3e85cd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1300,
+        "wires": [
+            [
+                "21bd06a3d3d57302"
+            ]
+        ]
+    },
+    {
+        "id": "803233882115069a",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1380,
+        "wires": [
+            [
+                "ff519fcd4338d292"
+            ]
+        ]
+    },
+    {
+        "id": "90a64faec87d3acd",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "up",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance * -1)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f1641bdb39850dd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1460,
+        "wires": [
+            [
+                "90a64faec87d3acd"
+            ]
+        ]
+    },
+    {
+        "id": "4f844fa7986fa111",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "down",
+        "func": "let distance = 1\nflow.set(\"setpoint_z\", flow.get(\"current_z\") + distance)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "212d9351d62ea3bd",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1540,
+        "wires": [
+            [
+                "4f844fa7986fa111"
+            ]
+        ]
+    },
+    {
+        "id": "9e8a9c7bb90367ce",
+        "type": "function",
+        "z": "e768c19cc0da9678",
+        "name": "takeoff",
+        "func": "let distance = 2\n\nflow.set(\"setpoint_x\", flow.get(\"current_x\"))\nflow.set(\"setpoint_y\", flow.get(\"current_y\"))\nflow.set(\"setpoint_z\", flow.get(\"current_z\") - distance)\nflow.set(\"setpoint_heading\", flow.get(\"current_heading\"))\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a1a48532a01091e",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1060,
+        "wires": [
+            [
+                "9e8a9c7bb90367ce"
+            ]
+        ]
+    },
+    {
+        "id": "fed75f478dce5661",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Takeoff",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 1020,
+        "wires": [
+            [
+                "9e8a9c7bb90367ce"
+            ]
+        ]
+    },
+    {
+        "id": "cde857ffff654e62",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Right",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1340,
+        "wires": [
+            [
+                "ff519fcd4338d292"
+            ]
+        ]
+    },
+    {
+        "id": "55888718c62b5b32",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Forward",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 1100,
+        "wires": [
+            [
+                "d268e25e6cafab5a"
+            ]
+        ]
+    },
+    {
+        "id": "ca5a3bbce0e0be0b",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Back",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1180,
+        "wires": [
+            [
+                "68c84c8092535827"
+            ]
+        ]
+    },
+    {
+        "id": "0e1dbf4e7af42d83",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Left",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1260,
+        "wires": [
+            [
+                "21bd06a3d3d57302"
+            ]
+        ]
+    },
+    {
+        "id": "bf1d420bf352b5d0",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Up",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1420,
+        "wires": [
+            [
+                "90a64faec87d3acd"
+            ]
+        ]
+    },
+    {
+        "id": "d246496f9070d60a",
+        "type": "ui_button",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "group": "5e97842196ee06b6",
+        "order": 18,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Down",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1500,
+        "wires": [
+            [
+                "4f844fa7986fa111"
+            ]
+        ]
+    },
+    {
+        "id": "2f5163c8cd3127a5",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "Start offboard control loop",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 650,
+        "y": 1040,
+        "wires": [
+            [
+                "4ee3b6561e7b3b57"
+            ]
+        ]
+    },
+    {
+        "id": "e33a503624bdc29f",
+        "type": "delay",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 1320,
+        "wires": [
+            [
+                "4ee3b6561e7b3b57"
+            ]
+        ]
+    },
+    {
+        "id": "1ff249ba4a85b00b",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Send offboard setpoints continously at 10Hz",
+        "info": "",
+        "x": 230,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "5cccfbcca625d925",
+        "type": "comment",
+        "z": "e768c19cc0da9678",
+        "name": "Send offboard setpoints one time (docs say we can do one time....need to verify)",
+        "info": "",
+        "x": 360,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "9c0ac909dd06707e",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1680,
+        "wires": [
+            [
+                "dd4f2eee2d25fae9"
+            ]
+        ]
+    },
+    {
+        "id": "caf98a4707675515",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1740,
+        "wires": [
+            [
+                "4f06bc67a9354850"
+            ]
+        ]
+    },
+    {
+        "id": "cd5bfa83b6059c59",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1800,
+        "wires": [
+            [
+                "ad0fc481928caf4f"
+            ]
+        ]
+    },
+    {
+        "id": "319e6e6d7e7f690c",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1860,
+        "wires": [
+            [
+                "05de19cc14adc2b6"
+            ]
+        ]
+    },
+    {
+        "id": "ee4799da24ad9b25",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1920,
+        "wires": [
+            [
+                "11026dfc1cd09029"
+            ]
+        ]
+    },
+    {
+        "id": "28ad59c9d9acf177",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1980,
+        "wires": [
+            [
+                "2be381e5f550a017"
+            ]
+        ]
+    },
+    {
+        "id": "cff2ecd4ef265a01",
+        "type": "inject",
+        "z": "e768c19cc0da9678",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2040,
+        "wires": [
+            [
+                "e7f8c4395b1d66b5"
+            ]
+        ]
+    },
+    {
+        "id": "b2a8e3f87a509c26",
+        "type": "ros2-service-call",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "x": 1180,
+        "y": 580,
+        "wires": [
+            [
+                "bf3503ed327d1e7d",
+                "108712d3a6681a1b"
+            ]
+        ]
+    },
+    {
+        "id": "658feb1ef2a39742",
+        "type": "ros2-subscribe",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "topicname": "/dexi/gpio_input_22",
+        "messagetype": "std_msgs/msg/Bool",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "bbcc1ed99243f626"
+            ]
+        ]
+    },
+    {
+        "id": "af9624919a1b3582",
+        "type": "change",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.data",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "eb6dda84f6eda544",
+                "4581b25ed72a3f10"
+            ]
+        ]
+    },
+    {
+        "id": "eb6dda84f6eda544",
+        "type": "ui_led",
+        "z": "6fe657fb81fc95dd",
+        "order": 3,
+        "group": "4166ed8cf4b1e7d4",
+        "width": 6,
+        "height": 5,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 470,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0543bde3e74d88a0",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "White LED",
+        "color": "white",
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "4581b25ed72a3f10",
+        "type": "switch",
+        "z": "6fe657fb81fc95dd",
+        "name": "toggle white",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "0543bde3e74d88a0",
+                "0ff4f35e8cb0bbea"
+            ]
+        ]
+    },
+    {
+        "id": "c6b9086dbb472900",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Black LED (off)",
+        "color": "black",
+        "x": 1020,
+        "y": 280,
+        "wires": [
+            [
+                "d1a33d93bc76c389"
+            ]
+        ]
+    },
+    {
+        "id": "9d2d8060d837691b",
+        "type": "ros2-subscribe",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "topicname": "/detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 120,
+        "y": 800,
+        "wires": [
+            [
+                "2414f9d3f6e4223b"
+            ]
+        ]
+    },
+    {
+        "id": "2bf0733819afc97a",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "get april tag id",
+        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].id\n    flow.set(\"april_tag_detected\", true)\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "263c22771723c3b4",
+                "a94951e69f6804d8"
+            ]
+        ]
+    },
+    {
+        "id": "263c22771723c3b4",
+        "type": "switch",
+        "z": "6fe657fb81fc95dd",
+        "name": "set led color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 550,
+        "y": 880,
+        "wires": [
+            [
+                "be2c892197ca3898"
+            ],
+            [
+                "f819e55ec4b66bac"
+            ],
+            [
+                "94c5301511da52db"
+            ]
+        ]
+    },
+    {
+        "id": "7d43fd5f8bd9c45c",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "black",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 280,
+        "wires": [
+            [
+                "c6b9086dbb472900"
+            ]
+        ]
+    },
+    {
+        "id": "4943df094ae6b8c7",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "white",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "0543bde3e74d88a0"
+            ]
+        ]
+    },
+    {
+        "id": "be2c892197ca3898",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Red LED",
+        "color": "red",
+        "x": 880,
+        "y": 840,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "f819e55ec4b66bac",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Blue LED",
+        "color": "blue",
+        "x": 880,
+        "y": 900,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "94c5301511da52db",
+        "type": "led",
+        "z": "6fe657fb81fc95dd",
+        "name": "Yellow LED",
+        "color": "yellow",
+        "x": 890,
+        "y": 960,
+        "wires": [
+            [
+                "b2a8e3f87a509c26"
+            ]
+        ]
+    },
+    {
+        "id": "2414f9d3f6e4223b",
+        "type": "delay",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 150,
+        "y": 920,
+        "wires": [
+            [
+                "790290dee15b5052"
+            ]
+        ]
+    },
+    {
+        "id": "a94951e69f6804d8",
+        "type": "ui_text",
+        "z": "6fe657fb81fc95dd",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "April Tag ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "6681b507c333bbd7",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "April Tag detection logic",
+        "info": "",
+        "x": 160,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "0d0de2296a5bcb2a",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "Infrared Beam detection logic",
+        "info": "",
+        "x": 160,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0ff4f35e8cb0bbea",
+        "type": "change",
+        "z": "6fe657fb81fc95dd",
+        "name": "beam detected true",
+        "rules": [
+            {
+                "t": "set",
+                "p": "beam_detected",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92b68e1b6ee8c07d",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "IR beam must be detected first",
+        "info": "",
+        "x": 190,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e2647594e160d017",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "Set global variable and go into april tag detection mode for 5 seconds",
+        "info": "",
+        "x": 630,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b4960165480cec74",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "initialize global vars",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "108712d3a6681a1b",
+        "type": "delay",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1380,
+        "y": 580,
+        "wires": [
+            [
+                "f029b596f71c92c6",
+                "c6b9086dbb472900"
+            ]
+        ]
+    },
+    {
+        "id": "dba3d2e7d18df143",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 680,
+        "y": 1040,
+        "wires": [
+            [
+                "94c5301511da52db"
+            ]
+        ]
+    },
+    {
+        "id": "bbcc1ed99243f626",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "check beam and april tag variables",
+        "func": "if (flow.get(\"beam_detected\") == false && flow.get(\"april_tag_detected\") == false) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "af9624919a1b3582"
+            ]
+        ]
+    },
+    {
+        "id": "bf3503ed327d1e7d",
+        "type": "debug",
+        "z": "6fe657fb81fc95dd",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "f029b596f71c92c6",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "reset flow vars",
+        "func": "flow.set(\"beam_detected\", false)\nflow.set(\"april_tag_detected\", false)\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25fe1833b6c28945",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "IR beam must be detected first",
+        "info": "",
+        "x": 190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "790290dee15b5052",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "beam is detected so proceed",
+        "func": "if (flow.get(\"beam_detected\")) {\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1040,
+        "wires": [
+            [
+                "2bf0733819afc97a"
+            ]
+        ]
+    },
+    {
+        "id": "437f1ee8eb899041",
+        "type": "inject",
+        "z": "6fe657fb81fc95dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1140,
+        "wires": [
+            [
+                "f61fb237ec372e64"
+            ]
+        ]
+    },
+    {
+        "id": "f61fb237ec372e64",
+        "type": "function",
+        "z": "6fe657fb81fc95dd",
+        "name": "print flow vars",
+        "func": "flow.keys().forEach((key) => {\n    console.log(`${key} - ${flow.get(key)}`)\n})",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de5180721d017b10",
+        "type": "comment",
+        "z": "6fe657fb81fc95dd",
+        "name": "turn led off",
+        "info": "",
+        "x": 840,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d1a33d93bc76c389",
+        "type": "ros2-service-call",
+        "z": "6fe657fb81fc95dd",
+        "server": "27129f80a96ce509",
+        "x": 1240,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76e775c3a1751abd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "e7825f628b2f869e",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "e02e5ed7d4735d41",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 900,
+        "y": 300,
+        "wires": [
+            [
+                "4e9a60214fc4557f",
+                "1d02d7bb6a41d093"
+            ]
+        ]
+    },
+    {
+        "id": "4a2a5d0b92fe99c6",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "58e910af587094bd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "4e9a60214fc4557f",
+        "type": "delay",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "2c6b2904b3fc7d64",
+        "type": "switch",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "property": "status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "af28ada7cb068285"
+            ],
+            [
+                "bc546e1bc590790a"
+            ]
+        ]
+    },
+    {
+        "id": "7773f62dd1fa9b02",
+        "type": "function",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "function 1",
+        "func": "flow.set(\"status\", !flow.get(\"status\"))\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"status\", true)",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "2c6b2904b3fc7d64"
+            ]
+        ]
+    },
+    {
+        "id": "4922594b111975ee",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "pulse laser",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "af28ada7cb068285",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "bc546e1bc590790a",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 640,
+        "y": 440,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "1d02d7bb6a41d093",
+        "type": "debug",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6d1ac3d7be3eb4e8",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 800,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf652689701c088b",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser on",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "7cde8f60efc5eb65",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "214b515b3ff88dc5",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "fire laser repeatedly",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "287bd7caa49c16bf",
+        "type": "ui_iframe",
+        "z": "2131ca674bcfee95",
+        "group": "4166ed8cf4b1e7d4",
+        "name": "",
+        "order": 1,
+        "width": "12",
+        "height": "11",
+        "url": "http://192.168.5.57:8080/stream_viewer?topic=/image_rect",
+        "origin": "*",
+        "scale": 100,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61f7958cc143b088",
+        "type": "ros2-subscribe",
+        "z": "ad6fab15d3c693a6",
+        "server": "27129f80a96ce509",
+        "topicname": "/image_raw/compressed",
+        "messagetype": "",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "fd01ca32f8fa2de8"
+            ]
+        ]
+    },
+    {
+        "id": "fd01ca32f8fa2de8",
+        "type": "function",
+        "z": "ad6fab15d3c693a6",
+        "name": "process frames",
+        "func": "const imageData = `data:image/jpeg;base64,${msg.payload.data}`;\nmsg.payload = imageData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "4aed6d85d4947f0a"
+            ]
+        ]
+    },
+    {
+        "id": "4aed6d85d4947f0a",
+        "type": "image-preview",
+        "z": "ad6fab15d3c693a6",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 660,
+        "y": 100,
+        "wires": []
+    }
+]
