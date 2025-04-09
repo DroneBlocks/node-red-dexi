@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('led-effect', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            effect: {value: "rainbow"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
+        paletteLabel: "led effect",
+        label: function() {
+            return this.name || "led effect"
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="led-effect">
+    <div class="form-row">
+        <div class="form-row">
+            <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+            <input type="text" id="node-input-name" placeholder="Name">
+        </div>
+        <label for="node-input-effect"><i class="icon-tag"></i> LED Effect</label>
+        <select id="node-input-effect">
+            <option value="rainbow">Rainbow</option>
+            <option value="loading">Loading</option>
+            <option value="comet">Comet</option>
+            <option value="galaxy">Galaxy</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="led-effect">
+    <p>Set drone's LED ring effect pattern</p>
+    <p>Available effects:</p>
+    <ul>
+        <li>Rainbow - Cycling rainbow pattern</li>
+        <li>Loading - Loading animation effect</li>
+        <li>Comet - Moving light effect</li>
+        <li>Galaxy - Starry night effect</li>
+    </ul>
+</script> 
