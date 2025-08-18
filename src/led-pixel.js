@@ -15,7 +15,8 @@ module.exports = function(RED) {
                         "index": parseInt(msg.payload.index),
                         "r": parseInt(msg.payload.red),
                         "g": parseInt(msg.payload.green),
-                        "b": parseInt(msg.payload.blue)
+                        "b": parseInt(msg.payload.blue),
+                        "brightness": parseInt(msg.payload.brightness) || parseInt(config.brightness) || 100
                     }
                 }
             } else {
@@ -26,7 +27,8 @@ module.exports = function(RED) {
                         "index": parseInt(config.ledindex),
                         "r": parseInt(config.red),
                         "g": parseInt(config.green),
-                        "b": parseInt(config.blue)
+                        "b": parseInt(config.blue),
+                        "brightness": parseInt(config.brightness) || 100
                     }
                 }
             }
