@@ -4,7 +4,8 @@
         color: '#a6bbcf',
         defaults: {
             name: {value: ""},
-            color: {value: "white"}
+            color: {value: "white"},
+            brightness: {value: 100}
         },
         inputs: 1,
         outputs: 1,
@@ -40,6 +41,21 @@
             <option value="aqua">Aqua</option>
             <option value="jade">Jade</option>
             <option value="amber">Amber</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-brightness"><i class="icon-tag"></i> Brightness</label>
+        <select id="node-input-brightness">
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+            <option value="60">60%</option>
+            <option value="70">70%</option>
+            <option value="80">80%</option>
+            <option value="90">90%</option>
+            <option value="100">100%</option>
         </select>
     </div>
 </script>

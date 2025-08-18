@@ -7,7 +7,8 @@ module.exports = function(RED) {
                 "serviceName": "/dexi/led_service/set_led_ring_color",
                 "serviceType": "dexi_interfaces/srv/LEDRingColor",
                 "serviceRequest": {
-                    "color": config.color
+                    "color": config.color,
+                    "brightness": parseInt(config.brightness) || 100
                 }
             }
             node.send(msg)
