@@ -1,5 +1,29 @@
 [
     {
+        "id": "78ed20307a6c3fca",
+        "type": "tab",
+        "label": "LED Demo",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5f5d6abf64fbf1a2",
+        "type": "tab",
+        "label": "April Tag Demo",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c88ec5f6bf1919d",
+        "type": "tab",
+        "label": "YOLO Demo",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "d94edfc7200152be",
         "type": "tab",
         "label": "PX4 Telemetry",
@@ -34,7 +58,7 @@
     {
         "id": "6fe657fb81fc95dd",
         "type": "tab",
-        "label": "AVR Mission 1",
+        "label": "AVR 2024 Mission 1",
         "disabled": true,
         "info": "",
         "env": []
@@ -42,7 +66,7 @@
     {
         "id": "8c0ec1ac3b0c99c6",
         "type": "tab",
-        "label": "Laser",
+        "label": "Laser Demo",
         "disabled": true,
         "info": "",
         "env": []
@@ -324,6 +348,440 @@
         "width": 6,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "dc3e05c5e05fe586",
+        "type": "inject",
+        "z": "78ed20307a6c3fca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "dc5cfe2f7275f0b9"
+            ]
+        ]
+    },
+    {
+        "id": "329048764cfff535",
+        "type": "ros2-service-call",
+        "z": "78ed20307a6c3fca",
+        "server": "27129f80a96ce509",
+        "x": 720,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93cf972cb4fac2a",
+        "type": "inject",
+        "z": "78ed20307a6c3fca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "2676b0a6ec1bc521"
+            ]
+        ]
+    },
+    {
+        "id": "2676b0a6ec1bc521",
+        "type": "led",
+        "z": "78ed20307a6c3fca",
+        "name": "Teal LED",
+        "color": "teal",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "878a64b7619b4c65",
+        "type": "inject",
+        "z": "78ed20307a6c3fca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "23b179f206f63d65"
+            ]
+        ]
+    },
+    {
+        "id": "23b179f206f63d65",
+        "type": "led",
+        "z": "78ed20307a6c3fca",
+        "name": "LED Off",
+        "color": "black",
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "dc5cfe2f7275f0b9",
+        "type": "led",
+        "z": "78ed20307a6c3fca",
+        "name": "Pink LED",
+        "color": "pink",
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "8959b55e6e6c8655",
+        "type": "function",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "get april tag id",
+        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].id\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "190cde7db99adc9b",
+                "57756ae1b77b69d7"
+            ]
+        ]
+    },
+    {
+        "id": "1f03e92abd538e9c",
+        "type": "ros2-subscribe",
+        "z": "5f5d6abf64fbf1a2",
+        "server": "27129f80a96ce509",
+        "topicname": "/apriltag_detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "8959b55e6e6c8655"
+            ]
+        ]
+    },
+    {
+        "id": "190cde7db99adc9b",
+        "type": "switch",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "set led color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "e110dc1226ea9625"
+            ],
+            [
+                "74ea221272d0d9e0"
+            ],
+            [
+                "974e2fc73e070d55"
+            ]
+        ]
+    },
+    {
+        "id": "e110dc1226ea9625",
+        "type": "led",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "Red LED",
+        "color": "red",
+        "x": 740,
+        "y": 220,
+        "wires": [
+            [
+                "082b66548ec84e5c"
+            ]
+        ]
+    },
+    {
+        "id": "74ea221272d0d9e0",
+        "type": "led",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "Blue LED",
+        "color": "blue",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "082b66548ec84e5c"
+            ]
+        ]
+    },
+    {
+        "id": "974e2fc73e070d55",
+        "type": "led",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "Yellow LED",
+        "color": "yellow",
+        "x": 750,
+        "y": 340,
+        "wires": [
+            [
+                "082b66548ec84e5c"
+            ]
+        ]
+    },
+    {
+        "id": "082b66548ec84e5c",
+        "type": "ros2-service-call",
+        "z": "5f5d6abf64fbf1a2",
+        "server": "27129f80a96ce509",
+        "x": 980,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57756ae1b77b69d7",
+        "type": "debug",
+        "z": "5f5d6abf64fbf1a2",
+        "name": "print tag id",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "65b1b7513e2bcc35",
+        "type": "function",
+        "z": "8c88ec5f6bf1919d",
+        "name": "get object",
+        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].class_name\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "413cc6735c1b44b2",
+                "5e3a7b461cdb2ce7"
+            ]
+        ]
+    },
+    {
+        "id": "5f2a63e2191be928",
+        "type": "ros2-subscribe",
+        "z": "8c88ec5f6bf1919d",
+        "server": "27129f80a96ce509",
+        "topicname": "/yolo_detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "65b1b7513e2bcc35"
+            ]
+        ]
+    },
+    {
+        "id": "413cc6735c1b44b2",
+        "type": "switch",
+        "z": "8c88ec5f6bf1919d",
+        "name": "set led color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "dog",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cat",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "truck",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "864ed565c0238fcf"
+            ],
+            [
+                "d58ca6c79218e4af"
+            ],
+            [
+                "f3517bf771100bf2"
+            ]
+        ]
+    },
+    {
+        "id": "864ed565c0238fcf",
+        "type": "led",
+        "z": "8c88ec5f6bf1919d",
+        "name": "Red LED",
+        "color": "red",
+        "x": 720,
+        "y": 220,
+        "wires": [
+            [
+                "42b2e7ce027aeb19"
+            ]
+        ]
+    },
+    {
+        "id": "d58ca6c79218e4af",
+        "type": "led",
+        "z": "8c88ec5f6bf1919d",
+        "name": "Blue LED",
+        "color": "blue",
+        "x": 720,
+        "y": 280,
+        "wires": [
+            [
+                "42b2e7ce027aeb19"
+            ]
+        ]
+    },
+    {
+        "id": "f3517bf771100bf2",
+        "type": "led",
+        "z": "8c88ec5f6bf1919d",
+        "name": "Yellow LED",
+        "color": "yellow",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "42b2e7ce027aeb19"
+            ]
+        ]
+    },
+    {
+        "id": "42b2e7ce027aeb19",
+        "type": "ros2-service-call",
+        "z": "8c88ec5f6bf1919d",
+        "server": "27129f80a96ce509",
+        "x": 960,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e3a7b461cdb2ce7",
+        "type": "debug",
+        "z": "8c88ec5f6bf1919d",
+        "name": "print class name",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "20e24e9a9250368a",
@@ -4522,6 +4980,16 @@
                 "7773f62dd1fa9b02"
             ]
         ]
+    },
+    {
+        "id": "d399faf78acce224",
+        "type": "comment",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "Wiring info: https://github.com/DroneBlocks/dexi/blob/main/docs/gpio.md",
+        "info": "",
+        "x": 300,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "287bd7caa49c16bf",
