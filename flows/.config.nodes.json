@@ -429,7 +429,7 @@
     },
     "@droneblocks/node-red-dexi": {
         "name": "@droneblocks/node-red-dexi",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "local": false,
         "user": false,
         "nodes": {
@@ -597,6 +597,17 @@
                 "user": false,
                 "module": "@droneblocks/node-red-dexi",
                 "file": "/usr/src/node-red/node_modules/@droneblocks/node-red-dexi/src/led-pixel.js"
+            },
+            "led-effect": {
+                "name": "led-effect",
+                "types": [
+                    "led-effect"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "@droneblocks/node-red-dexi",
+                "file": "/usr/src/node-red/node_modules/@droneblocks/node-red-dexi/src/led-effect.js"
             },
             "ros2-websocket-server": {
                 "name": "ros2-websocket-server",
