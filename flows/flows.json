@@ -35,7 +35,7 @@
         "id": "a691db1a9e113a84",
         "type": "tab",
         "label": "PX4 Arm, Takeoff, and Land",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
