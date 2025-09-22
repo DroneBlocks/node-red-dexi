@@ -1,21 +1,11 @@
 module.exports = function (RED) {
-    var ROSLIB = require('roslib');
-
     function SavePhotoNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
 
-        node.server = RED.nodes.getNode(config.server);
-        node.topicName = config.topicName || '/cam0/image_raw/compressed';
-        node.topicType = config.topicType || 'compressed';
         node.filename = config.filename || 'dexi_photo';
         node.autoSave = config.autoSave || false;
         node.showPreview = config.showPreview !== false; // default true
-
-        if (!node.server || !node.server.ros) {
-            node.status({fill: "red", shape: "dot", text: "no connection"});
-            return;
-        }
 
         function sendImageToClient(imageData) {
             if (!node.showPreview && !node.autoSave) return;
@@ -30,11 +20,11 @@ module.exports = function (RED) {
             }
             try {
                 RED.comms.publish("save-photo", d);
-                node.status({fill: "green", shape: "dot", text: "image received"});
+                node.status({fill:"green", shape:"dot", text:"image received"});
             }
             catch(e) {
                 node.error("Invalid image data", e);
-                node.status({fill: "red", shape: "dot", text: "invalid data"});
+                node.status({fill:"red", shape:"dot", text:"error"});
             }
         }
 
@@ -42,93 +32,58 @@ module.exports = function (RED) {
             try {
                 let imageData;
 
-                if (node.topicType === 'compressed') {
-                    // Handle sensor_msgs/CompressedImage
-                    if (data.data && data.format) {
-                        // CompressedImage message has data as base64 or buffer
-                        if (Buffer.isBuffer(data.data)) {
-                            imageData = data.data.toString("base64");
-                        } else if (Array.isArray(data.data)) {
-                            imageData = Buffer.from(data.data).toString("base64");
-                        } else {
-                            imageData = data.data;
-                        }
-                        sendImageToClient(imageData);
+                // Handle different input formats
+                if (typeof data === 'string') {
+                    // Already base64 encoded string
+                    imageData = data;
+                } else if (data && data.data && data.format) {
+                    // ROS CompressedImage message format
+                    if (Buffer.isBuffer(data.data)) {
+                        imageData = data.data.toString("base64");
+                    } else if (Array.isArray(data.data)) {
+                        imageData = Buffer.from(data.data).toString("base64");
+                    } else {
+                        imageData = data.data;
                     }
+                } else if (data && data.encoding && data.width && data.height && data.data) {
+                    // ROS Image message format (raw)
+                    let buffer;
+                    if (Buffer.isBuffer(data.data)) {
+                        buffer = data.data;
+                    } else if (Array.isArray(data.data)) {
+                        buffer = Buffer.from(data.data);
+                    } else {
+                        node.warn('Unsupported raw image data format');
+                        return;
+                    }
+                    imageData = buffer.toString("base64");
+                } else if (Buffer.isBuffer(data)) {
+                    // Direct buffer input
+                    imageData = data.toString("base64");
                 } else {
-                    // Handle sensor_msgs/Image (raw)
-                    if (data.encoding && data.width && data.height && data.data) {
-                        // For raw images, we need to convert to base64
-                        // This is more complex and may require image processing
-                        let buffer;
-                        if (Buffer.isBuffer(data.data)) {
-                            buffer = data.data;
-                        } else if (Array.isArray(data.data)) {
-                            buffer = Buffer.from(data.data);
-                        } else {
-                            node.warn('Unsupported raw image data format');
-                            return;
-                        }
-
-                        // For now, pass through raw data - in practice you'd want to
-                        // convert to JPEG using a library like sharp or jimp
-                        sendImageToClient(buffer.toString("base64"));
-                    }
+                    node.warn('Unsupported image data format');
+                    node.status({fill:"red", shape:"dot", text:"error"});
+                    return;
                 }
+
+                sendImageToClient(imageData);
 
                 // Send message through output
                 node.send({
                     payload: {
-                        topic: node.topicName,
                         timestamp: new Date().toISOString(),
-                        imageReceived: true
+                        imageReceived: true,
+                        filename: node.filename
                     }
                 });
 
             } catch (err) {
                 node.error(`Error processing image: ${err.message}`);
-                node.status({fill: "red", shape: "dot", text: "processing error"});
+                node.status({fill:"red", shape:"dot", text:"error"});
             }
         }
 
-        // if topic has not been advertised yet, keep trying again
-        function topicQuery(topic) {
-            node.server.ros.getTopicType(topic.name, (type) => {
-                if (!type) {
-                    setTimeout(() => { topicQuery(topic) }, 1000);
-                } else {
-                    node.log(`Subscribed to ${topic.name} with message type: ${type}`);
-                    topic.subscribe(function (data) {
-                        processImageMessage(data);
-                    });
-                }
-            });
-        }
-
-        node.server.on('ros connected', () => {
-            // Determine message type based on topic type
-            let messageType;
-            if (node.topicType === 'compressed' || node.topicType === 'compressed_2hz') {
-                messageType = 'sensor_msgs/CompressedImage';
-            } else {
-                messageType = 'sensor_msgs/Image';
-            }
-
-            node.topic = new ROSLIB.Topic({
-                ros: node.server.ros,
-                name: node.topicName,
-                messageType: messageType
-            });
-
-            topicQuery(node.topic);
-            node.status({fill: "green", shape: "dot", text: "connected"});
-        });
-
-        node.server.on('ros error', () => {
-            node.status({fill: "red", shape: "dot", text: "connection error"});
-        });
-
-        // Handle manual save trigger
+        // Handle input messages
         node.on("input", function (msg) {
             if (msg.payload === "save") {
                 // Trigger a save of the latest image
@@ -138,16 +93,19 @@ module.exports = function (RED) {
                         timestamp: new Date().toISOString()
                     }
                 });
+            } else if (msg.payload) {
+                // Process image data from input
+                processImageMessage(msg.payload);
             }
         });
 
         node.on("close", function () {
-            if (node.topic && !node.server.closing) {
-                node.topic.unsubscribe();
-            }
             // Clear the preview
             RED.comms.publish("save-photo", { id: node.id });
         });
+
+        // Initial status
+        node.status({fill:"green", shape:"dot", text:"ready"});
     }
 
     RED.nodes.registerType("save-photo", SavePhotoNode);

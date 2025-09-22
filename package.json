@@ -20,14 +20,12 @@
       "led-pixel": "src/led-pixel.js",
       "led-effect": "src/led-effect.js",
       "ros2-websocket-server": "src/ros2-websocket-server.js",
-      "ros2-subsribe": "src/ros2-subscribe.js",
+      "ros2-subscribe": "src/ros2-subscribe.js",
       "ros2-publish": "src/ros2-publish.js",
       "ros2-service-call": "src/ros2-service-call.js",
       "write-gpio": "src/write-gpio.js",
       "image-preview": "src/image-preview.js",
-      "save-photo": "src/save-photo.js",
-      "coco-ssd": "src/coco-ssd.js",
-      "hand-pose": "src/hand-pose.js"
+      "save-photo": "src/save-photo.js"
     }
   },
   "keywords": [

@@ -25,16 +25,23 @@ docker run -it -p 1880:1880 -v ${PWD}/flows:/data -v ${PWD}:/node-red-dexi --nam
 docker exec -it dexi-node-red /bin/bash
 ```
 
-4. Install the nodes for local development since we already mapped the host folder node-red-dexi to the container folder /node-red-dexi
+4. First, install the package dependencies in the mapped directory
 ```
+cd /node-red-dexi
+npm install
+```
+
+5. Install the nodes for local development since we already mapped the host folder node-red-dexi to the container folder /node-red-dexi
+```
+cd /usr/src/node-red
 npm install /node-red-dexi
 ```
 
-5. Install other nodes
+6. Install other nodes
 
 ```
 npm install node-red-contrib-ui-led
 npm install node-red-node-ui-iframe
 ```
 
-6. Stop and start container to pick up changes.
+7. Stop and start container to pick up changes.

@@ -1,13 +1,11 @@
 <script type="text/javascript">
     (function() {
-        const DEFAULT_IMAGE_WIDTH = 160
+        const DEFAULT_IMAGE_WIDTH = 320
         RED.nodes.registerType('save-photo', {
             category: 'DEXI',
             color: '#88A882',
             defaults: {
                 name: { value: "" },
-                topicType: { value: "compressed" },
-                topicName: { value: "/cam0/image_raw/compressed" },
                 width: {
                     value: DEFAULT_IMAGE_WIDTH,
                     required: true,
@@ -28,9 +26,7 @@
             labelStyle: function () {
                 return this.name ? "node_label_italic" : "";
             },
-            inputLabels: function () {
-                return this.topicName;
-            },
+            inputLabels: "image data",
             button: {
                 enabled: function() { return !this.autoSave; },
                 visible: function() { return !this.autoSave; },
@@ -47,29 +43,6 @@
             },
             oneditprepare: function () {
                 $('#node-input-width').val(this.width || DEFAULT_IMAGE_WIDTH);
-
-                // Set up topic type dropdown and update topic name accordingly
-                const updateTopicName = function() {
-                    const topicType = $('#node-input-topicType').val();
-                    let topicName;
-                    switch(topicType) {
-                        case 'raw':
-                            topicName = '/cam0/image_raw';
-                            break;
-                        case 'compressed':
-                            topicName = '/cam0/image_raw/compressed';
-                            break;
-                        case 'compressed_2hz':
-                            topicName = '/cam0/image_raw/compressed_2hz';
-                            break;
-                        default:
-                            topicName = '/cam0/image_raw/compressed';
-                    }
-                    $('#node-input-topicName').val(topicName);
-                };
-
-                $('#node-input-topicType').change(updateTopicName);
-                updateTopicName(); // Set initial value
             }
         });
 
@@ -218,18 +191,6 @@
 
     <script type="text/html" data-template-name="save-photo">
         <div class="form-row">
-            <label for="node-input-topicType"><i class="fa fa-video-camera"></i> Image Type</label>
-            <select id="node-input-topicType" style="width:70%">
-                <option value="raw">Raw (uncompressed)</option>
-                <option value="compressed">Compressed (full rate)</option>
-                <option value="compressed_2hz">Compressed (2 fps)</option>
-            </select>
-        </div>
-        <div class="form-row">
-            <label for="node-input-topicName"><i class="fa fa-tag"></i> Topic</label>
-            <input type="text" id="node-input-topicName" readonly style="width:70%; background-color: #f0f0f0;">
-        </div>
-        <div class="form-row">
             <label for="node-input-width"><i class="fa fa-arrows-h"></i> Width</label>
             <input type="number" id="node-input-width">
         </div>
@@ -254,15 +215,10 @@
     </script>
 
     <script type="text/html" data-help-name="save-photo">
-        <p>Save photo node that subscribes to camera topics and saves JPG images directly to your computer via browser downloads.</p>
-        <p><strong>Image Types:</strong>
-        <ul>
-            <li><strong>Raw:</strong> Uncompressed images from /cam0/image_raw (higher bandwidth)</li>
-            <li><strong>Compressed:</strong> JPEG compressed images from /cam0/image_raw/compressed (recommended)</li>
-            <li><strong>Compressed (2 fps):</strong> Throttled JPEG images at 2fps from /cam0/image_raw/compressed_2hz</li>
-        </ul>
-        </p>
+        <p>Save photo node that accepts image data from input messages and saves JPG images directly to your computer via browser downloads.</p>
+        <p><strong>Input:</strong> Expects image data in the input message payload. Supports base64-encoded images or ROS image message formats.</p>
         <p><strong>Auto-save:</strong> When enabled, images are automatically downloaded when received.</p>
         <p><strong>Manual save:</strong> When auto-save is disabled, click the node button or the download icon on the image to save.</p>
+        <p><strong>Usage:</strong> Connect a ros2-subscribe node or other image source to provide image data to this node.</p>
         <p><strong>Note:</strong> All images are saved as JPG format with timestamp in filename.</p>
     </script>
