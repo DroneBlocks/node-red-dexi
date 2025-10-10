@@ -3,8 +3,10 @@
         category: 'DEXI',
         color: '#fef5ff',
         defaults: {
+            name: {value: ""},
+            boardtype: {value: 'dexi5', required: true},
             pinnumber: {value: 21, required: true},
-            pinstate: {value: false, required: true},
+            pinstate: {value: 'true', required: true},
             stampheader: {
                 value: false
             }
@@ -15,20 +17,72 @@
         paletteLabel: 'write gpio',
         icon: "icon.png",
         label: function() {
-            return this.topicname || "write gpio";
+            return this.name || "write gpio";
+        },
+        oneditprepare: function() {
+            var node = this;
+
+            // Pin configurations for different boards
+            var pinConfigs = {
+                dexi5: [16, 17, 20, 21, 22, 23, 24],
+                computekit: [0, 1, 2, 14, 15]
+            };
+
+            // Function to update pin dropdown based on board type
+            function updatePinOptions(boardType) {
+                var pinSelect = $('#node-input-pinnumber');
+                var currentPin = node.pinnumber;
+                var pins = pinConfigs[boardType] || pinConfigs.dexi5;
+
+                // Clear existing options
+                pinSelect.empty();
+
+                // Add new options
+                pins.forEach(function(pin) {
+                    pinSelect.append($('<option>', {
+                        value: pin,
+                        text: pin
+                    }));
+                });
+
+                // Try to restore previous selection if valid for this board
+                if (pins.indexOf(parseInt(currentPin)) !== -1) {
+                    pinSelect.val(currentPin);
+                } else {
+                    // Otherwise select the first pin
+                    pinSelect.val(pins[0]);
+                }
+            }
+
+            // Initialize pin options based on current board type
+            updatePinOptions(node.boardtype || 'dexi5');
+
+            // Update pins when board type changes
+            $('#node-input-boardtype').on('change', function() {
+                updatePinOptions($(this).val());
+            });
         }
     })
 </script>
 
 <script type="text/html" data-template-name="write-gpio">
     <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-boardtype">Board Type</label>
+        <select id="node-input-boardtype">
+            <option value="dexi5">DEXI 5</option>
+            <option value="computekit">DEXI Compute Kit</option>
+        </select>
+    </div>
+
+    <div class="form-row">
         <label for="node-input-pinnumber">Pin Number</label>
         <select id="node-input-pinnumber">
-            <option value="21">21</option>
-            <option value="21">22</option>
-            <option value="21">23</option>
-            <option value="21">24</option>
-            <option value="21">25</option>
+            <!-- Options populated dynamically based on board type -->
         </select>
     </div>
 

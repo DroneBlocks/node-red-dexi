@@ -88,6 +88,30 @@
         "env": []
     },
     {
+        "id": "0ec8cb42ee99a00d",
+        "type": "tab",
+        "label": "Compute Kit Servo Control",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "142bd2ed15f43c13",
+        "type": "tab",
+        "label": "Compute Kit GPIO",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e9b2c26d123cc246",
+        "type": "tab",
+        "label": "Compute Kit Open Collector (Laser Pulse)",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "27129f80a96ce509",
         "type": "ros2-websocket-server",
         "url": "ws://192.168.4.1:9090"
@@ -348,6 +372,36 @@
         "width": 6,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "6a7e8942e68a5c2e",
+        "type": "ui_tab",
+        "name": "Compute Kit",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c6e2654e4bd7b809",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "6a7e8942e68a5c2e",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "45b05d4941beab87",
+        "type": "ui_spacer",
+        "z": "142bd2ed15f43c13",
+        "name": "spacer",
+        "group": "c6e2654e4bd7b809",
+        "order": 4,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "dc3e05c5e05fe586",
@@ -5058,6 +5112,483 @@
         "outputs": 0,
         "x": 660,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "9c4db8541a85f472",
+        "type": "servo",
+        "z": "0ec8cb42ee99a00d",
+        "name": "servo 0 (0 degrees)",
+        "servoId": "0",
+        "angle": "0",
+        "x": 350,
+        "y": 180,
+        "wires": [
+            [
+                "587a4e5953b42928"
+            ]
+        ]
+    },
+    {
+        "id": "587a4e5953b42928",
+        "type": "ros2-service-call",
+        "z": "0ec8cb42ee99a00d",
+        "server": "27129f80a96ce509",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24ceaa76f5bab1b7",
+        "type": "ui_button",
+        "z": "0ec8cb42ee99a00d",
+        "name": "",
+        "group": "c6e2654e4bd7b809",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Servo 0 Open",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "9c4db8541a85f472"
+            ]
+        ]
+    },
+    {
+        "id": "70964a0e08a70969",
+        "type": "servo",
+        "z": "0ec8cb42ee99a00d",
+        "name": "servo 0 (180 degrees)",
+        "servoId": "0",
+        "angle": "180",
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "587a4e5953b42928"
+            ]
+        ]
+    },
+    {
+        "id": "d0a830d2a97d63fa",
+        "type": "ui_button",
+        "z": "0ec8cb42ee99a00d",
+        "name": "",
+        "group": "c6e2654e4bd7b809",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Servo 0 Close",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "70964a0e08a70969"
+            ]
+        ]
+    },
+    {
+        "id": "0273ae2d0a88cf4a",
+        "type": "servo",
+        "z": "0ec8cb42ee99a00d",
+        "name": "servo 1",
+        "servoId": "1",
+        "angle": "90",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "587a4e5953b42928"
+            ]
+        ]
+    },
+    {
+        "id": "5b2bdcec3ceb2183",
+        "type": "ui_slider",
+        "z": "0ec8cb42ee99a00d",
+        "name": "",
+        "label": "Servo 1 Slider",
+        "tooltip": "",
+        "group": "c6e2654e4bd7b809",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "180",
+        "step": 1,
+        "className": "",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "0273ae2d0a88cf4a"
+            ]
+        ]
+    },
+    {
+        "id": "e3bbbded576d22b0",
+        "type": "comment",
+        "z": "0ec8cb42ee99a00d",
+        "name": "Attach two servos to compute kit ports 0 and 1",
+        "info": "",
+        "x": 260,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d709c92d023be2d0",
+        "type": "write-gpio",
+        "z": "142bd2ed15f43c13",
+        "name": "Pin 0 high",
+        "boardtype": "computekit",
+        "pinnumber": "0",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "69867ae2360210c3"
+            ]
+        ]
+    },
+    {
+        "id": "90ae78b5e6f667f4",
+        "type": "inject",
+        "z": "142bd2ed15f43c13",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "d709c92d023be2d0"
+            ]
+        ]
+    },
+    {
+        "id": "69867ae2360210c3",
+        "type": "ros2-service-call",
+        "z": "142bd2ed15f43c13",
+        "server": "27129f80a96ce509",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9be6d9f1768a2010",
+        "type": "write-gpio",
+        "z": "142bd2ed15f43c13",
+        "name": "Pin 0 low",
+        "boardtype": "computekit",
+        "pinnumber": "0",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "69867ae2360210c3"
+            ]
+        ]
+    },
+    {
+        "id": "144fb41742ad6623",
+        "type": "inject",
+        "z": "142bd2ed15f43c13",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "9be6d9f1768a2010"
+            ]
+        ]
+    },
+    {
+        "id": "f61df10b0d51e8d6",
+        "type": "ui_button",
+        "z": "142bd2ed15f43c13",
+        "name": "",
+        "group": "c6e2654e4bd7b809",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "GPIO 0 High",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "d709c92d023be2d0"
+            ]
+        ]
+    },
+    {
+        "id": "36364799fa60f92b",
+        "type": "ui_button",
+        "z": "142bd2ed15f43c13",
+        "name": "",
+        "group": "c6e2654e4bd7b809",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "GPIO 0 Low",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "9be6d9f1768a2010"
+            ]
+        ]
+    },
+    {
+        "id": "c29980b232b731fc",
+        "type": "comment",
+        "z": "142bd2ed15f43c13",
+        "name": "Attach LED circuit to GPIO port 0",
+        "info": "",
+        "x": 170,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3e8c68b2c73ac60c",
+        "type": "write-gpio",
+        "z": "e9b2c26d123cc246",
+        "name": "Laser On",
+        "boardtype": "computekit",
+        "pinnumber": "15",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "1d2bbddafb31dbc5"
+            ]
+        ]
+    },
+    {
+        "id": "88ba407c025fb4ec",
+        "type": "inject",
+        "z": "e9b2c26d123cc246",
+        "name": "Start Laser Loop",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "3e8c68b2c73ac60c"
+            ]
+        ]
+    },
+    {
+        "id": "1d2bbddafb31dbc5",
+        "type": "ros2-service-call",
+        "z": "e9b2c26d123cc246",
+        "server": "27129f80a96ce509",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "bbe56520b9ed6ec8"
+            ]
+        ]
+    },
+    {
+        "id": "bbe56520b9ed6ec8",
+        "type": "delay",
+        "z": "e9b2c26d123cc246",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "6d54454c7d0bd609"
+            ]
+        ]
+    },
+    {
+        "id": "6d54454c7d0bd609",
+        "type": "write-gpio",
+        "z": "e9b2c26d123cc246",
+        "name": "Laser Off",
+        "boardtype": "computekit",
+        "pinnumber": "15",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "37899b58d7c98705"
+            ]
+        ]
+    },
+    {
+        "id": "37899b58d7c98705",
+        "type": "ros2-service-call",
+        "z": "e9b2c26d123cc246",
+        "server": "27129f80a96ce509",
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "4e5e0aa1f410873f"
+            ]
+        ]
+    },
+    {
+        "id": "4e5e0aa1f410873f",
+        "type": "delay",
+        "z": "e9b2c26d123cc246",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "3e8c68b2c73ac60c"
+            ]
+        ]
+    },
+    {
+        "id": "e9a77ec95437c2a1",
+        "type": "comment",
+        "z": "e9b2c26d123cc246",
+        "name": "This assumes a KY-008 laser wired to the compute kit pin 15",
+        "info": "",
+        "x": 320,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ef4a4581ceb96f02",
+        "type": "comment",
+        "z": "e9b2c26d123cc246",
+        "name": "KY-008 signal pin to 5V on compute kit, KY-008 negative pin to OC on compute kit",
+        "info": "",
+        "x": 390,
+        "y": 80,
         "wires": []
     }
 ]

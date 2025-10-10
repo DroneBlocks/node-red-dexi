@@ -1,0 +1,45 @@
+<script type="text/javascript">
+    RED.nodes.registerType('servo', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: "servo"},
+            servoId: {value: "0"},
+            angle: {value: "90"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
+        paletteLabel: "servo",
+        label: function() {
+            return this.name || "servo"
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="servo">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="servo">
+    </div>
+    <div class="form-row">
+        <label for="node-input-servoId"><i class="icon-tag"></i> Servo ID</label>
+        <select id="node-input-servoId">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-angle"><i class="icon-tag"></i> Angle (0-180)</label>
+        <input type="number" id="node-input-angle" min="0" max="180" placeholder="90">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="servo">
+    <p>Control servo motor position</p>
+    <p>Configure the servo ID (0-4) and angle (0-180 degrees)</p>
+    <p>The node will publish to the ROS2 servo control service</p>
+</script>

@@ -4,10 +4,10 @@ module.exports = function(RED) {
       var node = this
       node.on('input', function(msg) {
           msg.payload = {
-              "serviceName": `/dexi/gpio_writer_service/write_gpio_${config.pinnumber}`,
+              "serviceName": `/dexi/gpio_writer_service/write_gpio`,
               "serviceType": "dexi_interfaces/srv/GPIOSend",
               "serviceRequest": {
-                "pin": 21,
+                "pin": parseInt(config.pinnumber),
                 "state": config.pinstate === 'true'
               }
           }
