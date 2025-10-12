@@ -438,7 +438,7 @@
         "z": "78ed20307a6c3fca",
         "server": "27129f80a96ce509",
         "x": 720,
-        "y": 260,
+        "y": 360,
         "wires": [
             []
         ]
@@ -540,6 +540,92 @@
         "wires": [
             [
                 "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "36da6b302e1cc73a",
+        "type": "led-effect",
+        "z": "78ed20307a6c3fca",
+        "name": "Rainbow Effect",
+        "effect": "rainbow",
+        "x": 420,
+        "y": 460,
+        "wires": [
+            [
+                "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "8c98d11de37b7cf0",
+        "type": "led-effect",
+        "z": "78ed20307a6c3fca",
+        "name": "Galaxy Effect",
+        "effect": "galaxy",
+        "x": 410,
+        "y": 560,
+        "wires": [
+            [
+                "329048764cfff535"
+            ]
+        ]
+    },
+    {
+        "id": "193cc1b7828666b2",
+        "type": "inject",
+        "z": "78ed20307a6c3fca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "36da6b302e1cc73a"
+            ]
+        ]
+    },
+    {
+        "id": "39478a268e042548",
+        "type": "inject",
+        "z": "78ed20307a6c3fca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "8c98d11de37b7cf0"
             ]
         ]
     },
