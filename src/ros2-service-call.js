@@ -52,7 +52,8 @@ module.exports = function(RED) {
         serviceClient.callService(msg.payload.serviceRequest, (response) => {
           // In the future we'll do something with the service response
           var o = JSON.parse(JSON.stringify(response))
-          node.send({payload: o});
+          msg.payload = o;
+          node.send(msg);
         })
     })
   
