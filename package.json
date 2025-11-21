@@ -26,7 +26,8 @@
       "ros2-service-call": "src/ros2-service-call.js",
       "write-gpio": "src/write-gpio.js",
       "image-preview": "src/image-preview.js",
-      "save-photo": "src/save-photo.js"
+      "save-photo": "src/save-photo.js",
+      "circle": "src/circle.js"
     }
   },
   "keywords": [
