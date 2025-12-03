@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    RED.nodes.registerType('circle',{
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            radius: {value: 2.0}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-circle-o",
+        paletteLabel: "fly circle",
+        label: function() {
+            return (this.name ? this.name + " - " : "") + "circle: " + this.radius + "m radius";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="circle">
+    <div class="form-row">
+        <label for="node-input-radius"><i class="fa fa-circle-o"></i> Radius (m)</label>
+        <input type="text" id="node-input-radius" placeholder="2.0">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="circle">
+    <p>Fly in a circle at the current altitude with the specified radius.</p>
+    <p>The drone will complete one full 360-degree circle and return to the starting position.</p>
+</script>
