@@ -1,7 +1,7 @@
 name: Claude Assistant
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   pull-requests: write
   id-token: write
@@ -20,6 +20,11 @@ jobs:
   claude-response:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
