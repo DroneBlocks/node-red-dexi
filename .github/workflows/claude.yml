@@ -1,0 +1,27 @@
+name: Claude Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned, labeled]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude-response:
+    runs-on: ubuntu-latest
+    # Skip if comment is from a bot (prevents loops)
+    if: |
+      (github.event_name != 'issue_comment' || !github.event.comment.user.login.endsWith('[bot]')) &&
+      (github.event_name != 'pull_request_review_comment' || !github.event.comment.user.login.endsWith('[bot]'))
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Trigger on @claude mentions, 'claude' label, or 'claude' assignee
+          trigger_phrase: "@claude"
+          label_trigger: "claude"
+          assignee_trigger: "claude"
