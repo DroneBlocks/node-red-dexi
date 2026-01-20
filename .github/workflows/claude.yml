@@ -13,10 +13,6 @@ on:
 jobs:
   claude-response:
     runs-on: ubuntu-latest
-    # Skip if comment is from a bot (prevents loops)
-    if: |
-      (github.event_name != 'issue_comment' || !github.event.comment.user.login.endsWith('[bot]')) &&
-      (github.event_name != 'pull_request_review_comment' || !github.event.comment.user.login.endsWith('[bot]'))
     steps:
       - uses: anthropics/claude-code-action@v1
         with:
