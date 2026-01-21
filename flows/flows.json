@@ -122,7 +122,7 @@
     {
         "id": "27129f80a96ce509",
         "type": "ros2-websocket-server",
-        "url": "ws://192.168.4.1:9090"
+        "url": "${ROS2_WEBSOCKET_URL}"
     },
     {
         "id": "5788a4cce510d440",

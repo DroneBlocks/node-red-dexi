@@ -1,5 +1,8 @@
 FROM nodered/node-red:latest-minimal
 
+# Set default websocket URL for physical hardware (can be overridden)
+ENV ROS2_WEBSOCKET_URL=ws://192.168.4.1:9090
+
 RUN npm i @droneblocks/node-red-dexi
 
 # For displaying led on dashboard

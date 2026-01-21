@@ -1,8 +1,18 @@
 # Node RED flow development for DEXI
- 
+
 You want to make sure you don't lose any of your flow development. Make sure to map the host "flows" directory to the container directory as shown below. This will store the flow on your host machine if/when the container is destroyed.
 
+## Running on Physical Hardware (default)
+
 ```docker run -it -p 1880:1880 -v ${PWD}/flows:/data --name dexi-node-red droneblocks/dexi-node-red:latest```
+
+## Running in Simulation Environment
+
+For simulation environments, override the websocket URL:
+
+```docker run -it -p 1880:1880 -e ROS2_WEBSOCKET_URL=ws://ros2-dev:9090 -v ${PWD}/flows:/data --name dexi-node-red droneblocks/dexi-node-red:latest```
+
+The default websocket URL is `ws://192.168.4.1:9090` (physical hardware). Set the `ROS2_WEBSOCKET_URL` environment variable to customize for different environments.
 
 # Node RED custom node development for DEXI
 
