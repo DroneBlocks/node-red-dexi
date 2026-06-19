@@ -1,7 +1,11 @@
 FROM nodered/node-red:latest-minimal
 
-# Set default websocket URL for physical hardware (can be overridden)
-ENV ROS2_WEBSOCKET_URL=ws://192.168.4.1:9090
+# Default websocket URL for physical hardware (can be overridden).
+# host.docker.internal resolves to the Docker bridge gateway (the host), which
+# is stable regardless of the drone's LAN IP, so the ROS2 websocket keeps
+# working when the drone leaves AP mode (192.168.4.1) and joins a network.
+# Requires the container to be run with --add-host=host.docker.internal:host-gateway.
+ENV ROS2_WEBSOCKET_URL=ws://host.docker.internal:9090
 
 RUN npm i @droneblocks/node-red-dexi
 
