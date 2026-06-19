@@ -1,4 +1,6 @@
-FROM nodered/node-red:latest-minimal
+# Pinned (was 'latest-minimal'): freeze the Node-RED base so image rebuilds
+# don't silently jump major versions / Node.js runtimes. Bump deliberately.
+FROM nodered/node-red:5.0.0-minimal
 
 # Set default websocket URL for physical hardware (can be overridden)
 ENV ROS2_WEBSOCKET_URL=ws://192.168.4.1:9090
