@@ -9,7 +9,11 @@ FROM nodered/node-red:5.0.0-minimal
 # Requires the container to be run with --add-host=host.docker.internal:host-gateway.
 ENV ROS2_WEBSOCKET_URL=ws://host.docker.internal:9090
 
-RUN npm i @droneblocks/node-red-dexi
+# Pin the DEXI node package to a published version. CI passes PKG_VERSION from
+# package.json so the image tag is truthful and the layer cache busts on bump.
+# Local builds default to latest.
+ARG PKG_VERSION=latest
+RUN npm i @droneblocks/node-red-dexi@${PKG_VERSION}
 
 # For displaying led on dashboard
 RUN npm i node-red-contrib-ui-led
