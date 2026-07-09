@@ -1,0 +1,76 @@
+name: Publish npm Package
+
+# The Docker image installs the published npm package, so this must run and
+# succeed before Release Docker Image. Kept on workflow_dispatch (not on push)
+# so publishing stays a deliberate act.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Pack only, do not publish'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Read version from package.json
+        id: pkg
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Package version: $VERSION"
+
+      - name: Fail if this version is already published
+        run: |
+          VERSION="${{ steps.pkg.outputs.version }}"
+          if npm view "@droneblocks/node-red-dexi@$VERSION" version >/dev/null 2>&1; then
+            echo "::error::@droneblocks/node-red-dexi@$VERSION is already on npm. Bump package.json (and the Dockerfile pin) first."
+            exit 1
+          fi
+          echo "$VERSION is not yet published"
+
+      - name: Check the Dockerfile pin matches package.json
+        run: |
+          VERSION="${{ steps.pkg.outputs.version }}"
+          if ! grep -q "npm i @droneblocks/node-red-dexi@$VERSION" Dockerfile; then
+            echo "::error::Dockerfile does not pin @droneblocks/node-red-dexi@$VERSION. The image build would install a different version than the one being published."
+            grep -n 'npm i @droneblocks/node-red-dexi' Dockerfile || true
+            exit 1
+          fi
+          echo "Dockerfile pin matches"
+
+      - name: Pack (dry run)
+        if: ${{ inputs.dry_run }}
+        run: npm pack --dry-run
+
+      - name: Publish
+        if: ${{ !inputs.dry_run }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Summary
+        run: |
+          VERSION="${{ steps.pkg.outputs.version }}"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "## Dry run only — nothing published" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## npm Package Published" >> $GITHUB_STEP_SUMMARY
+            echo "**Package:** @droneblocks/node-red-dexi@$VERSION" >> $GITHUB_STEP_SUMMARY
+            echo "**Next:** run *Release Docker Image* with tag \`$VERSION\`, then again with \`latest\`." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
