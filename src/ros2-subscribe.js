@@ -34,6 +34,10 @@ module.exports = function (RED){
       }
 
       function subscribe(){
+        // A reconnect calls this again; drop any retry still pending from the
+        // previous connection so the 1s loops don't accumulate.
+        if (node.tout) { clearTimeout(node.tout); node.tout = null; }
+
         node.topic = new ROSLIB.Topic({
           ros : node.server.ros,
           name : config.topicname
