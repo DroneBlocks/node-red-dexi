@@ -9,7 +9,11 @@ FROM nodered/node-red:5.0.0-minimal
 # Requires the container to be run with --add-host=host.docker.internal:host-gateway.
 ENV ROS2_WEBSOCKET_URL=ws://host.docker.internal:9090
 
-RUN npm i @droneblocks/node-red-dexi
+# Pinned to an exact version. release.yml builds with cache-from: type=gha, and
+# an unpinned `npm i` is byte-identical between builds, so buildx would reuse the
+# cached layer and bake the OLD package into a "new" image after an npm publish.
+# Bump this line in the same PR that bumps package.json.
+RUN npm i @droneblocks/node-red-dexi@0.0.19
 
 # For displaying led on dashboard
 RUN npm i node-red-contrib-ui-led
