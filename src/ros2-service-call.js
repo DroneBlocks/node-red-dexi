@@ -41,7 +41,35 @@ module.exports = function(RED) {
       //   });
       // });
 
+
+      // Connection status. Without this the node renders blank until the first
+      // connect or error event. On a cold boot rosbridge is ~2 min behind the
+      // container, so a flow that silently does nothing looks entirely normal.
+      function setStatus(state) {
+        if (state === 'connected') {
+          node.status({fill: 'green', shape: 'dot', text: 'connected'});
+        } else if (state === 'error') {
+          node.status({fill: 'red', shape: 'ring', text: 'connect error'});
+        } else if (state === 'closed') {
+          node.status({fill: 'yellow', shape: 'ring', text: 'reconnecting'});
+        } else {
+          node.status({fill: 'grey', shape: 'ring', text: 'connecting'});
+        }
+      }
+
+      function rosReady() {
+        return !!(node.server && node.server.ros && node.server.ros.isConnected);
+      }
+
+      setStatus(rosReady() ? 'connected' : 'connecting');
+
       node.on('input', (msg) => {
+
+        if (!rosReady()) {
+          setStatus('closed');
+          node.warn('rosbridge not connected, dropping call to ' + (msg.payload && msg.payload.serviceName));
+          return;
+        }
 
         let serviceClient = new ROSLIB.Service({
           ros : node.server.ros,
@@ -57,13 +85,9 @@ module.exports = function(RED) {
         })
     })
   
-      node.server.on('ros connected', () => {
-        node.status({fill:"green",shape:"dot",text:"connected"});
-      });
-  
-      node.server.on('ros error', () => {
-        node.status({fill:"red",shape:"dot",text:"error"});
-      });
+      node.server.on('ros connected', () => { setStatus('connected'); });
+      node.server.on('ros error', () => { setStatus('error'); });
+      node.server.on('ros closed', () => { setStatus('closed'); });
   
     }
   
