@@ -1,0 +1,309 @@
+[
+    {
+        "id": "circle_test_tab",
+        "type": "tab",
+        "label": "Circle Flight Test",
+        "disabled": false,
+        "info": "Test flow for circle flight path with full sequence: arm, takeoff, offboard mode, circle, land, disarm"
+    },
+    {
+        "id": "ros2_websocket",
+        "type": "ros2-websocket-server",
+        "url": "ws://172.17.0.2:9090",
+        "name": "ROS2 WebSocket"
+    },
+    {
+        "id": "inject_start",
+        "type": "inject",
+        "z": "circle_test_tab",
+        "name": "START Circle Test",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "delay_start"
+            ]
+        ]
+    },
+    {
+        "id": "delay_start",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "start_offboard"
+            ]
+        ]
+    },
+    {
+        "id": "start_offboard",
+        "type": "offboard",
+        "z": "circle_test_tab",
+        "name": "Start Offboard Heartbeat",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 540,
+        "y": 100,
+        "wires": [
+            [
+                "delay_after_offboard"
+            ]
+        ]
+    },
+    {
+        "id": "delay_after_offboard",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 2s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 760,
+        "y": 100,
+        "wires": [
+            [
+                "arm_node"
+            ]
+        ]
+    },
+    {
+        "id": "arm_node",
+        "type": "arm",
+        "z": "circle_test_tab",
+        "name": "Arm",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 930,
+        "y": 100,
+        "wires": [
+            [
+                "delay_after_arm"
+            ]
+        ]
+    },
+    {
+        "id": "delay_after_arm",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 2s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1100,
+        "y": 100,
+        "wires": [
+            [
+                "takeoff_node"
+            ]
+        ]
+    },
+    {
+        "id": "takeoff_node",
+        "type": "takeoff",
+        "z": "circle_test_tab",
+        "name": "Takeoff 3m",
+        "altitude": "3.0",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "delay_after_takeoff"
+            ]
+        ]
+    },
+    {
+        "id": "delay_after_takeoff",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 5s (stabilize)",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "circle_node"
+            ]
+        ]
+    },
+    {
+        "id": "circle_node",
+        "type": "circle",
+        "z": "circle_test_tab",
+        "name": "Fly Circle 2m radius",
+        "radius": "2.0",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 590,
+        "y": 200,
+        "wires": [
+            [
+                "delay_after_circle"
+            ]
+        ]
+    },
+    {
+        "id": "delay_after_circle",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 2s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "land_node"
+            ]
+        ]
+    },
+    {
+        "id": "land_node",
+        "type": "land",
+        "z": "circle_test_tab",
+        "name": "Land",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 990,
+        "y": 200,
+        "wires": [
+            [
+                "delay_after_land"
+            ]
+        ]
+    },
+    {
+        "id": "delay_after_land",
+        "type": "delay",
+        "z": "circle_test_tab",
+        "name": "Wait 5s",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1150,
+        "y": 200,
+        "wires": [
+            [
+                "disarm_node"
+            ]
+        ]
+    },
+    {
+        "id": "disarm_node",
+        "type": "disarm",
+        "z": "circle_test_tab",
+        "name": "Disarm",
+        "server": "ros2_websocket",
+        "topic": "offboard_manager",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "debug_complete"
+            ]
+        ]
+    },
+    {
+        "id": "debug_complete",
+        "type": "debug",
+        "z": "circle_test_tab",
+        "name": "Test Complete",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "comment_header",
+        "type": "comment",
+        "z": "circle_test_tab",
+        "name": "Circle Flight Test Sequence",
+        "info": "This flow tests the new circle flight path with the following sequence:\n1. Start offboard heartbeat (1s wait)\n2. Arm the drone (2s wait)\n3. Takeoff to 3m altitude (5s stabilize)\n4. Execute circle with 2m radius\n5. Land (5s wait)\n6. Disarm\n\nTo test:\n1. Make sure ROS2 and PX4 are running\n2. Click the inject button to start the sequence\n3. Watch the drone execute the full flight path\n\nTo modify:\n- Change radius in the circle node\n- Adjust takeoff altitude in the takeoff node\n- Modify wait times in delay nodes as needed",
+        "x": 180,
+        "y": 40,
+        "wires": []
+    }
+]
