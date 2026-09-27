@@ -1,0 +1,124 @@
+[
+  {
+    "id": "avr26ex_tab",
+    "type": "tab",
+    "label": "AVR 2026 YOLO",
+    "disabled": false,
+    "info": "The drone runs a YOLO model trained on the AVR 2026 field artwork and\npublishes what it sees on `/yolo_detections`. Turn those detections into the\nright LED color.\n\nThe subscribe and service-call nodes are wired. `gasoline` is done as an\nexample. The other nine are yours.\n\n1. Point the camera at a printed card and watch the `raw detections` debug\n   node to see the data.\n2. Read the `pick a class` function node. It works but it is basic.\n3. Add rules to the `class -> color` switch node."
+  },
+
+  {
+    "id": "avr26ex_sub",
+    "type": "ros2-subscribe",
+    "z": "avr26ex_tab",
+    "name": "/yolo_detections",
+    "server": "27129f80a96ce509",
+    "topicname": "/yolo_detections",
+    "x": 180,
+    "y": 240,
+    "wires": [["avr26ex_dbg", "avr26ex_fn"]]
+  },
+  {
+    "id": "avr26ex_dbg",
+    "type": "debug",
+    "z": "avr26ex_tab",
+    "name": "raw detections",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 430,
+    "y": 140,
+    "wires": []
+  },
+
+  {
+    "id": "avr26ex_note_labels",
+    "type": "comment",
+    "z": "avr26ex_tab",
+    "name": "Class labels",
+    "info": "The ten strings the model can emit. Copy and paste them, a typo will not\nraise an error.\n\n```\nwheat_barrel\nwater_barrel\ngasoline\ntoxic_fluid\nwheat_barn\nwater_barn\nbridge_1line\nbridge_2line\nbridge_3line\nblackout\n```\n\nThe color for each one is in the AVR 2026 game manual.",
+    "x": 210,
+    "y": 60,
+    "wires": []
+  },
+
+  {
+    "id": "avr26ex_fn",
+    "type": "function",
+    "z": "avr26ex_tab",
+    "name": "pick a class",
+    "func": "// msg.payload.detections is an array. Each entry:\n//   { class_name: \"gasoline\", confidence: 0.83, bbox: [x1, y1, x2, y2] }\n//\n// This takes the first detection and passes its label through.\n\nvar detections = msg.payload.detections || [];\n\nif (detections.length === 0) {\n    return null;\n}\n\nmsg.payload = detections[0].class_name;\nreturn msg;\n\n// TODO\n//\n// 1. The array can hold more than one detection. Point the camera at two\n//    cards and check the debug node. Decide which one to use.\n//\n// 2. Each detection has a confidence between 0 and 1. This uses all of them.\n//    Aim at a blank wall and watch the ring.\n//\n// 3. Hold one card still and watch the ring. Decide how many frames in a row\n//    you need before acting.\n//\n// 4. This sends a message on every frame, including when the class has not\n//    changed.\n//\n// context.get() and context.set() let a function node remember values\n// between messages.\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 240,
+    "wires": [["avr26ex_switch"]]
+  },
+
+  {
+    "id": "avr26ex_switch",
+    "type": "switch",
+    "z": "avr26ex_tab",
+    "name": "class -> color",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [{ "t": "eq", "v": "gasoline", "vt": "str" }],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 660,
+    "y": 240,
+    "wires": [["avr26ex_led_red"]]
+  },
+  {
+    "id": "avr26ex_note_switch",
+    "type": "comment",
+    "z": "avr26ex_tab",
+    "name": "Add the other classes",
+    "info": "`gasoline` goes out of output 1 to a red `led` node.\n\nAdd a rule per class, set the switch to that many outputs, and wire each one\nto an `led` node with the right color. Check the manual for how many colors\nyou need.",
+    "x": 690,
+    "y": 180,
+    "wires": []
+  },
+
+  {
+    "id": "avr26ex_led_red",
+    "type": "led",
+    "z": "avr26ex_tab",
+    "name": "gasoline -> red",
+    "color": "red",
+    "x": 900,
+    "y": 240,
+    "wires": [["avr26ex_call"]]
+  },
+
+  {
+    "id": "avr26ex_call",
+    "type": "ros2-service-call",
+    "z": "avr26ex_tab",
+    "name": "set LED ring",
+    "server": "27129f80a96ce509",
+    "x": 1120,
+    "y": 240,
+    "wires": [[]]
+  },
+  {
+    "id": "avr26ex_note_done",
+    "type": "comment",
+    "z": "avr26ex_tab",
+    "name": "Already wired",
+    "info": "`led` turns a color name into a service request and `ros2-service-call`\nsends it. Every `led` node wires into this same service call node.\n\nColors: red green blue yellow purple cyan white orange teal magenta gold\npink aqua jade amber old_lace black. black turns the ring off.",
+    "x": 1130,
+    "y": 180,
+    "wires": []
+  }
+]
