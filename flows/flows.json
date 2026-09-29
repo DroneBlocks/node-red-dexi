@@ -6030,7 +6030,7 @@
         "type": "comment",
         "z": "avr26ex_tab",
         "name": "Turning the ring off when detection stops",
-        "info": "The detector only publishes when it sees something, so the ring would otherwise hold the last colour indefinitely.\n\nThis branch restarts a 2 second timer on every detection. When the timer runs out the ring goes off.\n\nThe ring is shared with the flight mode indicator, which only sets a colour when the mode changes.",
+        "info": "The detector publishes only when it sees something, so nothing arrives on\nan empty frame and the ring would hold its last color indefinitely.\n\nEvery detection restarts the timer below. When 5 seconds pass with no\ndetection the timer fires and the ring goes off.\n\nThe ring is shared with the flight mode indicator, which sets a color only\nwhen the mode changes. After this clears the ring, the flight mode color\nreturns on the next mode change.",
         "x": 420,
         "y": 300,
         "wires": []
