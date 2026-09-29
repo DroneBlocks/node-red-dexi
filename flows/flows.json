@@ -5902,7 +5902,8 @@
         "wires": [
             [
                 "avr26ex_dbg",
-                "avr26ex_fn"
+                "avr26ex_fn",
+                "avr26ex_clear"
             ]
         ]
     },
@@ -6023,5 +6024,54 @@
         "x": 1130,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "avr26ex_cmt_clear",
+        "type": "comment",
+        "z": "avr26ex_tab",
+        "name": "Turning the ring off when detection stops",
+        "info": "The detector only publishes when it sees something, so the ring would otherwise hold the last colour indefinitely.\n\nThis branch restarts a 2 second timer on every detection. When the timer runs out the ring goes off.\n\nThe ring is shared with the flight mode indicator, which only sets a colour when the mode changes.",
+        "x": 420,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "avr26ex_clear",
+        "type": "trigger",
+        "z": "avr26ex_tab",
+        "name": "no detection for 5s",
+        "op1": "",
+        "op1type": "nul",
+        "op2": "clear",
+        "op2type": "str",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "avr26ex_led_off"
+            ]
+        ]
+    },
+    {
+        "id": "avr26ex_led_off",
+        "type": "led",
+        "z": "avr26ex_tab",
+        "name": "nothing seen -> off",
+        "color": "black",
+        "x": 900,
+        "y": 340,
+        "wires": [
+            [
+                "avr26ex_call"
+            ]
+        ]
     }
 ]
