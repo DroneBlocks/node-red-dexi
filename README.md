@@ -63,5 +63,8 @@ generic command node drives the on-board `tag_nav` and `px4_offboard_manager` se
 mission is a list of tag ids in the `mission (steps as data)` function node, and the dashboard
 shows the camera, the tag in view and ENGAGE, DISENGAGE, LAND and RESET buttons. It needs
 `tag_nav` (dexi_apriltag) and the offboard manager (dexi_offboard) running on the aircraft or
-in the sim; the command contract they share is documented in dexi_apriltag.
+in the sim; the command contract they share is documented in dexi_apriltag. The same tab is
+kept as `flows/tag_navigation.json` for importing into another instance, like the AVR files
+next to it. Node-RED only loads `flows.json`; the other files in this folder are import copies
+and do not appear as tabs on their own.
 
