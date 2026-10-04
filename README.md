@@ -55,3 +55,19 @@ npm install node-red-node-ui-iframe
 ```
 
 7. Stop and start container to pick up changes.
+
+## DEXI Tag Navigation flow
+
+`flows/flows.json` ships the **DEXI Tag Navigation** tab and its dashboard (`/ui`): one
+generic command node drives the on-board `tag_nav` and `px4_offboard_manager` services, the
+mission is a list of tag ids in the `mission (steps as data)` function node, and the dashboard
+shows the camera, the tag in view and ENGAGE, DISENGAGE, LAND and RESET buttons. The same tab
+is kept standalone in `flows/tag_navigation.json` for importing into another instance:
+
+```bash
+python3 tools/deploy_flow.py flows/tag_navigation.json http://<aircraft-or-sim>:1880
+```
+
+It needs `tag_nav` (dexi_apriltag) and the offboard manager (dexi_offboard) running on the
+aircraft or in the sim; the command contract they share is documented in dexi_apriltag.
+
