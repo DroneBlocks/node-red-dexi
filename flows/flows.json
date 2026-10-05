@@ -850,7 +850,7 @@
         "type": "tab",
         "label": "2 \u00b7 Fly with the Offboard Manager",
         "disabled": false,
-        "info": "Arm, take off, move and land through the on-board offboard manager (/dexi/offboard_manager). The same commands the DroneBlocks blocks use. Sim and drone.",
+        "info": "Arm, take off, move and land through the on-board offboard manager (/dexi/offboard_manager). Uses the same commands as the DroneBlocks blocks. Runs on the sim and on the aircraft.",
         "env": []
     },
     {
@@ -2862,7 +2862,7 @@
         "type": "comment",
         "z": "compute_kit",
         "name": "Compute Kit",
-        "info": "Hardware only. Enable this tab on the aircraft (double-click the tab, Enabled).",
+        "info": "Hardware only. Enable this tab on the aircraft (double-click the tab and turn on Enabled).",
         "x": 60,
         "y": 20,
         "wires": []

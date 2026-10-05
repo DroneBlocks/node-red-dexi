@@ -66,5 +66,5 @@ the camera, the tag in view, and ENGAGE, DISENGAGE, LAND and RESET buttons.
 It needs `tag_nav` (dexi_apriltag) and the offboard manager (dexi_offboard) running on the
 aircraft or in the sim; dexi_apriltag documents the command contract they share.
 
-`flows/tag_navigation.json` is the same tab as an import file. Node-RED loads only `flows.json`;
-the other files in `flows/` are for importing and do not appear as tabs on their own.
+`flows/examples/tag_navigation.json` is the same tab as an import file. Node-RED loads only
+`flows.json`; the files in `flows/examples/` are for importing and do not appear as tabs on their own.
