@@ -1435,7 +1435,7 @@
     {
         "id": "see_detect",
         "type": "tab",
-        "label": "3 \u00b7 See: AprilTags and YOLO",
+        "label": "3 \u00b7 AprilTags and YOLO",
         "disabled": false,
         "info": "Detections driving the LED ring. AprilTags work on the sim and the aircraft; YOLO runs on the aircraft only.",
         "env": []
@@ -1444,7 +1444,7 @@
         "id": "note_see_detect_3",
         "type": "comment",
         "z": "see_detect",
-        "name": "See",
+        "name": "AprilTags and YOLO",
         "info": "AprilTag detections (sim and drone) and YOLO detections (drone only) each light the LED ring.",
         "x": 60,
         "y": 20,
