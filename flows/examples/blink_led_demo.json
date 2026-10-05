@@ -1,0 +1,231 @@
+[
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "${ROS2_WEBSOCKET_URL}"
+    },
+    {
+        "id": "01d54c8eebdb2b6e",
+        "type": "tab",
+        "label": "Blink LED Demo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "67c12fd25a29cbc9",
+        "type": "inject",
+        "z": "01d54c8eebdb2b6e",
+        "name": "Start Blinking",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "41b571dfa5d811e4"
+            ]
+        ]
+    },
+    {
+        "id": "a33c82f62d2dfa3f",
+        "type": "led",
+        "z": "01d54c8eebdb2b6e",
+        "name": "Cyan LED",
+        "color": "cyan",
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "fb92098b8a941e96"
+            ]
+        ]
+    },
+    {
+        "id": "fb92098b8a941e96",
+        "type": "ros2-service-call",
+        "z": "01d54c8eebdb2b6e",
+        "server": "27129f80a96ce509",
+        "x": 740,
+        "y": 80,
+        "wires": [
+            [
+                "b82195fc26722f5b"
+            ]
+        ]
+    },
+    {
+        "id": "a14f632e34c25609",
+        "type": "led",
+        "z": "01d54c8eebdb2b6e",
+        "name": "LED Off",
+        "color": "black",
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "ab93b6d4b08ba968"
+            ]
+        ]
+    },
+    {
+        "id": "b82195fc26722f5b",
+        "type": "delay",
+        "z": "01d54c8eebdb2b6e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 80,
+        "wires": [
+            [
+                "a14f632e34c25609"
+            ]
+        ]
+    },
+    {
+        "id": "ab93b6d4b08ba968",
+        "type": "ros2-service-call",
+        "z": "01d54c8eebdb2b6e",
+        "server": "27129f80a96ce509",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            [
+                "d7b8c3705663f6b4"
+            ]
+        ]
+    },
+    {
+        "id": "d7b8c3705663f6b4",
+        "type": "delay",
+        "z": "01d54c8eebdb2b6e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 200,
+        "wires": [
+            [
+                "0e2e20ce86ad49f6"
+            ]
+        ]
+    },
+    {
+        "id": "23b53ca4f1a452af",
+        "type": "switch",
+        "z": "01d54c8eebdb2b6e",
+        "name": "blink 5 times",
+        "property": "blinkCount",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "a33c82f62d2dfa3f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0e2e20ce86ad49f6",
+        "type": "change",
+        "z": "01d54c8eebdb2b6e",
+        "name": "increment blinkCount",
+        "rules": [
+            {
+                "t": "set",
+                "p": "blinkCount",
+                "pt": "msg",
+                "to": "blinkCount+1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 300,
+        "wires": [
+            [
+                "23b53ca4f1a452af"
+            ]
+        ]
+    },
+    {
+        "id": "41b571dfa5d811e4",
+        "type": "change",
+        "z": "01d54c8eebdb2b6e",
+        "name": "set blinkCount to 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "blinkCount",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "23b53ca4f1a452af"
+            ]
+        ]
+    }
+]

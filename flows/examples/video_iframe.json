@@ -1,0 +1,153 @@
+[
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "${ROS2_WEBSOCKET_URL}"
+    },
+    {
+        "id": "2ee38794734c2d27",
+        "type": "ui_tab",
+        "name": "AVR Mission 1",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4166ed8cf4b1e7d4",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "2ee38794734c2d27",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2131ca674bcfee95",
+        "type": "tab",
+        "label": "Video iframe",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8925e2a4ea9f1164",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "abe39b768890b435",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "e6eba801bf9dd9d2",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 5,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc5720a331dc0c",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ee9a745fa0a0d671",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "76c130a2b7ab488e",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "0acdc4fa5cc98536",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "270b6da83bfd6649",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "95cc3655525f2ec9",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "dfe4e6e5d1cb542b",
+        "type": "ui_spacer",
+        "z": "2131ca674bcfee95",
+        "name": "spacer",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 12,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "287bd7caa49c16bf",
+        "type": "ui_iframe",
+        "z": "2131ca674bcfee95",
+        "group": "4166ed8cf4b1e7d4",
+        "name": "",
+        "order": 1,
+        "width": "12",
+        "height": "11",
+        "url": "http://192.168.5.57:8080/stream_viewer?topic=/image_rect",
+        "origin": "*",
+        "scale": 100,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    }
+]

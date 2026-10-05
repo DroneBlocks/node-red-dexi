@@ -1,0 +1,66 @@
+[
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "${ROS2_WEBSOCKET_URL}"
+    },
+    {
+        "id": "ad6fab15d3c693a6",
+        "type": "tab",
+        "label": "Pi Camera Subscriber",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "61f7958cc143b088",
+        "type": "ros2-subscribe",
+        "z": "ad6fab15d3c693a6",
+        "server": "27129f80a96ce509",
+        "topicname": "/image_raw/compressed",
+        "messagetype": "",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "fd01ca32f8fa2de8"
+            ]
+        ]
+    },
+    {
+        "id": "fd01ca32f8fa2de8",
+        "type": "function",
+        "z": "ad6fab15d3c693a6",
+        "name": "process frames",
+        "func": "const imageData = `data:image/jpeg;base64,${msg.payload.data}`;\nmsg.payload = imageData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "4aed6d85d4947f0a"
+            ]
+        ]
+    },
+    {
+        "id": "4aed6d85d4947f0a",
+        "type": "image-preview",
+        "z": "ad6fab15d3c693a6",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 660,
+        "y": 100,
+        "wires": []
+    }
+]
