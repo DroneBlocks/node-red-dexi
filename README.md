@@ -56,6 +56,19 @@ npm install node-red-node-ui-iframe
 
 7. Stop and start container to pick up changes.
 
+## Shipped flows
+
+`flows/flows.json` holds these tabs:
+
+| Tab | What it does | Runs on |
+|---|---|---|
+| 1 · Start Here | PX4 telemetry on the dashboard, LED ring color and effects | sim and drone |
+| 2 · Fly with the Offboard Manager | arm, take off, move and land through `/dexi/offboard_manager` | sim and drone |
+| 3 · AprilTags and YOLO | detections lighting the LED ring | AprilTags on both, YOLO on the drone |
+| 4 · Tag Navigation | the tag-hop mission and its dashboard | sim and drone |
+| 5 · AVR 2026 | the competition YOLO flow | drone |
+| 6 · Compute Kit (drone only) | servo, GPIO and laser pulse; shipped disabled | drone |
+
 ## DEXI Tag Navigation flow
 
 `flows/flows.json` includes the **DEXI Tag Navigation** tab and its dashboard (`/ui`). One
