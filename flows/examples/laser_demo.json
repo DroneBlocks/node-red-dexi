@@ -1,0 +1,391 @@
+[
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "${ROS2_WEBSOCKET_URL}"
+    },
+    {
+        "id": "2ee38794734c2d27",
+        "type": "ui_tab",
+        "name": "AVR Mission 1",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4166ed8cf4b1e7d4",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "2ee38794734c2d27",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8c0ec1ac3b0c99c6",
+        "type": "tab",
+        "label": "Laser Demo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "76e775c3a1751abd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "e7825f628b2f869e",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "e02e5ed7d4735d41",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 900,
+        "y": 300,
+        "wires": [
+            [
+                "4e9a60214fc4557f",
+                "1d02d7bb6a41d093"
+            ]
+        ]
+    },
+    {
+        "id": "4a2a5d0b92fe99c6",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "laser off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "58e910af587094bd",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "6d1ac3d7be3eb4e8"
+            ]
+        ]
+    },
+    {
+        "id": "4e9a60214fc4557f",
+        "type": "delay",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "2c6b2904b3fc7d64",
+        "type": "switch",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "property": "status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "af28ada7cb068285"
+            ],
+            [
+                "bc546e1bc590790a"
+            ]
+        ]
+    },
+    {
+        "id": "7773f62dd1fa9b02",
+        "type": "function",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "function 1",
+        "func": "flow.set(\"status\", !flow.get(\"status\"))\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"status\", true)",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "2c6b2904b3fc7d64"
+            ]
+        ]
+    },
+    {
+        "id": "4922594b111975ee",
+        "type": "inject",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "pulse laser",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "af28ada7cb068285",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "bc546e1bc590790a",
+        "type": "write-gpio",
+        "z": "8c0ec1ac3b0c99c6",
+        "pinnumber": "21",
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 640,
+        "y": 440,
+        "wires": [
+            [
+                "e02e5ed7d4735d41"
+            ]
+        ]
+    },
+    {
+        "id": "1d02d7bb6a41d093",
+        "type": "debug",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6d1ac3d7be3eb4e8",
+        "type": "ros2-service-call",
+        "z": "8c0ec1ac3b0c99c6",
+        "server": "27129f80a96ce509",
+        "x": 800,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf652689701c088b",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser on",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "76e775c3a1751abd"
+            ]
+        ]
+    },
+    {
+        "id": "7cde8f60efc5eb65",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "laser off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "58e910af587094bd"
+            ]
+        ]
+    },
+    {
+        "id": "214b515b3ff88dc5",
+        "type": "ui_button",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "fire laser repeatedly",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "7773f62dd1fa9b02"
+            ]
+        ]
+    },
+    {
+        "id": "d399faf78acce224",
+        "type": "comment",
+        "z": "8c0ec1ac3b0c99c6",
+        "name": "Wiring info: https://github.com/DroneBlocks/dexi/blob/main/docs/gpio.md",
+        "info": "",
+        "x": 300,
+        "y": 40,
+        "wires": []
+    }
+]

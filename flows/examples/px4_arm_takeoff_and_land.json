@@ -1,0 +1,460 @@
+[
+    {
+        "id": "27129f80a96ce509",
+        "type": "ros2-websocket-server",
+        "url": "${ROS2_WEBSOCKET_URL}"
+    },
+    {
+        "id": "2ee38794734c2d27",
+        "type": "ui_tab",
+        "name": "AVR Mission 1",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4166ed8cf4b1e7d4",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "2ee38794734c2d27",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a691db1a9e113a84",
+        "type": "tab",
+        "label": "PX4 Arm, Takeoff, and Land",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ae776f6d1da02661",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Altitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "124ecd64576594fd",
+        "type": "ros2-subscribe",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/out/vehicle_global_position",
+        "messagetype": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "dbbf851b16148a77"
+            ]
+        ]
+    },
+    {
+        "id": "8eeeac07046c07bc",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "round altitude",
+        "func": "msg.payload = Math.round((msg.payload.alt) * 100) / 100\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 80,
+        "wires": [
+            [
+                "ae776f6d1da02661",
+                "dbb0a6a6836672cb"
+            ]
+        ]
+    },
+    {
+        "id": "dbb0a6a6836672cb",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_altitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86049deb15395654",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ba286d4657da79aa",
+        "type": "ros2-publish",
+        "z": "a691db1a9e113a84",
+        "server": "27129f80a96ce509",
+        "topicname": "/fmu/in/vehicle_command",
+        "messagetype": "px4_msgs/msg/VehicleCommand",
+        "stampheader": false,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbbf851b16148a77",
+        "type": "delay",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "8eeeac07046c07bc",
+                "a1e737cb92abf1f5",
+                "c395d188ef1c9d18",
+                "6bd891e55027cd3a"
+            ]
+        ]
+    },
+    {
+        "id": "386e0bdcda50bed8",
+        "type": "arm",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "4464420002130254",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "386e0bdcda50bed8"
+            ]
+        ]
+    },
+    {
+        "id": "a1e737cb92abf1f5",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "latitude",
+        "func": "msg.payload = msg.payload.lat\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "4b71f66bf533618a",
+                "ba80fdd4b8731061"
+            ]
+        ]
+    },
+    {
+        "id": "6bd891e55027cd3a",
+        "type": "debug",
+        "z": "a691db1a9e113a84",
+        "name": "print drone location",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c395d188ef1c9d18",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "longitude",
+        "func": "msg.payload = msg.payload.lon\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "f6c1daa76322acba",
+                "ecb1849d8cdb5fba"
+            ]
+        ]
+    },
+    {
+        "id": "4b71f66bf533618a",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Latitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f6c1daa76322acba",
+        "type": "ui_text",
+        "z": "a691db1a9e113a84",
+        "group": "4166ed8cf4b1e7d4",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Longitude",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 820,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ba80fdd4b8731061",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "flow.drone_latitude",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_latitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ecb1849d8cdb5fba",
+        "type": "change",
+        "z": "a691db1a9e113a84",
+        "name": "flow.drone_latitude",
+        "rules": [
+            {
+                "t": "set",
+                "p": "drone_longitude",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e0c8785a15f6a18",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "9a5933e0dbdaedcc"
+            ]
+        ]
+    },
+    {
+        "id": "9a5933e0dbdaedcc",
+        "type": "function",
+        "z": "a691db1a9e113a84",
+        "name": "takeoff",
+        "func": "let json = {\n    \"command\": 22, \n    \"param1\": -1, \n    \"param2\": 0, \n    \"param3\": 0, \n    \"param4\": 0, \n    \"param5\": flow.get(\"drone_latitude\"), \n    \"param6\": flow.get(\"drone_longitude\"), \n    \"param7\": flow.get(\"drone_altitude\") + 3\n}\nmsg.payload = json\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "86049deb15395654",
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "a3c175e5e85914c8",
+        "type": "land",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "ba286d4657da79aa"
+            ]
+        ]
+    },
+    {
+        "id": "c2eeada9357d6016",
+        "type": "inject",
+        "z": "a691db1a9e113a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "a3c175e5e85914c8"
+            ]
+        ]
+    }
+]
