@@ -13,7 +13,7 @@ ENV ROS2_WEBSOCKET_URL=ws://host.docker.internal:9090
 # an unpinned `npm i` is byte-identical between builds, so buildx would reuse the
 # cached layer and bake the OLD package into a "new" image after an npm publish.
 # Bump this line in the same PR that bumps package.json.
-RUN npm i @droneblocks/node-red-dexi@0.0.19
+RUN npm i @droneblocks/node-red-dexi@0.0.20
 
 # For displaying led on dashboard
 RUN npm i node-red-contrib-ui-led
