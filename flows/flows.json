@@ -107,7 +107,7 @@
         "name": "PX4 Telemetry",
         "icon": "dashboard",
         "order": 1,
-        "disabled": false,
+        "disabled": true,
         "hidden": false
     },
     {
@@ -116,7 +116,7 @@
         "name": "Compute Kit",
         "icon": "dashboard",
         "order": 4,
-        "disabled": false,
+        "disabled": true,
         "hidden": false
     },
     {
@@ -124,7 +124,7 @@
         "type": "ui_tab",
         "name": "DEXI April Tag Navigation",
         "icon": "dashboard",
-        "disabled": false,
+        "disabled": true,
         "hidden": false
     },
     {
@@ -175,7 +175,7 @@
         "id": "start_here",
         "type": "tab",
         "label": "1 \u00b7 Start Here",
-        "disabled": false,
+        "disabled": true,
         "info": "Telemetry from PX4 and the LED ring. Runs on the sim and on the aircraft.\n\nDashboard: PX4 Telemetry at /ui.",
         "env": []
     },
@@ -849,7 +849,7 @@
         "id": "fly_manager",
         "type": "tab",
         "label": "2 \u00b7 Fly with the Offboard Manager",
-        "disabled": false,
+        "disabled": true,
         "info": "Arm, take off, move and land through the on-board offboard manager (/dexi/offboard_manager). Uses the same commands as the DroneBlocks blocks. Runs on the sim and on the aircraft.",
         "env": []
     },
@@ -1436,7 +1436,7 @@
         "id": "see_detect",
         "type": "tab",
         "label": "3 \u00b7 AprilTags and YOLO",
-        "disabled": false,
+        "disabled": true,
         "info": "Detections driving the LED ring. AprilTags work on the sim and the aircraft; YOLO runs on the aircraft only.",
         "env": []
     },
@@ -1796,7 +1796,7 @@
         "id": "tagnav_tab",
         "type": "tab",
         "label": "4 \u00b7 Tag Navigation",
-        "disabled": false,
+        "disabled": true,
         "info": "Tag-to-tag navigation as a flow.\n\nOne generic command node ('DEXI command \u2192 request' + 'DEXI services') calls both on-board services. The mission is a list of steps in the 'mission' function node. Start it from the RC hand-off (channel 7 to Offboard), the ENGAGE button, or START on the bench or in the sim.\n\nOn the aircraft: ARM hand-off runs once at deploy. The pilot takes off, hovers over a tag and switches to Offboard; tag_nav reports engaged, the mission runs and the aircraft lands. Leaving Offboard stops the mission."
     },
     {
@@ -2662,7 +2662,7 @@
         "id": "avr26ex_tab",
         "type": "tab",
         "label": "5 \u00b7 AVR 2026",
-        "disabled": false,
+        "disabled": true,
         "info": "The drone runs a YOLO model trained on the AVR 2026 field artwork and\npublishes what it sees on `/yolo_detections`. Turn those detections into the\nright LED color.\n\nThe subscribe and service-call nodes are wired. `gasoline` is done as an\nexample. The other nine are yours.\n\n1. Point the camera at a printed card and watch the `raw detections` debug\n   node to see the data.\n2. Read the `pick a class` function node. It works but it is basic.\n3. Add rules to the `class -> color` switch node."
     },
     {
