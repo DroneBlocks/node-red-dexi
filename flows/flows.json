@@ -204,12 +204,9 @@
             "20e24e9a9250368a",
             "6c40e4ee73b6af52",
             "e0ce675c6e15fafb",
-            "988563c0b019fbe9",
-            "2a4377c1ab9d4cb0",
             "48d2fb203d115b77",
             "3c4e0ba0bc7de073",
             "7b7ab675c9581bdb",
-            "df4954c0e0477871",
             "06c9341c5853c3b0",
             "9df450188c95d188",
             "96cb415e914805b7",
@@ -277,40 +274,6 @@
         "statusType": "auto",
         "x": 760,
         "y": 100,
-        "wires": [],
-        "g": "grp_start_here_1"
-    },
-    {
-        "id": "988563c0b019fbe9",
-        "type": "ros2-subscribe",
-        "z": "start_here",
-        "server": "27129f80a96ce509",
-        "topicname": "/fmu/out/sensor_combined",
-        "messagetype": "",
-        "x": 250,
-        "y": 700,
-        "wires": [
-            [
-                "df4954c0e0477871"
-            ]
-        ],
-        "g": "grp_start_here_1"
-    },
-    {
-        "id": "2a4377c1ab9d4cb0",
-        "type": "debug",
-        "z": "start_here",
-        "name": "print sensor into",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 700,
         "wires": [],
         "g": "grp_start_here_1"
     },
@@ -385,32 +348,6 @@
         "x": 750,
         "y": 280,
         "wires": [],
-        "g": "grp_start_here_1"
-    },
-    {
-        "id": "df4954c0e0477871",
-        "type": "delay",
-        "z": "start_here",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 700,
-        "wires": [
-            [
-                "2a4377c1ab9d4cb0"
-            ]
-        ],
         "g": "grp_start_here_1"
     },
     {
