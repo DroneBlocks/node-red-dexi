@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    RED.nodes.registerType('dexi-tag-seen', {
+        category: 'DEXI tag nav',
+        color: '#c7e9c0',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            name: {value: ""},
+            forget: {value: 2, validate: RED.validators.number()}
+        },
+        // Dragged in from the palette: use the flow's ROS2 server so the node
+        // works without opening it. Only fills an empty field.
+        onadd: function () {
+            var self = this;
+            if (self.server) { return; }
+            RED.nodes.eachConfig(function (c) {
+                if (!self.server && c.type === 'ros2-websocket-server') {
+                    self.server = c.id;
+                    if (c.users.indexOf(self) < 0) { c.users.push(self); }
+                }
+            });
+        },
+        inputs: 0,
+        outputs: 1,
+        outputLabels: ["tag id"],
+        icon: "font-awesome/fa-eye",
+        paletteLabel: 'tag seen',
+        label: function () { return this.name || 'tag seen'; }
+    });
+</script>
+
+<script type="text/html" data-template-name="dexi-tag-seen">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server"></i> ROS2 server</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-forget"><i class="fa fa-history"></i> Forget after</label>
+        <input type="number" id="node-input-forget" style="width:100px"> s out of view
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="dexi-tag-seen">
+    <p>Sends a message each time a new tag comes into view: <code>msg.payload</code> is the tag id,
+    <code>msg.tags</code> every id in view.</p>
+    <p>A tag is announced again only after it has been out of view for "forget after" seconds, so hovering
+    over one tag sends one message.</p>
+    <p>Feed it to a function that builds a sentence and an <b>audio out</b> node to hear it in the dashboard.</p>
+
+</script>

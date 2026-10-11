@@ -26,7 +26,16 @@
       "ros2-service-call": "src/ros2-service-call.js",
       "write-gpio": "src/write-gpio.js",
       "image-preview": "src/image-preview.js",
-      "save-photo": "src/save-photo.js"
+      "save-photo": "src/save-photo.js",
+      "dexi-tag-handoff": "src/tags/dexi-tag-handoff.js",
+      "dexi-tag-center": "src/tags/dexi-tag-center.js",
+      "dexi-tag-fly-until": "src/tags/dexi-tag-fly-until.js",
+      "dexi-tag-land": "src/tags/dexi-tag-land.js",
+      "dexi-tag-seen": "src/tags/dexi-tag-seen.js",
+      "dexi-flight-takeoff": "src/flight/dexi-flight-takeoff.js"
+    },
+    "plugins": {
+      "dexi-sim-panel": "src/plugins/dexi-sim-panel.js"
     }
   },
   "keywords": [

@@ -4,15 +4,15 @@
         "type": "tab",
         "label": "DEXI Tag Navigation",
         "disabled": false,
-        "info": "Tag-to-tag navigation as a flow.\n\nOne generic command node ('DEXI command \u2192 request' + 'DEXI services') calls both on-board services. The mission is a list of steps in the 'mission' function node. Start it from the RC hand-off (channel 7 to Offboard), the ENGAGE button, or START on the bench or in the sim.\n\nOn the aircraft: ARM hand-off runs once at deploy. The pilot takes off, hovers over a tag and switches to Offboard; tag_nav reports engaged, the mission runs and the aircraft lands. Leaving Offboard stops the mission."
+        "info": "Tag-to-tag navigation as a flow.\n\nOne generic command node ('DEXI command → request' + 'DEXI services') calls both on-board services. The mission is a list of steps in the 'mission' function node. Start it from the RC hand-off (channel 7 to Offboard), the ENGAGE button, or START on the bench or in the sim.\n\nOn the aircraft: ARM hand-off runs once at deploy. The pilot takes off, hovers over a tag and switches to Offboard; tag_nav reports engaged, the mission runs and the aircraft lands. Leaving Offboard stops the mission."
     },
     {
         "type": "function",
-        "name": "DEXI command \u2192 request",
+        "name": "DEXI command → request",
         "x": 560,
         "y": 300,
         "outputs": 1,
-        "func": "\n// msg.cmd = { command, parameter, timeout, north, east, down, yaw }\n// Picks the service by command name. Both services share one request type.\nconst TAG_NAV = ['center_on_tag', 'fly_until_tag', 'wait_for_tag', 'wait_for_offboard'];\nconst c = msg.cmd || {};\nmsg.payload = {\n  serviceName: TAG_NAV.includes(c.command) ? '/dexi/tag_nav/execute' : '/dexi/execute_blockly_command',\n  serviceType: 'dexi_interfaces/srv/ExecuteBlocklyCommand',\n  serviceRequest: { command: c.command, parameter: Number(c.parameter ?? 0), timeout: Number(c.timeout ?? 30),\n                    north: Number(c.north ?? 0), east: Number(c.east ?? 0), down: Number(c.down ?? 0), yaw: Number(c.yaw ?? 0),\n                    index: 0, r: 0, g: 0, b: 0 },\n};\nnode.status({ fill: 'blue', shape: 'dot', text: `${c.command} ${c.parameter ?? ''}` });\nreturn msg;",
+        "func": "\n// msg.cmd = { command, parameter, timeout, north, east, down, yaw }\n// Tag commands go to tag_nav (parameter = tag id, north/east/down = body velocity);\n// everything else is a flight step for the offboard manager (parameter = meters or degrees).\nconst TAG_NAV = ['center_on_tag', 'hold_on_tag', 'fly_until_tag', 'wait_for_tag', 'wait_for_offboard'];\nconst c = msg.cmd || {};\nconst tag = TAG_NAV.includes(c.command);\nmsg.payload = tag ? {\n  serviceName: '/dexi/tag_nav/command',\n  serviceType: 'dexi_interfaces/srv/TagNavCommand',\n  serviceRequest: { command: c.command, tag_id: Math.round(Number(c.parameter ?? -1)), hold_s: Number(c.hold_s ?? 0),\n                    forward: Number(c.north ?? 0), right: Number(c.east ?? 0), down: Number(c.down ?? 0),\n                    timeout: Number(c.timeout ?? 30) },\n} : {\n  serviceName: '/dexi/flight/command',\n  serviceType: 'dexi_interfaces/srv/FlightCommand',\n  serviceRequest: { command: c.command, value: Number(c.parameter ?? 0), north: Number(c.north ?? 0),\n                    east: Number(c.east ?? 0), down: Number(c.down ?? 0), yaw: Number(c.yaw ?? 0),\n                    timeout: Number(c.timeout ?? 30) },\n};\nnode.status({ fill: 'blue', shape: 'dot', text: `${c.command} ${c.parameter ?? ''}` });\nreturn msg;",
         "id": "tagnav_build",
         "z": "tagnav_tab",
         "wires": [
@@ -102,7 +102,7 @@
         "x": 330,
         "y": 300,
         "outputs": 2,
-        "func": "\n// The route: tag ids in the order they are flown. The steps are built from it.\n// The first step centers on ROUTE[0], so hand over above that tag; use -1 to start on whichever tag is in view.\nconst ROUTE = [0, 1, 2, 3, 4];   // AVR 2026 flies [0, 1, 2, 3, 4, 5, 6]; a course with tags 0, 2, 4 flies [0, 2, 4]\nconst FWD = 0.25;   // m/s transit speed; faster can outrun the tag detector in low light\n\n// Tag ids increase along the corridor, so a higher id is ahead (fly forward) and a lower id\n// is behind (fly backward). [0, 2, 4, 2, 0] works.\nconst STEPS = [{ command: 'center_on_tag', parameter: ROUTE[0], timeout: 25 }];\nfor (let k = 1; k < ROUTE.length; k++) {\n  const tag = ROUTE[k], dir = Math.sign(tag - ROUTE[k - 1]) || 1;\n  STEPS.push({ command: 'fly_until_tag', parameter: tag, timeout: 25, north: dir * FWD });\n  STEPS.push({ command: 'center_on_tag', parameter: tag, timeout: 25 });\n}\nSTEPS.push({ command: 'land', parameter: 0, timeout: 30 });\n\nlet i = context.get('i');\nconst running = i !== undefined && i !== null && i < STEPS.length;\nif (msg.topic === 'start') {\n  if (running) return null;\n  i = 0;\n} else if (msg.topic === 'ok') {\n  if (!running) return null;\n  i = i + 1;\n} else if (msg.topic === 'failed' || msg.topic === 'land_now') {\n  context.set('i', null);\n  // Land only if the mission still has the aircraft. If the pilot took it back (left Offboard,\n  // disengaged), a failed step means \"stood down\", and landing under a pilot is wrong.\n  if (!flow.get('tagnav_go') && msg.topic !== 'land_now') { node.status({ fill: 'grey', shape: 'ring', text: 'failed: pilot has the aircraft' }); return null; }\n  node.status({ fill: 'red', shape: 'ring', text: 'failed \u2192 land' });\n  return [null, { cmd: { command: 'land', parameter: 0, timeout: 30 }, topic: 'land' }];\n} else if (msg.topic === 'reset') {\n  context.set('i', null); node.status({}); return null;\n} else { return null; }\nif (i >= STEPS.length) { context.set('i', null); node.status({ fill: 'green', shape: 'dot', text: 'mission complete' }); return null; }\ncontext.set('i', i);\nnode.status({ fill: 'blue', shape: 'dot', text: `step ${i + 1}/${STEPS.length}: ${STEPS[i].command}` });\nreturn [{ cmd: STEPS[i], topic: 'step' }, null];",
+        "func": "\n// The route: tag ids in the order they are flown. The steps are built from it.\n// The first step centers on ROUTE[0], so hand over above that tag; use -1 to start on whichever tag is in view.\nconst ROUTE = [0, 1, 2, 3, 4];   // AVR 2026 flies [0, 1, 2, 3, 4, 5, 6]; a course with tags 0, 2, 4 flies [0, 2, 4]\nconst FWD = 0.25;   // m/s transit speed; faster can outrun the tag detector in low light\n\n// Tag ids increase along the corridor, so a higher id is ahead (fly forward) and a lower id\n// is behind (fly backward). [0, 2, 4, 2, 0] works.\nconst STEPS = [{ command: 'center_on_tag', parameter: ROUTE[0], timeout: 25 }];\nfor (let k = 1; k < ROUTE.length; k++) {\n  const tag = ROUTE[k], dir = Math.sign(tag - ROUTE[k - 1]) || 1;\n  STEPS.push({ command: 'fly_until_tag', parameter: tag, timeout: 25, north: dir * FWD });\n  STEPS.push({ command: 'center_on_tag', parameter: tag, timeout: 25 });\n}\nSTEPS.push({ command: 'land', parameter: 0, timeout: 30 });\n\nlet i = context.get('i');\nconst running = i !== undefined && i !== null && i < STEPS.length;\nif (msg.topic === 'start') {\n  if (running) return null;\n  i = 0;\n} else if (msg.topic === 'ok') {\n  if (!running) return null;\n  i = i + 1;\n} else if (msg.topic === 'failed' || msg.topic === 'land_now') {\n  context.set('i', null);\n  // Land only if the mission still has the aircraft. If the pilot took it back (left Offboard,\n  // disengaged), a failed step means \"stood down\", and landing under a pilot is wrong.\n  if (!flow.get('tagnav_go') && msg.topic !== 'land_now') { node.status({ fill: 'grey', shape: 'ring', text: 'failed: pilot has the aircraft' }); return null; }\n  node.status({ fill: 'red', shape: 'ring', text: 'failed → land' });\n  return [null, { cmd: { command: 'land', parameter: 0, timeout: 30 }, topic: 'land' }];\n} else if (msg.topic === 'reset') {\n  context.set('i', null); node.status({}); return null;\n} else { return null; }\nif (i >= STEPS.length) { context.set('i', null); node.status({ fill: 'green', shape: 'dot', text: 'mission complete' }); return null; }\ncontext.set('i', i);\nnode.status({ fill: 'blue', shape: 'dot', text: `step ${i + 1}/${STEPS.length}: ${STEPS[i].command}` });\nreturn [{ cmd: STEPS[i], topic: 'step' }, null];",
         "id": "tagnav_mission",
         "z": "tagnav_tab",
         "wires": [
@@ -175,7 +175,7 @@
     },
     {
         "type": "change",
-        "name": "\u2192 ok",
+        "name": "→ ok",
         "rules": [
             {
                 "t": "set",
@@ -197,7 +197,7 @@
     },
     {
         "type": "change",
-        "name": "\u2192 failed",
+        "name": "→ failed",
         "rules": [
             {
                 "t": "set",
@@ -240,7 +240,7 @@
         "x": 360,
         "y": 120,
         "outputs": 2,
-        "func": "// tag_nav publishes JSON at 5 Hz. Output 1: START on the rising edge of \"engaged, armed, in OFFBOARD\"\n// (RC channel 7 or the ENGAGE button), RESET on the falling edge. Output 2: re-arm the hand-off\n// stream whenever the aircraft disarms, because landing stops the manager's setpoint stream.\nlet st = {}; try { st = JSON.parse(msg.payload.data || '{}'); } catch (e) { return null; }\nconst go = st.engaged === true && st.nav_state === 14 && st.armed === true;\nconst was = context.get('go') || false;\ncontext.set('go', go); flow.set('tagnav_go', go);   // the mission node reads this on a failure\nconst armed = st.armed === true, wasArmed = context.get('armed');\ncontext.set('armed', armed); flow.set('tagnav_armed', armed);\nlet out1 = null, out2 = null;\n// trace: last 40 samples the trigger saw (read with GET /context/node/tagnav_edge)\nconst tr = context.get('trace') || [];\ntr.push([new Date().toISOString().slice(11, 23), st.engaged ? 1 : 0, st.nav_state, st.armed ? 1 : 0, go ? 1 : 0]);\nwhile (tr.length > 40) tr.shift();\ncontext.set('trace', tr);\nif (go && !was) { node.status({ fill: 'green', shape: 'dot', text: 'hand-off \u2192 mission' }); out1 = { topic: 'start' }; }\nif (!go && was) { node.status({ fill: 'grey', shape: 'ring', text: 'stood down' }); out1 = { topic: 'reset' }; }\nif (wasArmed === true && !armed) out2 = { topic: 'rearm' };\nreturn [out1, out2];",
+        "func": "// tag_nav publishes JSON at 5 Hz. Output 1: START on the rising edge of \"engaged, armed, in OFFBOARD\"\n// (RC channel 7 or the ENGAGE button), RESET on the falling edge. Output 2: re-arm the hand-off\n// stream whenever the aircraft disarms, because landing stops the manager's setpoint stream.\nlet st = {}; try { st = JSON.parse(msg.payload.data || '{}'); } catch (e) { return null; }\nconst go = st.engaged === true && st.nav_state === 14 && st.armed === true;\nconst was = context.get('go') || false;\ncontext.set('go', go); flow.set('tagnav_go', go);   // the mission node reads this on a failure\nconst armed = st.armed === true, wasArmed = context.get('armed');\ncontext.set('armed', armed); flow.set('tagnav_armed', armed);\nlet out1 = null, out2 = null;\n// trace: last 40 samples the trigger saw (read with GET /context/node/tagnav_edge)\nconst tr = context.get('trace') || [];\ntr.push([new Date().toISOString().slice(11, 23), st.engaged ? 1 : 0, st.nav_state, st.armed ? 1 : 0, go ? 1 : 0]);\nwhile (tr.length > 40) tr.shift();\ncontext.set('trace', tr);\nif (go && !was) { node.status({ fill: 'green', shape: 'dot', text: 'hand-off → mission' }); out1 = { topic: 'start' }; }\nif (!go && was) { node.status({ fill: 'grey', shape: 'ring', text: 'stood down' }); out1 = { topic: 'reset' }; }\nif (wasArmed === true && !armed) out2 = { topic: 'rearm' };\nreturn [out1, out2];",
         "id": "tagnav_edge",
         "z": "tagnav_tab",
         "wires": [
@@ -356,7 +356,7 @@
     },
     {
         "type": "function",
-        "name": "engage \u2192 switch_offboard_mode / disengage \u2192 switch_hold_mode",
+        "name": "engage → switch_offboard_mode / disengage → switch_hold_mode",
         "x": 460,
         "y": 640,
         "outputs": 1,
@@ -622,7 +622,7 @@
         "order": 1,
         "width": "12",
         "height": "9",
-        "format": "<div style=\"margin:-6px;position:relative\"><img id=\"tagnav-cam\" style=\"width:100%;display:block;background:#000;aspect-ratio:4/3;border-radius:6px\" alt=\"\">\n<div id=\"tagnav-cam-note\" style=\"position:absolute;right:8px;bottom:8px;font:12px/1.4 sans-serif;color:#fff;background:rgba(0,0,0,.45);padding:2px 8px;border-radius:10px\">connecting\u2026</div></div>\n<script>\n(function () {\n  var img = document.getElementById('tagnav-cam'), note = document.getElementById('tagnav-cam-note');\n  var url = 'ws://' + location.hostname + ':9090', n = 0, t0 = Date.now(), ws;\n  function connect() {\n    ws = new WebSocket(url);\n    ws.onopen = function () {\n      note.textContent = 'live';\n      ws.send(JSON.stringify({ op: 'subscribe', id: 'tagnav-cam', topic: '/cam0/image_raw/compressed',\n        type: 'sensor_msgs/msg/CompressedImage', throttle_rate: 200, queue_length: 1 }));\n    };\n    ws.onmessage = function (ev) {\n      var m = JSON.parse(ev.data); if (m.op !== 'publish' || !m.msg || !m.msg.data) return;\n      img.src = 'data:image/jpeg;base64,' + m.msg.data; n++;\n      if (Date.now() - t0 > 1000) { note.textContent = 'live \u00b7 ' + n + ' fps'; n = 0; t0 = Date.now(); }\n    };\n    ws.onclose = function () { note.textContent = 'reconnecting\u2026'; setTimeout(connect, 2000); };\n    ws.onerror = function () { ws.close(); };\n  }\n  connect();\n})();\n</script>",
+        "format": "<div style=\"margin:-6px;position:relative\"><img id=\"tagnav-cam\" style=\"width:100%;display:block;background:#000;aspect-ratio:4/3;border-radius:6px\" alt=\"\">\n<div id=\"tagnav-cam-note\" style=\"position:absolute;right:8px;bottom:8px;font:12px/1.4 sans-serif;color:#fff;background:rgba(0,0,0,.45);padding:2px 8px;border-radius:10px\">connecting…</div></div>\n<script>\n(function () {\n  var img = document.getElementById('tagnav-cam'), note = document.getElementById('tagnav-cam-note');\n  var url = 'ws://' + location.hostname + ':9090', n = 0, t0 = Date.now(), ws;\n  function connect() {\n    ws = new WebSocket(url);\n    ws.onopen = function () {\n      note.textContent = 'live';\n      ws.send(JSON.stringify({ op: 'subscribe', id: 'tagnav-cam', topic: '/cam0/image_raw/compressed',\n        type: 'sensor_msgs/msg/CompressedImage', throttle_rate: 200, queue_length: 1 }));\n    };\n    ws.onmessage = function (ev) {\n      var m = JSON.parse(ev.data); if (m.op !== 'publish' || !m.msg || !m.msg.data) return;\n      img.src = 'data:image/jpeg;base64,' + m.msg.data; n++;\n      if (Date.now() - t0 > 1000) { note.textContent = 'live · ' + n + ' fps'; n = 0; t0 = Date.now(); }\n    };\n    ws.onclose = function () { note.textContent = 'reconnecting…'; setTimeout(connect, 2000); };\n    ws.onerror = function () { ws.close(); };\n  }\n  connect();\n})();\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -658,7 +658,7 @@
         "x": 360,
         "y": 820,
         "outputs": 1,
-        "func": "const ids = (msg.payload.detections || []).map(d => d.id);\nconst txt = ids.length ? ids.join(', ') : '\u2014';\nconst now = Date.now(), force = now - (context.get('t') || 0) > 2000;\nif (force) context.set('t', now);\nif (!force && txt === context.get('last')) return null;\ncontext.set('last', txt);\nreturn { payload: txt };",
+        "func": "const ids = (msg.payload.detections || []).map(d => d.id);\nconst txt = ids.length ? ids.join(', ') : '—';\nconst now = Date.now(), force = now - (context.get('t') || 0) > 2000;\nif (force) context.set('t', now);\nif (!force && txt === context.get('last')) return null;\ncontext.set('last', txt);\nreturn { payload: txt };",
         "wires": [
             [
                 "tagnav_ui_tag"
@@ -690,7 +690,7 @@
         "x": 380,
         "y": 180,
         "outputs": 5,
-        "func": "let st = {}; try { st = JSON.parse(msg.payload.data || '{}'); } catch (e) { return null; }\nconst NAV = { 0: 'Manual', 1: 'Altitude', 2: 'Position', 3: 'Mission', 4: 'Hold', 14: 'Offboard', 15: 'Stabilized', 17: 'Takeoff', 18: 'Land' };\nconst vals = [st.armed ? 'armed' : 'disarmed', NAV[st.nav_state] || String(st.nav_state), st.engaged ? 'yes' : 'no', st.state || '\u2014', st.alt != null ? st.alt.toFixed(2) + ' m' : '\u2014'];\nconst now = Date.now(), force = now - (context.get('t') || 0) > 2000;   // send changed rows at once and every row every 2 s so new pages and redeploys fill in\nif (force) context.set('t', now);\nconst last = context.get('last') || [];\ncontext.set('last', vals);\nreturn vals.map((v, i) => (!force && v === last[i]) ? null : { payload: v });",
+        "func": "let st = {}; try { st = JSON.parse(msg.payload.data || '{}'); } catch (e) { return null; }\nconst NAV = { 0: 'Manual', 1: 'Altitude', 2: 'Position', 3: 'Mission', 4: 'Hold', 14: 'Offboard', 15: 'Stabilized', 17: 'Takeoff', 18: 'Land' };\nconst vals = [st.armed ? 'armed' : 'disarmed', NAV[st.nav_state] || String(st.nav_state), st.engaged ? 'yes' : 'no', st.state || '—', st.alt != null ? st.alt.toFixed(2) + ' m' : '—'];\nconst now = Date.now(), force = now - (context.get('t') || 0) > 2000;   // send changed rows at once and every row every 2 s so new pages and redeploys fill in\nif (force) context.set('t', now);\nconst last = context.get('last') || [];\ncontext.set('last', vals);\nreturn vals.map((v, i) => (!force && v === last[i]) ? null : { payload: v });",
         "wires": [
             [
                 "tagnav_ui_armed"
@@ -717,7 +717,7 @@
         "x": 560,
         "y": 380,
         "outputs": 1,
-        "func": "const c = msg.cmd || {};\nconst p = c.parameter === -1 ? 'any tag' : (c.command.includes('tag') ? 'tag ' + c.parameter : '');\nconst v = c.north ? ` \u00b7 ${c.north > 0 ? 'forward' : 'backward'} ${Math.abs(c.north)} m/s` : '';\nreturn { payload: `${c.command.replace(/_/g, ' ')} ${p}` + v };",
+        "func": "const c = msg.cmd || {};\nconst p = c.parameter === -1 ? 'any tag' : (c.command.includes('tag') ? 'tag ' + c.parameter : '');\nconst v = c.north ? ` · ${c.north > 0 ? 'forward' : 'backward'} ${Math.abs(c.north)} m/s` : '';\nreturn { payload: `${c.command.replace(/_/g, ' ')} ${p}` + v };",
         "wires": [
             [
                 "tagnav_ui_step"
@@ -749,7 +749,7 @@
         "x": 1200,
         "y": 460,
         "outputs": 1,
-        "func": "if (msg.topic !== 'step' && msg.topic !== 'land') return null;\nreturn { payload: (msg.payload.success ? '\u2713 ' : '\u2717 ') + (msg.payload.message || '') };",
+        "func": "if (msg.topic !== 'step' && msg.topic !== 'land') return null;\nreturn { payload: (msg.payload.success ? '✓ ' : '✗ ') + (msg.payload.message || '') };",
         "wires": [
             [
                 "tagnav_ui_result"

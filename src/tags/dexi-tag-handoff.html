@@ -1,0 +1,55 @@
+<script type="text/javascript">
+    RED.nodes.registerType('dexi-tag-handoff', {
+        category: 'DEXI tag nav',
+        color: '#c7e9c0',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            name: {value: ""},
+            timeout: {value: 120, validate: RED.validators.number()},
+        },
+        // Dragged in from the palette: use the flow's ROS2 server so the node
+        // works without opening it. Only fills an empty field.
+        onadd: function () {
+            var self = this;
+            if (self.server) { return; }
+            RED.nodes.eachConfig(function (c) {
+                if (!self.server && c.type === 'ros2-websocket-server') {
+                    self.server = c.id;
+                    if (c.users.indexOf(self) < 0) { c.users.push(self); }
+                }
+            });
+        },
+        inputs: 1,
+        outputs: 1,
+        outputLabels: ["done"],
+        icon: "font-awesome/fa-qrcode",
+        paletteLabel: 'tag hand-off',
+        label: function () { return this.name || 'tag hand-off'; }
+    });
+</script>
+
+<script type="text/html" data-template-name="dexi-tag-handoff">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server"></i> ROS2 server</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-clock-o"></i> Wait up to</label>
+        <input type="number" id="node-input-timeout" style="width:100px"> s
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="dexi-tag-handoff">
+    <p>Waits for the pilot to hand the aircraft to the mission: armed, airborne, Offboard and engaged.</p>
+    <p>The pilot takes off, hovers over the first tag and flips the Offboard switch. This node starts the
+    setpoint stream PX4 needs before it accepts Offboard, then waits by watching tag_nav's status, so the wait does not block other tag_nav commands.</p>
+    <p>To start a mission without a pilot (in the simulator or on the bench), use a <b>take off</b> node instead.</p>
+    <h3>Output</h3>
+    <p>Sends the message on when the step finishes. If the step fails it raises an error
+    instead (<code>msg.tagnav.message</code> says why): put one <b>catch</b> node on the tab and
+    wire it to a <b>land on tag</b> node with "center first" off.</p>
+</script>

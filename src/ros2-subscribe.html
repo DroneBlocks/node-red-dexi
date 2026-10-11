@@ -7,6 +7,18 @@
             topicname: {value: ""},
             messagetype: {value: ""}
         },
+        // Dragged in from the palette: use the flow's ROS2 server so the node
+        // works without opening it. Only fills an empty field.
+        onadd: function () {
+            var self = this;
+            if (self.server) { return; }
+            RED.nodes.eachConfig(function (c) {
+                if (!self.server && c.type === 'ros2-websocket-server') {
+                    self.server = c.id;
+                    if (c.users.indexOf(self) < 0) { c.users.push(self); }
+                }
+            });
+        },
         inputs:0,
         outputs:1,
         paletteLabel: 'ros2 subscribe',
