@@ -1,6 +1,6 @@
 {
   "name": "@droneblocks/node-red-dexi",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "node-red": {
     "nodes": {
       "offboard": "src/offboard.js",
