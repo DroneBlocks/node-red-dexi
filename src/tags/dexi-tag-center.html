@@ -1,0 +1,68 @@
+<script type="text/javascript">
+    RED.nodes.registerType('dexi-tag-center', {
+        category: 'DEXI tag nav',
+        color: '#c7e9c0',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            name: {value: ""},
+            tag: {value: 0, validate: RED.validators.number()},
+            timeout: {value: 25, validate: RED.validators.number()},
+            hold: {value: 1, validate: RED.validators.number()}
+        },
+        // Dragged in from the palette: use the flow's ROS2 server so the node
+        // works without opening it. Only fills an empty field.
+        onadd: function () {
+            var self = this;
+            if (self.server) { return; }
+            RED.nodes.eachConfig(function (c) {
+                if (!self.server && c.type === 'ros2-websocket-server') {
+                    self.server = c.id;
+                    if (c.users.indexOf(self) < 0) { c.users.push(self); }
+                }
+            });
+        },
+        inputs: 1,
+        outputs: 1,
+        outputLabels: ["done"],
+        icon: "font-awesome/fa-qrcode",
+        paletteLabel: 'center on tag',
+        label: function () {
+            var hold = (this.hold === undefined || this.hold === '') ? 1 : Number(this.hold);
+            var base = this.tag == -1 ? 'center on any tag' : 'center on tag ' + this.tag;
+            return this.name || (hold > 0 ? base + ' (' + hold + ' s)' : base);
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="dexi-tag-center">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server"></i> ROS2 server</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-tag"><i class="fa fa-qrcode"></i> Tag</label>
+        <input type="number" id="node-input-tag" style="width:100px"> (-1 = any tag in view)
+    </div>
+    <div class="form-row">
+        <label for="node-input-hold"><i class="fa fa-hourglass-half"></i> Hold for</label>
+        <input type="number" id="node-input-hold" style="width:100px" min="0" step="any"> s once centered (0 = move on at once)
+    </div>
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-clock-o"></i> Give up after</label>
+        <input type="number" id="node-input-timeout" style="width:100px"> s
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="dexi-tag-center">
+    <p>Moves the aircraft until the tag is directly below the camera, then stays there for
+    <b>Hold for</b> seconds (default 1) before sending the message on. The aircraft keeps correcting
+    from the tag the whole time, so a long hold stays on the tag rather than drifting.</p>
+    <h3>Output</h3>
+    <p>Sends the message on when the step finishes. If the step fails it raises an error
+    instead (<code>msg.tagnav.message</code> says why): put one <b>catch</b> node on the tab and
+    wire it to a <b>land on tag</b> node with "center first" off.</p>
+</script>

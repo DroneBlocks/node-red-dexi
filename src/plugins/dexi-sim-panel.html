@@ -1,0 +1,133 @@
+<script type="text/javascript">
+// DEXI sim panel: the simulator and the dashboard docked beside the flow editor, so
+// building, flying and listening happen in one browser tab.
+//
+// The simulator's camera frames come from the viewer drawing them. Browsers stop
+// drawing hidden iframes, so the panel never hides one: collapse shrinks it to a
+// thumbnail, and the Sim and Dashboard tabs are stacked rather than display:none.
+(function () {
+  RED.plugins.registerPlugin('dexi-sim-panel', {
+    type: 'dexi-editor-panel',
+    onadd: function () {
+      var STORE = 'dexi-sim-panel';
+      var state = { open: false, collapsed: false, width: 520, tab: 'sim' };
+      try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
+      function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+
+      var css = [
+        '#dexi-sim-panel{position:fixed;top:40px;right:0;bottom:0;z-index:100;background:var(--red-ui-secondary-background,#fff);',
+        ' border-left:1px solid var(--red-ui-secondary-border-color,#bbb);display:flex;flex-direction:column;box-shadow:-2px 0 6px rgba(0,0,0,.15)}',
+        '#dexi-sim-panel.collapsed{top:auto;right:12px;bottom:12px;width:280px!important;height:210px;border:1px solid #888;border-radius:6px}',
+        '#dexi-sim-panel .bar{display:flex;align-items:center;gap:4px;padding:4px 6px;border-bottom:1px solid var(--red-ui-secondary-border-color,#ddd);font-size:13px}',
+        '#dexi-sim-panel .bar button{border:1px solid #ccc;background:#f6f6f6;border-radius:3px;padding:2px 8px;cursor:pointer}',
+        '#dexi-sim-panel .bar button.on{background:#3b82c4;color:#fff;border-color:#3b82c4}',
+        '#dexi-sim-panel .bar .grow{flex:1}',
+        '#dexi-sim-panel .frames{position:relative;flex:1}',
+        '#dexi-sim-panel iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}',
+        '#dexi-sim-panel iframe.back{z-index:0}#dexi-sim-panel iframe.front{z-index:1}',
+        '#dexi-sim-panel .grip{position:absolute;left:-4px;top:0;bottom:0;width:8px;cursor:ew-resize;z-index:2}',
+        '#dexi-sim-panel.collapsed .grip,#dexi-sim-panel.collapsed .tabs{display:none}',
+        '#dexi-sim-panel .note{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;color:#666}',
+        '#red-ui-main-container.dexi-sim-open{right:var(--dexi-sim-width)!important}'
+      ].join('\n');
+      $('<style>').text(css).appendTo('head');
+
+      var panel = $('<div id="dexi-sim-panel"></div>').hide().appendTo('body');
+      var bar = $('<div class="bar"></div>').appendTo(panel);
+      var tabs = $('<span class="tabs"></span>').appendTo(bar);
+      var simBtn = $('<button type="button">Sim</button>').appendTo(tabs);
+      var dashBtn = $('<button type="button">Dashboard</button>').appendTo(tabs);
+      $('<span class="grow"></span>').appendTo(bar);
+      var popBtn = $('<button type="button" title="Open in a new tab"><i class="fa fa-external-link"></i></button>').appendTo(bar);
+      var colBtn = $('<button type="button"></button>').appendTo(bar);
+      var closeBtn = $('<button type="button" title="Close the panel. Closing the sim stops its camera."><i class="fa fa-times"></i></button>').appendTo(bar);
+      var frames = $('<div class="frames"></div>').appendTo(panel);
+      $('<div class="grip" title="Drag to resize"></div>').appendTo(panel);
+
+      var sim = null, dash = null, simUrl = null, dashUrl = 'ui/';
+      var hidSidebar = false;   // true while the panel has hidden Node-RED's own sidebar
+
+      // The editor is narrow with the panel open, so the info/debug sidebar goes away
+      // while the panel is expanded and comes back when it collapses or closes.
+      function sidebar(wide) {
+        if (!RED.menu || !RED.menu.isSelected) { return; }
+        // Node-RED 5 split the sidebar into left and right; 3 and 4 have one.
+        var id = $('#menu-item-right-sidebar').length ? 'menu-item-right-sidebar' : 'menu-item-sidebar';
+        var shown = RED.menu.isSelected(id);
+        if (wide && shown) { RED.menu.setSelected(id, false); hidSidebar = true; }
+        if (!wide && hidSidebar) { RED.menu.setSelected(id, true); hidSidebar = false; }
+      }
+
+      function layout() {
+        var open = state.open, wide = open && !state.collapsed;
+        panel.toggle(open).toggleClass('collapsed', state.collapsed);
+        panel.css('width', state.width + 'px');
+        document.documentElement.style.setProperty('--dexi-sim-width', (wide ? state.width : 0) + 'px');
+        $('#red-ui-main-container').toggleClass('dexi-sim-open', wide);
+        sidebar(wide);
+        simBtn.toggle(!!simUrl).toggleClass('on', state.tab === 'sim');
+        dashBtn.toggleClass('on', state.tab === 'dash');
+        if (sim) { sim.toggleClass('front', state.tab === 'sim').toggleClass('back', state.tab !== 'sim'); }
+        if (dash) { dash.toggleClass('front', state.tab === 'dash').toggleClass('back', state.tab !== 'dash'); }
+        colBtn.html(state.collapsed ? '<i class="fa fa-expand"></i>' : '<i class="fa fa-compress"></i>')
+          .attr('title', state.collapsed ? 'Expand' : 'Collapse to a thumbnail (the sim keeps running)');
+        headerBtn.toggleClass('selected', open);
+        RED.view && RED.view.redraw && RED.view.redraw();
+        $(window).trigger('resize');
+        save();
+      }
+
+      function load() {
+        // Load both on first open and keep them: reloading the viewer respawns the drone.
+        if (!dash) { dash = $('<iframe title="DEXI dashboard"></iframe>').attr('src', dashUrl).appendTo(frames); }
+        if (simUrl && !sim) { sim = $('<iframe title="DEXI simulator" allow="autoplay"></iframe>').attr('src', simUrl).appendTo(frames); }
+        if (!simUrl && state.tab === 'sim') { state.tab = 'dash'; }
+      }
+
+      simBtn.on('click', function () { state.tab = 'sim'; layout(); });
+      dashBtn.on('click', function () { state.tab = 'dash'; layout(); });
+      colBtn.on('click', function () { state.collapsed = !state.collapsed; layout(); });
+      closeBtn.on('click', function () { state.open = false; layout(); });
+      popBtn.on('click', function () { window.open(state.tab === 'sim' && simUrl ? simUrl : dashUrl, '_blank'); });
+
+      panel.find('.grip').on('mousedown', function (e) {
+        e.preventDefault();
+        frames.css('pointer-events', 'none');   // iframes swallow mouse events mid-drag
+        var startX = e.pageX, startW = state.width;
+        $(document).on('mousemove.dexisim', function (ev) {
+          state.width = Math.max(320, Math.min(window.innerWidth - 400, startW + startX - ev.pageX));
+          layout();
+        }).on('mouseup.dexisim', function () {
+          $(document).off('.dexisim'); frames.css('pointer-events', '');
+        });
+      });
+
+      var headerBtn = $('<a id="dexi-sim-panel-btn" class="button" href="#" title="Sim and dashboard"><i class="fa fa-paper-plane"></i> <span>Sim</span></a>');
+      $('<li></li>').append(headerBtn).prependTo('.red-ui-header-toolbar');
+      headerBtn.on('click', function (e) {
+        e.preventDefault();
+        state.open = !state.open;
+        if (state.open) { state.collapsed = false; load(); }
+        layout();
+      });
+
+      $.getJSON('dexi/sim-panel/config').always(function (cfg) {
+        cfg = cfg || {};
+        var host = window.location.hostname;
+        var base = (cfg.simUrl || 'http://' + host + ':1337').replace(/\/$/, '');
+        var ws = cfg.rosbridgeUrl || 'ws://' + host + ':9090';
+        var candidate = base + '/viewer-corridor.html?autoconnect=1&ws=' + encodeURIComponent(ws);
+        // No simulator on an aircraft: probe it, and offer only the dashboard if it is absent.
+        fetch(base + '/viewer-corridor.html', { mode: 'no-cors', cache: 'no-store' })
+          .then(function () { simUrl = candidate; })
+          .catch(function () { simUrl = null; })
+          .then(function () {
+            headerBtn.find('span').text(simUrl ? 'Sim' : 'Dashboard');
+            if (state.open) { load(); }
+            layout();
+          });
+      });
+    }
+  });
+})();
+</script>

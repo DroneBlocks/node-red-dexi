@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('dexi-flight-takeoff', {
+        category: 'DEXI tag nav',
+        color: '#c7e9c0',
+        defaults: {
+            server: {type: "ros2-websocket-server"},
+            name: {value: ""},
+            altitude: {value: 1.5, validate: RED.validators.number()}
+        },
+        // Dragged in from the palette: use the flow's ROS2 server so the node
+        // works without opening it. Only fills an empty field.
+        onadd: function () {
+            var self = this;
+            if (self.server) { return; }
+            RED.nodes.eachConfig(function (c) {
+                if (!self.server && c.type === 'ros2-websocket-server') {
+                    self.server = c.id;
+                    if (c.users.indexOf(self) < 0) { c.users.push(self); }
+                }
+            });
+        },
+        inputs: 1,
+        outputs: 1,
+        outputLabels: ["done"],
+        icon: "font-awesome/fa-plane",
+        paletteLabel: 'take off',
+        label: function () { return this.name || ('take off to ' + this.altitude + ' m'); }
+    });
+</script>
+
+<script type="text/html" data-template-name="dexi-flight-takeoff">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server"></i> ROS2 server</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-altitude"><i class="fa fa-arrow-up"></i> Height</label>
+        <input type="number" id="node-input-altitude" style="width:100px"> m (0.5 to 3)
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="dexi-flight-takeoff">
+    <p>Arms and takes off in Offboard to the height, then sends the message on.</p>
+    <p>Start on the ground over the first tag. On an aircraft the pilot keeps the radio and can take
+    over at any time by leaving Offboard.</p>
+    <p>A 6 in tag is hard to detect above about 1.7 m.</p>
+    <h3>Output</h3>
+    <p>Sends the message on once the aircraft reaches the height. If arming or the takeoff fails it raises
+    an error instead: put one <b>catch</b> node on the tab.</p>
+</script>
