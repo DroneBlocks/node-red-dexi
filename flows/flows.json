@@ -107,7 +107,7 @@
         "name": "PX4 Telemetry",
         "icon": "dashboard",
         "order": 1,
-        "disabled": true,
+        "disabled": false,
         "hidden": false
     },
     {
@@ -186,7 +186,7 @@
         "id": "start_here",
         "type": "tab",
         "label": "1 \u00b7 Start Here",
-        "disabled": true,
+        "disabled": false,
         "info": "Telemetry from PX4 and the LED ring. Runs on the sim and on the aircraft.\n\nDashboard: PX4 Telemetry at /ui.",
         "env": []
     },

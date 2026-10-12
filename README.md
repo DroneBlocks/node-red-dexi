@@ -58,9 +58,10 @@ npm install node-red-node-ui-iframe
 
 ## Shipped flows
 
-`flows/flows.json` holds these tabs. Every tab and dashboard page ships **disabled**: enabled
-subscriptions stream PX4 topics through rosbridge from first boot whether or not anyone is
-watching, which cost an ARK CM4 most of a core. Enable a tab from its properties and Deploy.
+`flows/flows.json` holds these tabs. **1 · Start Here** ships enabled: it reads the 2 Hz
+`/dexi/telemetry` summary, which costs rosbridge about 1% of a core on an ARK CM4. Every other
+tab and dashboard page ships **disabled**, because they fly the aircraft or stream camera and
+detection topics. Enable a tab from its properties and Deploy.
 
 | Tab | What it does | Runs on |
 |---|---|---|
