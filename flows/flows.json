@@ -2503,7 +2503,7 @@
         "name": "Bar counter outputs",
         "x": 200,
         "y": 420,
-        "info": "`/bar_detections` uses the same message as `/yolo_detections`.\n`class_name` is one of:\n\n```\nbars_1   one white bar in a black disc\nbars_2   two bars\nbars_3   three bars\nbars_0   plain black disc, no bars\n```\n\nNothing is published when the counter cannot read the disc (too far,\ntilted, bars merged). No message means \"not sure\", not `bars_0`.\n\nAn answer is only published once it wins 3 of the last 5 frames, so\nit already ignores a single bad frame.",
+        "info": "`/bar_detections` uses the same message as `/yolo_detections`.\n`class_name` is one of:\n\n```\nbars_1   one white bar in a black disc\nbars_2   two bars\nbars_3   three bars\nbars_0   plain black disc, no bars\n```\n\nNothing is published when the counter cannot read the disc (too far,\ntilted, bars merged). No message means \"not sure\", not `bars_0`.\n\nAn answer is only published once it wins 3 of the last 5 frames, so\nit already ignores a single bad frame.\n\nIf a bridge coaster is still on the cup, the counter sees a plain black\ndisc and reports `bars_0`.",
         "wires": []
     },
     {
