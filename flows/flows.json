@@ -1207,17 +1207,17 @@
     {
         "id": "see_detect",
         "type": "tab",
-        "label": "3 \u00b7 AprilTags and YOLO",
+        "label": "3 \u00b7 AprilTags",
         "disabled": true,
-        "info": "Detections driving the LED ring. AprilTags work on the sim and the aircraft; YOLO runs on the aircraft only.",
+        "info": "AprilTag detections driving the LED ring, on the sim and the aircraft.",
         "env": []
     },
     {
         "id": "note_see_detect_3",
         "type": "comment",
         "z": "see_detect",
-        "name": "AprilTags and YOLO",
-        "info": "AprilTag detections (sim and drone) and YOLO detections (drone only) each light the LED ring.",
+        "name": "AprilTags",
+        "info": "AprilTag detections light the LED ring. YOLO and the bar counter are on the AVR 2026 Vision tab.",
         "x": 60,
         "y": 20,
         "wires": []
@@ -1382,187 +1382,6 @@
             ]
         ],
         "g": "grp_see_detect_3"
-    },
-    {
-        "id": "grp_see_detect_4",
-        "type": "group",
-        "z": "see_detect",
-        "name": "YOLO (drone only)",
-        "style": {
-            "label": true,
-            "fill": "#fecaca",
-            "fill-opacity": "0.15",
-            "stroke": "#999999"
-        },
-        "nodes": [
-            "65b1b7513e2bcc35",
-            "5f2a63e2191be928",
-            "413cc6735c1b44b2",
-            "864ed565c0238fcf",
-            "d58ca6c79218e4af",
-            "f3517bf771100bf2",
-            "42b2e7ce027aeb19",
-            "5e3a7b461cdb2ce7"
-        ],
-        "x": 0,
-        "y": 455,
-        "w": 1120,
-        "h": 250
-    },
-    {
-        "id": "65b1b7513e2bcc35",
-        "type": "function",
-        "z": "see_detect",
-        "name": "get object",
-        "func": "if (msg.payload.detections.length > 0) {\n    msg.payload = msg.payload.detections[0].class_name\n} else {\n    msg.payload = \"None\"\n}\n\nreturn msg",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 560,
-        "wires": [
-            [
-                "413cc6735c1b44b2",
-                "5e3a7b461cdb2ce7"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "5f2a63e2191be928",
-        "type": "ros2-subscribe",
-        "z": "see_detect",
-        "server": "27129f80a96ce509",
-        "topicname": "/yolo_detections",
-        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
-        "x": 120,
-        "y": 560,
-        "wires": [
-            [
-                "65b1b7513e2bcc35"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "413cc6735c1b44b2",
-        "type": "switch",
-        "z": "see_detect",
-        "name": "set led color",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "dog",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "cat",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "truck",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 530,
-        "y": 560,
-        "wires": [
-            [
-                "864ed565c0238fcf"
-            ],
-            [
-                "d58ca6c79218e4af"
-            ],
-            [
-                "f3517bf771100bf2"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "864ed565c0238fcf",
-        "type": "led",
-        "z": "see_detect",
-        "name": "Red LED",
-        "color": "red",
-        "x": 720,
-        "y": 500,
-        "wires": [
-            [
-                "42b2e7ce027aeb19"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "d58ca6c79218e4af",
-        "type": "led",
-        "z": "see_detect",
-        "name": "Blue LED",
-        "color": "blue",
-        "x": 720,
-        "y": 560,
-        "wires": [
-            [
-                "42b2e7ce027aeb19"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "f3517bf771100bf2",
-        "type": "led",
-        "z": "see_detect",
-        "name": "Yellow LED",
-        "color": "yellow",
-        "x": 730,
-        "y": 620,
-        "wires": [
-            [
-                "42b2e7ce027aeb19"
-            ]
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "42b2e7ce027aeb19",
-        "type": "ros2-service-call",
-        "z": "see_detect",
-        "server": "27129f80a96ce509",
-        "x": 960,
-        "y": 560,
-        "wires": [
-            []
-        ],
-        "g": "grp_see_detect_4"
-    },
-    {
-        "id": "5e3a7b461cdb2ce7",
-        "type": "debug",
-        "z": "see_detect",
-        "name": "print class name",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 640,
-        "wires": [],
-        "g": "grp_see_detect_4"
     },
     {
         "id": "tagnav_tab",
@@ -2455,9 +2274,9 @@
     {
         "id": "avr26ex_tab",
         "type": "tab",
-        "label": "5 \u00b7 AVR 2026",
+        "label": "5 \u00b7 AVR 2026 Vision",
         "disabled": true,
-        "info": "The drone runs a YOLO model trained on the AVR 2026 field artwork and\npublishes what it sees on `/yolo_detections`. Turn those detections into the\nright LED color.\n\nThe subscribe and service-call nodes are wired. `gasoline` is done as an\nexample. The other nine are yours.\n\n1. Point the camera at a printed card and watch the `raw detections` debug\n   node to see the data.\n2. Read the `pick a class` function node. It works but it is basic.\n3. Add rules to the `class -> color` switch node."
+        "info": "Two detectors light the LED ring.\n\nYOLO publishes what it sees on `/yolo_detections`: barrels and barns.\n`gasoline` is done as an example. The rest are yours.\n\nThe bar counter publishes on `/bar_detections`: how many white bars are in\nthe black disc of a bridge cup. All three bar counts are wired.\n\n1. Point the camera at a printed card and watch the debug nodes to see the data.\n2. Read the `pick a class` function node. It works but it is basic.\n3. Add rules to the `class -> color` switch node."
     },
     {
         "id": "avr26ex_sub",
@@ -2497,8 +2316,8 @@
         "id": "avr26ex_note_labels",
         "type": "comment",
         "z": "avr26ex_tab",
-        "name": "Class labels",
-        "info": "The ten strings the model can emit. Copy and paste them, a typo will not\nraise an error.\n\n```\nwheat_barrel\nwater_barrel\ngasoline\ntoxic_fluid\nwheat_barn\nwater_barn\nbridge_1line\nbridge_2line\nbridge_3line\nblackout\n```\n\nThe color for each one is in the AVR 2026 game manual.",
+        "name": "YOLO class labels",
+        "info": "The ten strings the model can emit. Copy and paste them, a typo will not\nraise an error.\n\n```\nwheat_barrel\nwater_barrel\ngasoline\ntoxic_fluid\nwheat_barn\nwater_barn\nbridge_1line\nbridge_2line\nbridge_3line\nblackout\n```\n\nThe color for each one is in the AVR 2026 game manual.\n\nBridge cups are read better by the bar counter below. The YOLO bridge\nclasses are a fallback.",
         "x": 210,
         "y": 60,
         "wires": []
@@ -2599,7 +2418,7 @@
         "type": "comment",
         "z": "avr26ex_tab",
         "name": "Turning the ring off when detection stops",
-        "info": "The detector publishes only when it sees something, so nothing arrives on\nan empty frame and the ring would hold its last color indefinitely.\n\nEvery detection restarts the timer below. When 5 seconds pass with no\ndetection the timer fires and the ring goes off.\n\nThe ring is shared with the flight mode indicator, which sets a color only\nwhen the mode changes. After this clears the ring, the flight mode color\nreturns on the next mode change.",
+        "info": "Both detectors publish only when they see something, so nothing arrives on\nan empty frame and the ring would hold its last color indefinitely.\n\nEvery detection restarts the timer below. When 5 seconds pass with no\ndetection the timer fires and the ring goes off.\n\nThe ring is shared with the flight mode indicator, which sets a color only\nwhen the mode changes. After this clears the ring, the flight mode color\nreturns on the next mode change.",
         "x": 420,
         "y": 300,
         "wires": []
@@ -2637,6 +2456,175 @@
         "color": "black",
         "x": 900,
         "y": 340,
+        "wires": [
+            [
+                "avr26ex_call"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_sub",
+        "type": "ros2-subscribe",
+        "z": "avr26ex_tab",
+        "name": "/bar_detections",
+        "server": "27129f80a96ce509",
+        "topicname": "/bar_detections",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "avr26bar_dbg",
+                "avr26bar_fn",
+                "avr26ex_clear"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_dbg",
+        "type": "debug",
+        "z": "avr26ex_tab",
+        "name": "raw bar detections",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "avr26bar_note",
+        "type": "comment",
+        "z": "avr26ex_tab",
+        "name": "Bar counter outputs",
+        "x": 200,
+        "y": 420,
+        "info": "`/bar_detections` uses the same message as `/yolo_detections`.\n`class_name` is one of:\n\n```\nbars_1   one white bar in a black disc\nbars_2   two bars\nbars_3   three bars\nbars_0   plain black disc, no bars: the inactive row, ring off\n```\n\nNothing is published when the counter cannot read the disc (too far,\ntilted, bars merged). No message means \"not sure\", not `bars_0`.\n\nAn answer is only published once it wins 3 of the last 5 frames, so\nit already ignores a single bad frame.\n\nIf a bridge coaster is still on the cup, the counter sees a plain black\ndisc and reports `bars_0`.",
+        "wires": []
+    },
+    {
+        "id": "avr26bar_fn",
+        "type": "function",
+        "z": "avr26ex_tab",
+        "name": "pick a bar count",
+        "func": "// Same shape as YOLO: msg.payload.detections[0].class_name is\n// bars_1, bars_2, bars_3 or bars_0. The counter reads one disc, so\n// there is at most one detection.\n\nvar detections = msg.payload.detections || [];\n\nif (detections.length === 0) {\n    return null;\n}\n\nmsg.payload = detections[0].class_name;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "avr26bar_switch"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_switch",
+        "type": "switch",
+        "z": "avr26ex_tab",
+        "name": "bars -> color",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "bars_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "bars_2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "bars_3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "bars_0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "avr26bar_led_red"
+            ],
+            [
+                "avr26bar_led_green"
+            ],
+            [
+                "avr26bar_led_blue"
+            ],
+            [
+                "avr26bar_led_off"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_led_red",
+        "type": "led",
+        "z": "avr26ex_tab",
+        "name": "1 bar -> red",
+        "color": "red",
+        "x": 900,
+        "y": 440,
+        "wires": [
+            [
+                "avr26ex_call"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_led_green",
+        "type": "led",
+        "z": "avr26ex_tab",
+        "name": "2 bars -> green",
+        "color": "green",
+        "x": 900,
+        "y": 480,
+        "wires": [
+            [
+                "avr26ex_call"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_led_blue",
+        "type": "led",
+        "z": "avr26ex_tab",
+        "name": "3 bars -> blue",
+        "color": "blue",
+        "x": 900,
+        "y": 520,
+        "wires": [
+            [
+                "avr26ex_call"
+            ]
+        ]
+    },
+    {
+        "id": "avr26bar_led_off",
+        "type": "led",
+        "z": "avr26ex_tab",
+        "name": "blank -> off",
+        "color": "black",
+        "x": 900,
+        "y": 560,
         "wires": [
             [
                 "avr26ex_call"
