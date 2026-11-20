@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('capture-media', {
+        category: 'DEXI',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            action: {value: "photo"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-camera",
+        paletteLabel: "capture media",
+        label: function() {
+            const labels = { photo: "take photo", start_recording: "start recording", stop_recording: "stop recording" }
+            return this.name || labels[this.action] || "capture media"
+        }
+    })
+</script>
+
+<script type="text/html" data-template-name="capture-media">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-action"><i class="fa fa-camera"></i> Action</label>
+        <select id="node-input-action">
+            <option value="photo">Take photo</option>
+            <option value="start_recording">Start recording</option>
+            <option value="stop_recording">Stop recording</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="capture-media">
+    <p>Take a photo or start/stop a video recording on DEXI. Connect the output to a <b>ros2 service call</b> node.</p>
+    <p>Files are saved on the drone in <code>/home/dexi/dexi_media</code> and can be viewed, downloaded and deleted from the Media tab in the DEXI GCS.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt class="optional">payload.action <span class="property-type">string</span></dt>
+        <dd><code>photo</code>, <code>start_recording</code> or <code>stop_recording</code>. Overrides the configured action.</dd>
+    </dl>
+    <p>Requires the <code>dexi_capture_media</code> node (<code>nodes.capture_media.enabled</code>, on by default).</p>
+</script>

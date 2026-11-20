@@ -27,6 +27,7 @@
       "write-gpio": "src/write-gpio.js",
       "image-preview": "src/image-preview.js",
       "save-photo": "src/save-photo.js",
+      "capture-media": "src/capture-media.js",
       "dexi-tag-handoff": "src/tags/dexi-tag-handoff.js",
       "dexi-tag-center": "src/tags/dexi-tag-center.js",
       "dexi-tag-fly-until": "src/tags/dexi-tag-fly-until.js",
